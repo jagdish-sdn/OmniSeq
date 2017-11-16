@@ -1,0 +1,87 @@
+.dark-theme {
+  .toolbar-title {
+    color: $white-background;
+  }
+  .toolbar-background {
+    background-color: $light-background;
+  }
+  .footer .toolbar-background {
+    background-color: #fff;
+  }
+  .header-title-color{
+    color: $white-background;
+  }
+  .menus-background{
+    background-color: $light-background;
+  }
+  ion-header{
+    background-color: $light-background;
+  }
+  .custom-content{
+    background-color: $light-background;
+  }
+  .searchbar-input{
+    background-color: $white-background !important;
+    color: $light-background !important;
+  }
+  .body-content{
+    //background-color: $light-background !important;
+    background: -moz-linear-gradient(104deg, rgba(26,81,148,1) 0%, rgba(26,81,148,1) 16%, rgba(85,147,255,1) 80%, rgba(85,147,255,1) 100%); /* ff3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(85,147,255,1)), color-stop(20%, rgba(85,147,255,1)), color-stop(84%, rgba(26,81,148,1)), color-stop(100%, rgba(26,81,148,1))); /* safari4+,chrome */
+    background: -webkit-linear-gradient(104deg, rgba(26,81,148,1) 0%, rgba(26,81,148,1) 16%, rgba(85,147,255,1) 80%, rgba(85,147,255,1) 100%); /* safari5.1+,chrome10+ */
+    background: -o-linear-gradient(104deg, rgba(26,81,148,1) 0%, rgba(26,81,148,1) 16%, rgba(85,147,255,1) 80%, rgba(85,147,255,1) 100%); /* opera 11.10+ */
+    background: -ms-linear-gradient(104deg, rgba(26,81,148,1) 0%, rgba(26,81,148,1) 16%, rgba(85,147,255,1) 80%, rgba(85,147,255,1) 100%); /* ie10+ */
+    background: linear-gradient(346deg, rgba(26,81,148,1) 0%, rgba(26,81,148,1) 16%, rgba(85,147,255,1) 80%, rgba(85,147,255,1) 100%); /* w3c */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5593ff', endColorstr='#1a5194',GradientType=0 ); /* ie6-9 */
+  }
+  .img-1{
+    content:url(../assets/images/dashboard/GeneLookup.png);        
+  }
+  .img-2{
+      content:url(../assets/images/dashboard/CancerImmuneCycle.png);        
+  }
+  .img-3{
+      content:url(../assets/images/dashboard/CompanionComplementary-Dx.png);        
+  }
+  .img-4{
+      content:url(../assets/images/dashboard/FAQs.png);        
+  }
+  .img-5{
+      content:url(../assets/images/dashboard/AskaQuestion.png);        
+  }
+  .img-6{
+      content:url(../assets/images/dashboard/QuizMe.png);        
+  }
+  .card-md {
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    background-color: none !important;
+    background: none !important
+  }
+  .card-ios {
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    background-color: none !important;
+    background: none !important
+  }
+  .home-title{
+    color: #fff;
+  }
+  .card-img-border{
+      background: #0c3c6c;
+      border-radius: 100%;
+      width: 100px;
+      height: 100px;
+      margin: 0 auto;
+      margin-bottom: 20px;
+      border: 10px solid #7893ad;
+  }
+  $searchbar-md-input-search-icon-color: red;
+  $searchbar-ios-input-search-icon-color : red;
+  // .card-img-border img {
+  //     max-width: 100%;
+  //     padding-top: 0;
+  //     /* padding-left: 16px; */
+  //     margin-left: 0;
+  // }
+}

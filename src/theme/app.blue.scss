@@ -1,0 +1,52 @@
+.blue-theme {
+    // h1, h2, h3, h4, h5, h6,
+    .toolbar-title {
+      color: $white-background;
+    }
+    .toolbar-background {
+      background-color: $light-background;
+    }
+    .footer .toolbar-background {
+      background-color: #fff;
+    }
+    .header-title-color{
+      color: $white-background;
+    }
+    .menus-background{
+      background-color: $light-background;
+    }
+    ion-header{
+      background-color: $light-background;
+    }
+    .custom-content{
+      background-color: $light-background;
+    }
+    .searchbar-input{
+      background-color: $light-background !important;
+      color: #fff !important;
+    }
+    .img-1{
+        content:url(../assets/images/GeneLookup.png);        
+    }
+    .img-2{
+        content:url(../assets/images/CancerImmuneCycle.png);        
+    }
+    .img-3{
+        content:url(../assets/images/CompanionComplementary-Dx.png);        
+    }
+    .img-4{
+        content:url(../assets/images/FAQs.png);        
+    }
+    .img-5{
+        content:url(../assets/images/AskaQuestion.png);        
+    }
+    .img-6{
+        content:url(../assets/images/QuizMe.png);        
+    }
+
+
+    // $searchbar-ios-input-clear-icon-color:    #ffffff;
+    // $searchbar-md-input-search-icon-color: #ffffff;
+    // $searchbar-ios-input-search-icon-color: #ffffff;
+    // $searchbar-ios-input-placeholder-color: #ffffff;
+}

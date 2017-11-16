@@ -1,0 +1,27 @@
+page-profile {
+    .form-padding {
+        padding-top: 0 !important;
+    }
+    .phone-code{
+         color: #1a5293;
+         border: 1px solid #727272;
+         padding: 2%;            
+     }
+     .phone-item .phone-code{
+         position: absolute;
+         border: 0;
+         padding: 0;
+         margin: 0;
+         bottom: 8px;
+     }
+     .phone-item ion-input{padding-left: 22px;}
+     .text-input{
+         color: #1a5293 !important;
+     }
+     .select-text{
+        color: #1a5293 !important;
+     }
+     .datetime-text{
+        color: #1a5293 !important;
+     }
+}

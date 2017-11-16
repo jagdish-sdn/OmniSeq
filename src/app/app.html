@@ -1,0 +1,33 @@
+<div [class]="selectedTheme">
+  <ion-menu [content]="content">
+    <ion-header class="sidemenu-header" padding>
+      <ion-row>
+        <ion-col col-4>
+          <div class="side-img">
+            <img src="assets/images/logo_menu.png">
+          </div>
+        </ion-col>
+        <ion-col col-8 padding-top>
+          <h4 class="header-title-color">{{ profile.name ? profile.name : ''}}</h4>
+          <p class="header-title-color"><ion-icon name="custom-mail"></ion-icon><span class="title-name"> {{profile.email ? profile.email : ''}}</span></p>
+          <p class="header-title-color"><ion-icon name="custom-call"></ion-icon><span class="title-name">{{profile.phone ? profile.phone : ''}}</span></p>
+        </ion-col>
+      </ion-row>
+    </ion-header>
+    <div class="single-line" padding-left padding-right></div>
+    <ion-content class="custom-content" padding-top>
+      <ion-list>
+        <button class="menus-background" menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+          <img class="side-menu-icon" src="assets/images/{{p.icon}}"><span class="side-menu-title" padding-top>{{p.title}}</span>
+        </button>
+      </ion-list>
+    </ion-content>
+    <ion-footer>
+        <ion-toolbar menuClose (click)="logOut()">
+            <ion-title><ion-icon class="logout" ios="ios-log-out" md="md-log-out"></ion-icon> <span class="logout" padding-left> LOGOUT</span></ion-title>
+        </ion-toolbar>
+    </ion-footer>
+  </ion-menu>
+  <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+  <ion-nav  [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+</div> 

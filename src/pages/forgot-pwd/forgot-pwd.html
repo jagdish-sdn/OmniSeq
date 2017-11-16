@@ -1,0 +1,39 @@
+<ion-content >
+    <div id="cloud-layer" padding padding-top>
+      <ion-row class="login-logo">
+        <ion-col>
+          <div>
+            <img src="assets/images/logo_small.png" />
+          </div>
+          <h2 class="login-title">Welcome User</h2>
+          <p class="sub-title">Forgot password</p>
+        </ion-col>
+      </ion-row>
+      <form [formGroup]="forgotPwdForm">
+        <ion-row class="form-padding">
+          <ion-col>
+            <div inset class="main-div">
+              <ion-item >
+                <ion-label floating class="label-title">Email address</ion-label>
+                <ion-input type="text" formControlName="email" name="email" class="input-text-color"></ion-input>
+                <ion-icon *ngIf="((forgotPwdForm.controls.email.hasError('required') || forgotPwdForm.controls.email.hasError('pattern')) && forgotPwdForm.controls.email.touched) || ((forgotPwdForm.controls.email.hasError('required') || forgotPwdForm.controls.email.hasError('pattern')) && submitAttempt)" ios="ios-close" md="md-close" item-right text-end padding-top color="danger"></ion-icon>
+                <ion-icon *ngIf="(forgotPwdForm.controls.email.valid && forgotPwdForm.controls.email.touched) || (forgotPwdForm.controls.email.valid && submitAttempt)" ios="ios-checkmark" md="md-checkmark" item-right text-end padding-top color="primary"></ion-icon>
+              </ion-item>           
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <button (click)="forgotPwd()" ion-button padding text-center class="login-button">Send</button>
+          </ion-col>
+        </ion-row>
+      </form>
+      <ion-row>
+        <ion-col>
+          <div padding (click)="goToLogin()" text-center class="forgot-password">          
+            <span class="secondary-color"><strong>Login</strong></span>
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-content>

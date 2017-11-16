@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Profile</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="updateProfileForm">
+    <ion-row class="form-padding">
+      <ion-col>
+        <ion-item>
+          <ion-label floating>Full Name</ion-label>
+          <ion-input type="text" formControlName="name" name="name" value="{{profile.name}}"></ion-input>
+          <ion-icon *ngIf="(updateProfileForm.controls.name.hasError('required') && updateProfileForm.controls.name.touched) || (updateProfileForm.controls.name.hasError('required') && updateAttempt)"
+            ios="ios-close" md="md-close" item-right text-end padding-top color="danger"></ion-icon>
+          <ion-icon *ngIf="(updateProfileForm.controls.name.valid && updateProfileForm.controls.name.touched) || (updateProfileForm.controls.name.valid && updateAttempt)"
+            ios="ios-checkmark" md="md-checkmark" item-right text-end padding-top color="primary"></ion-icon>
+        </ion-item>
+        <ion-item>
+          <ion-label floating class="">Position</ion-label>
+          <ion-select formControlName="position" name="position">
+            <ion-option value="{{pos.name}}" *ngFor="let pos of positions">{{pos.name}}</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Institution</ion-label>
+          <ion-input type="text" formControlName="institution" name="institution" value="{{profile.institution}}"></ion-input>
+          <ion-icon *ngIf="(updateProfileForm.controls.institution.hasError('required') && updateProfileForm.controls.institution.touched) || (updateProfileForm.controls.institution.hasError('required') && updateAttempt)"
+            ios="ios-close" md="md-close" item-right text-end padding-top color="danger"></ion-icon>
+          <ion-icon *ngIf="(updateProfileForm.controls.institution.valid && updateProfileForm.controls.institution.touched) || (updateProfileForm.controls.institution.valid && updateAttempt)"
+            ios="ios-checkmark" md="md-checkmark" item-right text-end padding-top color="primary"></ion-icon>
+        </ion-item>
+        <ion-item class="phone-item">
+          <ion-label floating>Phone Number</ion-label>
+          <span item-left class="phone-code">+1</span>
+          <ion-input type="tel" value="{{profile.phone}}" formControlName="phone" name="phone"></ion-input>
+          <ion-icon *ngIf="((updateProfileForm.controls.phone.hasError('required') || updateProfileForm.controls.phone.hasError('minlength') || updateProfileForm.controls.phone.hasError('maxlength')) && updateProfileForm.controls.phone.touched) || ((updateProfileForm.controls.phone.hasError('required') || updateProfileForm.controls.phone.hasError('maxlength') || updateProfileForm.controls.phone.hasError('minlength')) && submitAttempt)"
+            ios="ios-close" md="md-close" item-right text-end padding-top color="danger"></ion-icon>
+          <ion-icon *ngIf="(updateProfileForm.controls.phone.valid && updateProfileForm.controls.phone.touched) || (updateProfileForm.controls.phone.valid && submitAttempt)"
+            ios="ios-checkmark" md="md-checkmark" item-right text-end padding-top color="primary"></ion-icon>
+        </ion-item>
+        <ion-item>
+          <ion-label floating class="">Gender</ion-label>
+          <ion-select formControlName="gender" name="gender">
+            <ion-option value="Male" [selected]="profile.gender == 'Male'" checked>Male</ion-option>
+            <ion-option value="Female" [selected]="profile.gender == 'Female'">Female</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>DOB</ion-label>
+          <!-- <ion-input type="date" (click)="showDatePicker()" formControlName="dob" name="dob" value="{{profile.dob}}"></ion-input> -->
+          <ion-datetime displayFormat="MM/DD/YYYY" formControlName="dob" name="dob" max="{{maxDate}}"></ion-datetime>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Address</ion-label>
+          <ion-input type="text" formControlName="address" name="address" value="{{profile.address}}"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating class="">State</ion-label>
+          <ion-select formControlName="state" name="state">
+            <ion-option value="{{state._id}}" *ngFor="let state of states" checked>{{state.name}}</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>City</ion-label>
+          <ion-input type="text" formControlName="city" name="city" value="{{profile.city}}"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Zip Code</ion-label>
+          <ion-input type="text" formControlName="zip" name="zip" value="{{profile.zip}}"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button padding text-center class="save-button" (click)="updateprofile()">Update</button>
+      </ion-col>
+    </ion-row>
+  </form>
+
+</ion-content>

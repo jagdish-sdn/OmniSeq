@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Gene / Marker</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <form>
+    <ion-row class="form-padding">
+      <ion-col>
+        <div class="main-div">
+          <ion-item>
+            <ion-label floating class="label-title">Marker On Report</ion-label>
+            <ion-input type="text" readonly name="marker" value="{{geneDetail.marker ? geneDetail.marker : ''}}" class="input-text-color"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>Gene Name</ion-label>
+            <ion-input type="text" readonly name="name" value="{{geneDetail.name}}" class="input-text-color"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>Alias</ion-label>
+            <ion-input type="text" readonly name="alias" value="{{geneDetail.alias}}" class="input-text-color"></ion-input>
+          </ion-item> 
+          <ion-item>
+            <ion-label floating>IRC Phenotype</ion-label>
+            <ion-input type="text" readonly name="irc_phenotype" value="{{geneDetail.irc_phenotype}}" class="input-text-color"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>IRC Function</ion-label>
+            <ion-input type="text" readonly name="irc_function" value="{{geneDetail.irc_function}}" class="input-text-color"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>TCRS/TILS</ion-label>
+            <ion-input type="text" readonly name="tcrs_tils" value="{{geneDetail.tcrs_tils}}" class="input-text-color"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>Mechanism of Action</ion-label>
+            <ion-input type="text" readonly name="mechanism_of_action" value="{{geneDetail.mechanism_of_action}}" class="input-text-color"></ion-input>
+          </ion-item>
+          <ion-item padding-top class="geneImg">
+            <div class="stageTxt stage{{geneDetail.stage}}">{{geneDetail.marker}}</div>
+            <img src="assets/images/img_txt.png" />
+          </ion-item>
+        </div>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

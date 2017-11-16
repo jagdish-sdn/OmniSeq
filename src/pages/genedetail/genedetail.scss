@@ -1,0 +1,40 @@
+page-genedetail {
+    .geneImg{
+        width: 320px;
+        margin: 0 auto;
+        height: auto;
+        position: relative;
+    }
+    .stageTxt{
+        position: absolute;
+        border: 1px solid #000;
+        padding: 10px;      
+    }
+    .stageTxt.stage7 {        
+        top: 90%;
+        right: 20%;
+    }
+    .stageTxt.stage6 {        
+        top: 70%;
+        right: 10%;
+    }    
+    .stageTxt.stage5 {        
+        top: 90px;
+        right: 10px;
+    }
+    .stageTxt.stage4 {
+        right: 59px;
+        top: 10px;
+    }
+    .stageTxt.stage3 {
+        top: 10px;
+    }
+    .stageTxt.stage2 {
+        top: 100px;
+        left: 0;
+    }
+    .stageTxt.stage1 {
+        top: 90%;
+        left: 15%;
+    }
+}
