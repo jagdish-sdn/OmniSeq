@@ -5,6 +5,7 @@ import { HttpServiceProvider } from '../../providers/http-service/http-service';
 import { CommonProvider } from '../../providers/common/common';
 import { GenedetailPage } from '../genedetail/genedetail';
 import { GenelistPage } from '../genelist/genelist';
+import { FaqPage } from '../faq/faq';
 
 @Component({
   selector: 'page-home',
@@ -83,4 +84,7 @@ export class HomePage {
     this.navCtrl.push(GenelistPage);
   }
 
+  faqPage(){
+    this.navCtrl.push(FaqPage);
+  }
 }

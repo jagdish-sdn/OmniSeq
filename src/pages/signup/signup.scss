@@ -101,7 +101,8 @@
             margin: 0;
             bottom: 8px;
         }
-        // .phone-item .input-wrapper{padding-left: 22px;}
+        .phone-item .label{padding-left: 22px;}
+        .phone-item.input-has-focus .label{padding-left:0 !important;}
         .phone-item ion-input{padding-left: 22px;}
      }
 

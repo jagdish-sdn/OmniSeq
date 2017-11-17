@@ -6,5 +6,25 @@
     <ion-title>Faq</ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content padding>
-</ion-content>
+<ion-content>
+    <ion-row>
+      <ion-col>
+        <ion-item class="settingBtn" *ngFor="let list of faqArr">
+          <p class="marker">
+            <img src="assets/images/bullet.png" class="dotListIcon" />
+            {{list.question}}</p>
+          <div text-wrap>{{list.answer}}</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <div *ngIf="showMe">
+      <ion-list padding *ngIf="faqArr.length == 0">
+        <ion-item padding-top>
+          <img src="assets/images/no-record.png">
+        </ion-item>
+      </ion-list>
+    </div>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ion-content>

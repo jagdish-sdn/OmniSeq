@@ -4,7 +4,8 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding >
+
   <form [formGroup]="updateProfileForm">
     <ion-row class="form-padding">
       <ion-col>
@@ -50,10 +51,18 @@
           <ion-label floating>DOB</ion-label>
           <!-- <ion-input type="date" (click)="showDatePicker()" formControlName="dob" name="dob" value="{{profile.dob}}"></ion-input> -->
           <ion-datetime displayFormat="MM/DD/YYYY" formControlName="dob" name="dob" max="{{maxDate}}"></ion-datetime>
+          <ion-icon *ngIf="(updateProfileForm.controls.dob.hasError('required') && updateProfileForm.controls.dob.touched) || (updateProfileForm.controls.dob.hasError('required') && updateAttempt)"
+            ios="ios-close" md="md-close" item-right text-end padding-top color="danger"></ion-icon>
+          <ion-icon *ngIf="(updateProfileForm.controls.dob.valid && updateProfileForm.controls.dob.touched) || (updateProfileForm.controls.dob.valid && updateAttempt)"
+            ios="ios-checkmark" md="md-checkmark" item-right text-end padding-top color="primary"></ion-icon>
         </ion-item>
         <ion-item>
           <ion-label floating>Address</ion-label>
           <ion-input type="text" formControlName="address" name="address" value="{{profile.address}}"></ion-input>
+          <ion-icon *ngIf="(updateProfileForm.controls.address.hasError('required') && updateProfileForm.controls.address.touched) || (updateProfileForm.controls.address.hasError('required') && updateAttempt)"
+            ios="ios-close" md="md-close" item-right text-end padding-top color="danger"></ion-icon>
+          <ion-icon *ngIf="(updateProfileForm.controls.address.valid && updateProfileForm.controls.address.touched) || (updateProfileForm.controls.address.valid && updateAttempt)"
+            ios="ios-checkmark" md="md-checkmark" item-right text-end padding-top color="primary"></ion-icon>
         </ion-item>
         <ion-item>
           <ion-label floating class="">State</ion-label>
@@ -64,10 +73,18 @@
         <ion-item>
           <ion-label floating>City</ion-label>
           <ion-input type="text" formControlName="city" name="city" value="{{profile.city}}"></ion-input>
+          <ion-icon *ngIf="(updateProfileForm.controls.city.hasError('required') && updateProfileForm.controls.city.touched) || (updateProfileForm.controls.city.hasError('required') && updateAttempt)"
+            ios="ios-close" md="md-close" item-right text-end padding-top color="danger"></ion-icon>
+          <ion-icon *ngIf="(updateProfileForm.controls.city.valid && updateProfileForm.controls.city.touched) || (updateProfileForm.controls.address.valid && updateAttempt)"
+            ios="ios-checkmark" md="md-checkmark" item-right text-end padding-top color="primary"></ion-icon>
         </ion-item>
         <ion-item>
           <ion-label floating>Zip Code</ion-label>
-          <ion-input type="text" formControlName="zip" name="zip" value="{{profile.zip}}"></ion-input>
+          <ion-input type="number" formControlName="zip" name="zip" value="{{profile.zip}}"></ion-input>
+          <ion-icon *ngIf="((updateProfileForm.controls.zip.hasError('required') || updateProfileForm.controls.zip.hasError('minlength') || updateProfileForm.controls.zip.hasError('maxlength')) && updateProfileForm.controls.zip.touched) || ((updateProfileForm.controls.zip.hasError('required') || updateProfileForm.controls.zip.hasError('minlength') || updateProfileForm.controls.zip.hasError('maxlength')) && updateAttempt)"
+            ios="ios-close" md="md-close" item-right text-end padding-top color="danger"></ion-icon>
+          <ion-icon *ngIf="(updateProfileForm.controls.zip.valid && updateProfileForm.controls.zip.touched) || (updateProfileForm.controls.zip.valid && updateAttempt)"
+            ios="ios-checkmark" md="md-checkmark" item-right text-end padding-top color="primary"></ion-icon>
         </ion-item>
       </ion-col>
     </ion-row>
@@ -77,5 +94,4 @@
       </ion-col>
     </ion-row>
   </form>
-
 </ion-content>

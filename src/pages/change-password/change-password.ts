@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, Events } from 'ionic-angular';
-import { SettingsProvider } from './../../providers/settings/settings';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { NetworkProvider } from '../../providers/network/network';
 import { HttpServiceProvider } from '../../providers/http-service/http-service';
 import { CommonProvider } from '../../providers/common/common';
@@ -18,7 +17,6 @@ export class ChangePasswordPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    private settings: SettingsProvider,
     public formBuilder: FormBuilder,
     public networkPro: NetworkProvider,
     public httpService: HttpServiceProvider,

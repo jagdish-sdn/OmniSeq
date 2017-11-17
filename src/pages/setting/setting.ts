@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, Events } from 'ionic-angular';
 import { SettingsProvider } from './../../providers/settings/settings';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { NetworkProvider } from '../../providers/network/network';
 import { HttpServiceProvider } from '../../providers/http-service/http-service';
 import { CommonProvider } from '../../providers/common/common';

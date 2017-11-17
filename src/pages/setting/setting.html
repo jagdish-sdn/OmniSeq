@@ -8,22 +8,27 @@
 </ion-header>
 <ion-content padding class="body-content">
   <ion-list>
-      <button ion-item class="settingBtn item-ios" (click)="gotoprofile()">
-          Profile
-      </button> 
+    <button ion-item class="settingBtn item-ios" (click)="gotoprofile()">
+      Profile
+    </button>
     <!-- <ion-item padding-bottom>
       <ion-label >Profile</ion-label>      
     </ion-item>     -->
-    <ion-item  class="settingBtn item-ios">
+    <ion-item class="settingBtn item-ios">
       <ion-label>Push Notification</ion-label>
       <ion-toggle [(ngModel)]="pushnotification"></ion-toggle>
     </ion-item>
-    <ion-item  class="settingBtn item-ios">
+    <ion-item class="settingBtn item-ios">
       <ion-label>Night Mode</ion-label>
       <ion-toggle [(ngModel)]="nightmode" (ionChange)="toggleAppTheme()"></ion-toggle>
     </ion-item>
-    <button ion-item  class="settingBtn item-ios" (click)="gotochangepwd()">Change Password</button>
-    <button ion-item  class="settingBtn item-ios"  >Aboutus</button>
-    <button ion-item  class="settingBtn item-ios" (click)="logout()">Logout</button>    
+    <button ion-item class="settingBtn item-ios" (click)="gotochangepwd()">Change Password</button>
+    <button ion-item class="settingBtn item-ios">Aboutus</button>
+    <button ion-item class="settingBtn item-ios" (click)="logout()">Logout</button>
   </ion-list>
 </ion-content>
+<ion-footer>
+  <ion-item text-center>
+    <h4>Version(1.0)</h4>
+  </ion-item>
+</ion-footer>

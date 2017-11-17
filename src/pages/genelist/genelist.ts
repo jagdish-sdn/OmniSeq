@@ -13,7 +13,7 @@ export class GenelistPage {
   geneList: any;
   searchText: any;
   arr = [];
-  showMe;
+  showMe: any;
   constructor(
     public navCtrl: NavController,
     public networkPro: NetworkProvider,
@@ -53,7 +53,7 @@ export class GenelistPage {
           this.common.showToast(data.message);
           this.common.dismissLoading();
         }
-        this.showMe = 1;
+        this.showMe = "show";
       }, error => {
         console.log("Error=> ", error);
         this.showMe = "show";
@@ -78,9 +78,10 @@ export class GenelistPage {
           else if (item.marker.toLowerCase().indexOf(value.toLowerCase()) > -1) {
             return true;
           }
-          // else if (item.biological_function.toLowerCase().indexOf(value.toLowerCase()) > -1) {
-          //   return true;
-          // } else if (item.mechanism_of_action.toLowerCase().indexOf(value.toLowerCase()) > -1) {
+          else if (item.irc_function.toLowerCase().indexOf(value.toLowerCase()) > -1) {
+            return true;
+          } 
+          // else if (item.mechanism_of_action.toLowerCase().indexOf(value.toLowerCase()) > -1) {
           //   return true;
           // }
         })
