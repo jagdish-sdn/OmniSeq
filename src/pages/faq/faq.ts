@@ -14,7 +14,6 @@ export class FaqPage {
   limit = 5;
   totalRecords = 0;
   showMe;
-  infiScroll;
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -29,6 +28,10 @@ export class FaqPage {
   ionViewDidLoad() {
   }
 
+  /**Function for get faq list from server 
+   * Created : 17-Nov-2017
+   * Creator : Jagdish Thakre
+   * */  
   public faqList() {
     if (this.networkPro.checkNetwork() == true) {
       this.page +=1;
@@ -38,7 +41,7 @@ export class FaqPage {
       let queryString = "?limit="+this.limit+"&page="+this.page;
       this.httpService.getData("faq/getall"+queryString).subscribe(data => {
         if (data.status == 200) {
-          this.totalRecords = data.total_count;
+          this.totalRecords = parseInt(data.total_count);
           if(this.page == 1){
             this.faqArr = data.data.data;
             this.common.dismissLoading();
@@ -63,13 +66,16 @@ export class FaqPage {
       });
     }
   }
+
+  /**Function for infinite scrolling
+   * Created : 17-Nov-2017
+   * Creator : Jagdish Thakre
+   */
   doInfinite(infiniteScroll) {
-    this.infiScroll = "scroll";
     this.faqList();
     setTimeout(() => {
-      this.infiScroll = "end";
       infiniteScroll.complete();
-    }, 500);
+    }, 1000);
   }
 
 }

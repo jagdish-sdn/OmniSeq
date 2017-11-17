@@ -10,7 +10,7 @@
     <ion-row>
       <ion-col>
         <ion-item class="settingBtn" *ngFor="let list of faqArr">
-          <p class="marker">
+          <p class="marker" text-wrap>
             <img src="assets/images/bullet.png" class="dotListIcon" />
             {{list.question}}</p>
           <div text-wrap>{{list.answer}}</div>
@@ -24,7 +24,7 @@
         </ion-item>
       </ion-list>
     </div>
-    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll *ngIf="faqArr.length != totalRecords" (ionInfinite)="doInfinite($event)">
         <ion-infinite-scroll-content></ion-infinite-scroll-content>
     </ion-infinite-scroll>
   </ion-content>
