@@ -1,22 +1,21 @@
 <ion-header>
   <ion-navbar>
     <button ion-button menuToggle>
-      <ion-icon name="custom-navbutton"></ion-icon>
+      <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Gene/Marker</ion-title>
   </ion-navbar>
   <ion-searchbar [(ngModel)]="searchText.name" (ionInput)="search(searchText.name)" debounce=500 placeholder="Search Gene/Marker/Functionality"></ion-searchbar>
 </ion-header>
-<ion-content>
+<ion-content class="body-content">
   <ion-row>
     <ion-col>
       <ion-item class="settingBtn" *ngFor="let list of geneList" (click)="selectme(list)">
         <p class="marker">
           <img src="assets/images/bullet.png" class="dotListIcon" />
-          <!-- <ion-icon name="egg" class="dotListIcon"></ion-icon> -->
           {{list.marker}} / {{list.name}}</p>
         <p class="function">{{list.irc_function}}</p>
-        <p text-wrap>{{list.biological_function}}</p>
+        <p class="para-graph" text-wrap>{{list.biological_function}}</p>
       </ion-item>
     </ion-col>
   </ion-row>

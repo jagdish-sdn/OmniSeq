@@ -17,3 +17,7 @@ npm install --save @ionic-native/fcm
 /*DatePicker*/
 ionic cordova plugin add cordova-plugin-datepicker
 npm install --save @ionic-native/date-picker
+
+/*Camera plugin*/
+ionic cordova plugin add cordova-plugin-camera
+npm install --save @ionic-native/camera

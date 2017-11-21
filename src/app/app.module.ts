@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 import { Toast } from '@ionic-native/toast';
 import { FCM } from '@ionic-native/fcm';
 import { DatePicker } from '@ionic-native/date-picker';
+import { Camera } from '@ionic-native/camera';
 
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
@@ -23,6 +24,7 @@ import { GenelistPage } from '../pages/genelist/genelist';
 import { ProfilePage } from '../pages/profile/profile';
 import { ChangePasswordPage } from '../pages/change-password/change-password';
 import { AboutusPage } from '../pages/aboutus/aboutus';
+import { Splash } from '../pages/splash/splash';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -48,7 +50,8 @@ import { SettingsProvider } from './../providers/settings/settings';
     GenelistPage,
     ProfilePage,
     ChangePasswordPage,
-    AboutusPage
+    AboutusPage,
+    Splash
   ],
   imports: [
     BrowserModule,
@@ -72,7 +75,8 @@ import { SettingsProvider } from './../providers/settings/settings';
     GenelistPage,
     ProfilePage,
     ChangePasswordPage,
-    AboutusPage
+    AboutusPage,
+    Splash
   ],
   providers: [
     StatusBar,
@@ -85,7 +89,8 @@ import { SettingsProvider } from './../providers/settings/settings';
     SettingsProvider,
     Toast,
     FCM,
-    DatePicker
+    DatePicker,
+    Camera
   ]
 })
 export class AppModule {}

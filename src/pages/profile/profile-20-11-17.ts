@@ -60,26 +60,17 @@ export class ProfilePage {
         Validators.minLength(this.contactLength),
         Validators.maxLength(this.contactLength),
       ])],
-      address: [''],
-      gender: [''],
-      dob: [''],
-      twitter_handle: [''],
+      address: ['', Validators.compose([Validators.required])],
+      gender: ['', Validators.compose([Validators.required])],
+      dob: ['', Validators.compose([Validators.required])],
       state: ['', Validators.compose([Validators.required])],
       city: ['', Validators.compose([Validators.required])],
-      zip: ['']
+      zip: ['', Validators.compose([
+        Validators.required,
+        Validators.minLength(this.zipLength),
+        Validators.maxLength(this.zipLength)
+      ])]
     });
-    // this.updateProfileForm = formBuilder.group({
-    //   name: ['', Validators.compose([Validators.required])],
-    //   position: ['', Validators.compose([Validators.required])],
-    //   institution: ['', Validators.compose([Validators.required])],
-    //   phone: ['', Validators.compose([
-    //     Validators.required,
-    //     Validators.minLength(this.contactLength),
-    //     Validators.maxLength(this.contactLength),
-    //   ])],
-    //   state: ['', Validators.compose([Validators.required])],
-    //   city: ['', Validators.compose([Validators.required])]
-    // });
     this.profile = {};
     this.getProfile();
     this.getStates();
@@ -103,8 +94,15 @@ export class ProfilePage {
         if (data.status == 200) {
           this.profile = data.data;
           this.profile.phone = this.profile.phone.replace('+1', '');
+          // if(this.profile.dob){
+          //   this.profile.dob = new Date(this.profile.dob).toISOString();
+          // }          
           this.updateProfileForm.controls["position"].patchValue(this.profile.position);
+          // this.updateProfileForm.controls["gender"].patchValue(this.profile.gender);
           this.updateProfileForm.controls["state"].patchValue(this.profile.state);
+          // if(this.profile.dob){
+          //   this.updateProfileForm.controls["dob"].patchValue(this.profile.dob);
+          // }
           this.userImage = this.profile.profile_image;
         } else {
           this.common.showToast(data.message);
@@ -211,15 +209,12 @@ export class ProfilePage {
   public uploadImage(type){
     // alert(type);
     let options: CameraOptions = {
-      quality: 70,
+      quality: 50,
       destinationType: this.camera.DestinationType.DATA_URL,
       sourceType: type==this.typeCamera?this.camera.PictureSourceType.CAMERA:this.camera.PictureSourceType.PHOTOLIBRARY,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
-      correctOrientation: true,
-      allowEdit: true,
-      targetWidth: 800,
-      targetHeight:800
+      correctOrientation: true
     }
     this.camera.getPicture(options).then((imageData) => {
       // imageData is either a base64 encoded string or a file URI

@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform, AlertController, Events } from 'ionic-angular';
+import { Nav, Platform, AlertController, Events, ModalController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { FCM } from '@ionic-native/fcm';
@@ -17,6 +17,7 @@ import { SettingPage } from '../pages/setting/setting';
 import { CompanionPage } from '../pages/companion/companion';
 import { CancerPage } from '../pages/cancer/cancer';
 import { GenelistPage } from '../pages/genelist/genelist';
+import { Splash } from '../pages/splash/splash';
 
 @Component({
   templateUrl: 'app.html'
@@ -38,8 +39,10 @@ export class MyApp {
     public httpService: HttpServiceProvider,
     public common: CommonProvider,
     private fcm: FCM,
-    private settings: SettingsProvider
+    private settings: SettingsProvider,
+    public modalCtrl: ModalController
   ) {
+    // this.splashScreen.hide();
     if(this.userId) {
       this.profileInfo();
       this.rootPage = HomePage;
@@ -52,7 +55,7 @@ export class MyApp {
 
     /* used for an example of ngFor and navigation*/
     this.pages = [
-      { title: 'Dashboard', component: HomePage, icon: "menuicon.png" },      
+      { title: 'OmniSeq/LabCorp', component: HomePage, icon: "menu-icon.png" },      
       { title: 'Gene LookUp', component: GenelistPage, icon: "GeneLookup_sidemenu.png" },      
       { title: 'Companion / Complementary Dx', component: CompanionPage, icon: "CancerImmuneCycle_sidemenu.png" },      
       { title: 'Cancer Immune Cycle', component: CancerPage, icon: "Companion_ComplementaryDx_sidemenu.png" },      
@@ -103,6 +106,8 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
+      // let splash = this.modalCtrl.create(Splash);
+      // splash.present();
       this.splashScreen.hide();
     });
   }

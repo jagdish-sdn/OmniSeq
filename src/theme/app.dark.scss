@@ -34,6 +34,10 @@
     background: linear-gradient(346deg, rgba(26,81,148,1) 0%, rgba(26,81,148,1) 16%, rgba(85,147,255,1) 80%, rgba(85,147,255,1) 100%); /* w3c */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5593ff', endColorstr='#1a5194',GradientType=0 ); /* ie6-9 */
   }
+  .app-logo{
+    border-radius: 100px;
+    content:url(../assets/images/icon.png);
+  }
   .img-1{
     content:url(../assets/images/dashboard/GeneLookup.png);        
   }
@@ -78,6 +82,16 @@
   }
   $searchbar-md-input-search-icon-color: red;
   $searchbar-ios-input-search-icon-color : red;
+  // .settingBtn.item{
+  //   background-color: #1a5293 !important;
+  // }
+  // .para-graph{
+  //   color: #fff !important;
+  // }
+  // .marker{
+  //   color: black !important;
+  // }
+
   // .card-img-border img {
   //     max-width: 100%;
   //     padding-top: 0;

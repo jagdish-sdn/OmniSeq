@@ -31,7 +31,7 @@ export class LoginPage {
     this.loginForm = formBuilder.group({
       email: ['', Validators.compose([
         Validators.required,
-        Validators.pattern('^[a-zA-Z0-9]+[a-zA-Z0-9]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$')
+        Validators.pattern('^[a-z0-9]+[a-z0-9]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$')
       ])
       ],
       password: ['', Validators.compose([Validators.required])],

@@ -6,13 +6,15 @@ page-genedetail {
         position: relative;
     }
     .stageTxt{
+        color: #000;
         position: absolute;
-        border: 1px solid #000;
-        padding: 10px;      
+        border: 2px solid #1a5293;
+        padding: 10px;
+        box-shadow: 2px 2px 1px #ccc;      
     }
     .stageTxt.stage7 {        
-        top: 90%;
-        right: 20%;
+        top: 80%;
+        right: 11%;
     }
     .stageTxt.stage6 {        
         top: 70%;

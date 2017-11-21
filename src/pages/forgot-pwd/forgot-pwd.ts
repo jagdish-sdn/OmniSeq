@@ -26,7 +26,7 @@ export class ForgotPwdPage {
     this.forgotPwdForm = formBuilder.group({
       email: ['', Validators.compose([
         Validators.required,
-        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+        Validators.pattern('^[a-z0-9_.+-]+@[a-z0-9-]+.[a-zA-Z0-9-.]+$')
       ])
       ]
     });
