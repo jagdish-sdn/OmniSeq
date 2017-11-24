@@ -1,3 +1,89 @@
 page-cancer {
+    .cancerImg{
+        width: 70%;
+    }
+    .background_section{background: url(../assets/images/img_txt.png)no-repeat;height:50vh;background-position: center;
+        background-size: contain;
+        
+        width: 100%;}
+   
+    .stage3{    position: relative;
+        left: 0;
+        text-align: center;
+    width: 123px;
+        height: 100px;
+        float: left;
+        overflow: scroll;}
+    .stage3 span{float: left;font-size: 11px;margin-right: 2px;}
 
+    .stage4{    position: relative;
+        left: 0;
+        text-align:right;
+    width: 123px;
+        height: 100px;
+        float: right;
+        overflow: scroll;}
+    .stage4 span{float: left;font-size: 11px;margin-right: 2px;}
+
+    .stage5{position: relative;
+        right: 0;
+        width: 80px;
+        height: 100px;
+        float: right;
+        overflow: scroll;
+        bottom: 30px;}
+    .stage5 span{float: left;font-size: 11px;margin-right: 2px;}
+
+    .stage6{position: relative;
+        right: 0;
+        width: 80px;
+        height: 100px;
+        float: right;
+        overflow: scroll;
+        top: 120px;
+        left: 90px;}
+    .stage6 span{float: left;font-size: 11px;margin-right: 2px;}
+
+    .stage7{    position: relative;
+        right: 0;
+        width: 79px;
+        height: 100px;
+        float: right;
+        overflow: scroll;
+        top: 166px;
+        left: 90px;
+        bottom: 0;}
+    .stage7 span{float: left;font-size: 11px;margin-right: 2px;}
+
+    .stage1{position: relative;
+        right: 0;
+        width: 80px;
+        height: 100px;
+        float: left;
+        overflow: scroll;
+        top: 70px;
+        left: 35px;
+        bottom: 0;}
+    .stage1 span{float: left;font-size: 11px;margin-right: 2px;}
+
+    .stage2{ position: relative;
+        right: 80px;
+        text-align: left;
+        width: 65px;
+        height: 100px;
+        float: left;
+        overflow: scroll;
+        bottom: 70px;
+    }
+
+    .stage2 span{float: left;font-size: 11px;margin-right: 2px;}
+    .stage_bold{font-weight: bold;}
+
+    .label {height: 500px;}
+    
+    .input-wrapper{
+        padding-top: 30px !important;
+    }
+      
+    
 }

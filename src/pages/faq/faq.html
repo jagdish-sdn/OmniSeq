@@ -3,10 +3,13 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Faq</ion-title>
+    <ion-title>FAQs</ion-title>
   </ion-navbar>
+  <ion-searchbar [(ngModel)]="searchText.name"
+  (ionInput)="search(searchText.name)"
+  debounce=500 placeholder="Search Questions"></ion-searchbar>
 </ion-header>
-<ion-content class="body-content">
+<ion-content class="body-content">    
     <ion-row>
       <ion-col>
         <ion-item class="settingBtn" *ngFor="let list of faqArr">
@@ -19,8 +22,8 @@
     </ion-row>
     <div *ngIf="showMe">
       <ion-list padding *ngIf="faqArr.length == 0">
-        <ion-item padding-top>
-          <img src="assets/images/no-record.png">
+        <ion-item class="noRecordFoundImg" padding-top>
+          <img class="noRecordFound">
         </ion-item>
       </ion-list>
     </div>

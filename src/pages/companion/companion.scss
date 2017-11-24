@@ -1,3 +1,19 @@
 page-companion {
-
+    ion-card {
+        position: relative;
+        text-align: center;
+        height: 100%;
+    }
+    ion-card img {
+        width: 100%;
+    }
+    ion-col.col {
+        padding: 0px;
+        padding-bottom: 16px;
+    }
+    .card-img-border{
+        padding: 10px !important;
+    }
+    .card-md{margin: 0 10px !important;} 
+   
 }

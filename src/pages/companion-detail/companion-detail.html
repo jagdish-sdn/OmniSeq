@@ -1,0 +1,10 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Companion / Complementary Dx</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content class="body-content" padding>
+  <div class="logo"><img [src]="companionData.logo" [alt]="companionData.compainion_name" width="50%" /></div>
+  <div [innerHTML]="companionData.data"></div>
+</ion-content>

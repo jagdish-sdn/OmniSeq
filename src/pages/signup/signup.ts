@@ -51,7 +51,7 @@ export class SignupPage {
       institution: ['', Validators.compose([Validators.required])],
       email: ['', Validators.compose([
           Validators.required,
-          Validators.pattern('^[a-z0-9]+[a-z0-9]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$')
+          Validators.pattern('^[a-zA-Z0-9]+[a-zA-Z0-9]+[a-zA-Z0-9._]+@[a-z]+\.[a-z.]{2,5}$')
         ])
       ],
       password: ['', Validators.compose([Validators.required])],
@@ -79,6 +79,7 @@ export class SignupPage {
         this.common.presentLoading();
         this.signupForm.value.name= this.signupForm.value.firstname +' '+ this.signupForm.value.lastname;
         this.signupForm.value.phone = '+1'+this.signupForm.value.phone
+        this.signupForm.value.email = this.signupForm.value.email.toLowerCase();
         this.httpService.postData('user/registration', this.signupForm.value).subscribe(data => {
           if (data.status == 200) {
             this.common.dismissLoading();

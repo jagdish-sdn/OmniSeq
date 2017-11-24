@@ -3,42 +3,24 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title class="page-header-title">Omni<span class="style-s">S</span>eq/LabCorp</ion-title>
+    <ion-title class="page-header-title">OmniS<!-- <span class="style-s">S</span> -->eq / LabCorp</ion-title>
     <ion-buttons end>
       <button ion-button icon-only >
         <ion-icon name="custom-rightNavbutton"></ion-icon>
       </button>
     </ion-buttons>  
   </ion-navbar>
-  <!-- <div  class="autocomplete"> -->
     <ion-searchbar [(ngModel)]="searchText.name"
 		(ionInput)="search(searchText.name)"
     debounce=500 placeholder="Search Gene/Marker/Functionality"></ion-searchbar>
-    <!-- <ion-list>
-        <ion-item *ngFor="let res of refRicerca" (click)="addNote(res)">
-          {{res}}
-        </ion-item>
-      </ion-list>
-      <ion-list padding-right *ngIf="searchedItems.length != 0 && searchText.name && searchText.name.length != 0">
-        <ion-item *ngFor="let list of searchedItems" tappable (click)="selectItem(list)">
-            {{list.marker}}
-        </ion-item>
-    </ion-list>
-    <ion-list padding-right *ngIf="searchedItems.length == 0 && searchText.name && searchText.name.length != 0">
-        <ion-item>
-            No lists Found
-        </ion-item>
-    </ion-list> -->
-  <!-- </div>   -->
 </ion-header>
 <ion-content class="body-content">    
   <ion-grid>
     <ion-row>
       <ion-col col-6>
-        <ion-card >
-          <div (click)="genelist()" padding class="card-img-border">
+        <ion-card (click)="genelist()">
+          <div padding class="card-img-border">
             <img class="img-1" />
-            <!-- <img src="assets/images/GeneLookup.png" /> -->
           </div>
           <div text-center class="home-title">
             Gene Lookup
@@ -46,9 +28,8 @@
         </ion-card>
       </ion-col>
       <ion-col col-6>
-        <ion-card>
+        <ion-card (click)="goToCancer()">
           <div padding class="card-img-border">
-            <!-- <img src="assets/images/CancerImmuneCycle.png" /> -->
             <img class="img-2">
           </div>
           <div text-center class="home-title">
@@ -59,20 +40,18 @@
     </ion-row>
     <ion-row>
       <ion-col col-6>
-        <ion-card>
+        <ion-card (click)="goToCompanion()">
           <div padding class="card-img-border">
-            <!-- <img src="assets/images/CompanionComplementary-Dx.png" /> -->
             <img class="img-3">
           </div>
           <div text-center class="home-title">
-            Companion/Complementry Dx
+            Companion/<br />Complementry Dx
           </div>
         </ion-card>
       </ion-col>
       <ion-col col-6>
-        <ion-card>
-          <div (click)="faqPage()" padding class="card-img-border">
-            <!-- <img item-width="25%" item-height="25%" src="assets/images/FAQs.png" /> -->
+        <ion-card (click)="faqPage()" >
+          <div padding class="card-img-border">
             <img class="img-4">
           </div>
           <div text-center class="home-title">
@@ -83,9 +62,8 @@
     </ion-row>
     <ion-row>
       <ion-col col-6>
-        <ion-card>
+        <ion-card (click)="goToAskquestion()" >
           <div padding class="card-img-border">
-            <!-- <img item-width="25%" item-height="25%" src="assets/images/AskaQuestion.png" /> -->
             <img class="img-5">
           </div>
           <div text-center class="home-title">

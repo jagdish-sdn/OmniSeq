@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform, AlertController, Events, ModalController } from 'ionic-angular';
+import { Nav, Platform, AlertController, Events } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { FCM } from '@ionic-native/fcm';
@@ -17,8 +17,9 @@ import { SettingPage } from '../pages/setting/setting';
 import { CompanionPage } from '../pages/companion/companion';
 import { CancerPage } from '../pages/cancer/cancer';
 import { GenelistPage } from '../pages/genelist/genelist';
-import { Splash } from '../pages/splash/splash';
 
+declare var cordova: any;
+declare var window: any;
 @Component({
   templateUrl: 'app.html'
 })
@@ -39,10 +40,12 @@ export class MyApp {
     public httpService: HttpServiceProvider,
     public common: CommonProvider,
     private fcm: FCM,
-    private settings: SettingsProvider,
-    public modalCtrl: ModalController
+    private settings: SettingsProvider
   ) {
-    // this.splashScreen.hide();
+    
+    // setTimeout(function(){
+    //   document.getElementById("custom-overlay").style.display = "none";      
+    // }, 3000);
     if(this.userId) {
       this.profileInfo();
       this.rootPage = HomePage;
@@ -55,11 +58,11 @@ export class MyApp {
 
     /* used for an example of ngFor and navigation*/
     this.pages = [
-      { title: 'OmniSeq/LabCorp', component: HomePage, icon: "menu-icon.png" },      
+      { title: 'OmniSeq / LabCorp', component: HomePage, icon: "menu-icon.png" },      
       { title: 'Gene LookUp', component: GenelistPage, icon: "GeneLookup_sidemenu.png" },      
       { title: 'Companion / Complementary Dx', component: CompanionPage, icon: "CancerImmuneCycle_sidemenu.png" },      
       { title: 'Cancer Immune Cycle', component: CancerPage, icon: "Companion_ComplementaryDx_sidemenu.png" },      
-      { title: 'Faq', component: FaqPage, icon: "FAQs_sidemenu.png" },
+      { title: 'FAQ', component: FaqPage, icon: "FAQs_sidemenu.png" },
       { title: 'Ask a Question', component: AskQuestionPage, icon: "AskaQuestion_sidemenu.png" },
       { title: 'Quiz', component: QuizPage, icon: "QuizMe_sidemenu.png" },
       { title: 'Settings', component: SettingPage, icon: "Settings.png" },
@@ -78,8 +81,8 @@ export class MyApp {
   initializeApp() {
     this.platform.ready().then(() => {
       /**Notification */
-      if (!this.platform.is('cordova')) {
-        this.fcm.subscribeToTopic('marketing');
+      if (this.platform.is('cordova')) {
+        // this.fcm.subscribeToTopic('marketing');
         
         this.fcm.getToken().then(token=>{
           localStorage.setItem("device_token", token);
@@ -88,6 +91,7 @@ export class MyApp {
         })
         
         this.fcm.onNotification().subscribe(data=>{
+          console.log("Notificatoin message ", data);
           if(data.wasTapped){
             console.log("Received in background");
           } else {
@@ -95,19 +99,23 @@ export class MyApp {
           };
         })
         
-        this.fcm.onTokenRefresh().subscribe(token=>{
+        // this.fcm.onTokenRefresh().subscribe(token=>{
           // backend.registerToken(token);
-        })
+        // })
         
-        this.fcm.unsubscribeFromTopic('marketing');
+        // this.fcm.unsubscribeFromTopic('marketing');
+        
       } else {
         localStorage.setItem("device_token", "fTXe0lTVUSU:APA91bGGrbHYkcGTZrSM9mwUSa7XO6Yshm9NXpFPU70nnJ0QuPIfvVS-WjtvhEwsy5_bF6Fv15yu79t6tf-R6z_MVEpBQphU52jOuEvmho6FGCZiqKGUugbBkv6VkcChS3jF0oru36E6");
       }
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
-      // let splash = this.modalCtrl.create(Splash);
-      // splash.present();
+      if (window.cordova && window.cordova.plugins.Keyboard) {
+        // This requires installation of https://github.com/driftyco/ionic-plugin-keyboard
+        // and can only affect native compiled Ionic2 apps (not webserved).
+        cordova.plugins.Keyboard.disableScroll(true);
+      }
       this.splashScreen.hide();
     });
   }
@@ -137,7 +145,9 @@ export class MyApp {
             this.httpService.postData("user/applogout", {}).subscribe(data => {
               this.common.dismissLoading();
               if(data.status == 200 || data.status == 203) {
+                let device_token = localStorage.getItem("device_token");
                 localStorage.clear();
+                localStorage.setItem("device_token", device_token);
                 this.nav.setRoot(LoginPage);
               } else {
                 this.common.showToast(data.message);
@@ -171,7 +181,9 @@ export class MyApp {
   /**Logout function for clear storage when session has been expired */
   clearSession() {
     this.common.logoutLoading();
+    let device_token = localStorage.getItem("device_token");
     localStorage.clear();
+    localStorage.setItem("device_token", device_token);
     this.common.dismissLoading();
     this.nav.setRoot(LoginPage);    
   }

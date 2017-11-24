@@ -6,6 +6,10 @@ import { CommonProvider } from '../../providers/common/common';
 import { GenedetailPage } from '../genedetail/genedetail';
 import { GenelistPage } from '../genelist/genelist';
 import { FaqPage } from '../faq/faq';
+import { CompanionPage } from '../companion/companion';
+import { AskQuestionPage } from '../ask-question/ask-question';
+import { CancerPage } from '../cancer/cancer';
+
 
 @Component({
   selector: 'page-home',
@@ -86,5 +90,17 @@ export class HomePage {
 
   faqPage(){
     this.navCtrl.push(FaqPage);
+  }
+
+  public goToAskquestion(){
+    this.navCtrl.push(AskQuestionPage);
+  }
+
+  public goToCompanion(){
+    this.navCtrl.push(CompanionPage);
+  }
+
+  public goToCancer(){
+    this.navCtrl.push(CancerPage);
   }
 }

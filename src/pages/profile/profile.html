@@ -4,8 +4,8 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding >
-  <div padding (click)="importPicture()" text-center>
+<ion-content class="body-content">
+  <div class="profileBlock" (click)="importPicture()" text-center>
     <div *ngIf="imageUploading" class="image-spinner">
     <!-- <div  class="image-spinner"> -->
         <!-- <ion-spinner></ion-spinner> -->
@@ -15,7 +15,7 @@
         <img text-center class="userImage" src="{{userImage?userImage:'assets/images/default_user.png'}}" onError="this.src='assets/images/default_user.png'" />
     </ion-avatar>
     <div class="edit-icon">
-        <ion-icon name="camera"></ion-icon>
+        <ion-icon class="cameraicon" name="camera" ></ion-icon>
         <!-- <img class="edit-image-icon" src="assets/images/edit.png"> -->
     </div>
 </div>
@@ -23,52 +23,52 @@
   <form [formGroup]="updateProfileForm">
     <ion-row class="form-padding">
       <ion-col>
-        <ion-item>
+        <ion-item class="profile-setting">
           <ion-label floating>Full Name</ion-label>
           <ion-input type="text" formControlName="name" name="name" value="{{profile.name}}"></ion-input>
           <ion-icon *ngIf="(updateProfileForm.controls.name.hasError('required') && updateProfileForm.controls.name.touched) || (updateProfileForm.controls.name.hasError('required') && updateAttempt)"
             ios="ios-close" md="md-close" item-right text-end padding-top color="danger"></ion-icon>
           <ion-icon *ngIf="(updateProfileForm.controls.name.valid && updateProfileForm.controls.name.touched) || (updateProfileForm.controls.name.valid && updateAttempt)"
-            ios="ios-checkmark" md="md-checkmark" item-right text-end padding-top color="primary"></ion-icon>
+            ios="ios-checkmark" md="md-checkmark" item-right text-end padding-top class="trueIcon" color="primary"></ion-icon>
         </ion-item>
-        <ion-item>
+        <ion-item class="profile-setting">
           <ion-label floating class="">Position</ion-label>
           <ion-select formControlName="position" name="position">
             <ion-option value="{{pos.name}}" *ngFor="let pos of positions">{{pos.name}}</ion-option>
           </ion-select>
         </ion-item>
-        <ion-item>
+        <ion-item class="profile-setting">
           <ion-label floating>Institution</ion-label>
           <ion-input type="text" formControlName="institution" name="institution" value="{{profile.institution}}"></ion-input>
           <ion-icon *ngIf="(updateProfileForm.controls.institution.hasError('required') && updateProfileForm.controls.institution.touched) || (updateProfileForm.controls.institution.hasError('required') && updateAttempt)"
             ios="ios-close" md="md-close" item-right text-end padding-top color="danger"></ion-icon>
           <ion-icon *ngIf="(updateProfileForm.controls.institution.valid && updateProfileForm.controls.institution.touched) || (updateProfileForm.controls.institution.valid && updateAttempt)"
-            ios="ios-checkmark" md="md-checkmark" item-right text-end padding-top color="primary"></ion-icon>
+            ios="ios-checkmark" md="md-checkmark" item-right text-end padding-top class="trueIcon" color="primary"></ion-icon>
         </ion-item>
-        <ion-item class="phone-item">
+        <ion-item class="phone-item profile-setting">
           <ion-label floating>Phone Number</ion-label>
           <span item-left class="phone-code">+1</span>
           <ion-input type="tel" value="{{profile.phone}}" formControlName="phone" name="phone"></ion-input>
           <ion-icon *ngIf="((updateProfileForm.controls.phone.hasError('required') || updateProfileForm.controls.phone.hasError('minlength') || updateProfileForm.controls.phone.hasError('maxlength')) && updateProfileForm.controls.phone.touched) || ((updateProfileForm.controls.phone.hasError('required') || updateProfileForm.controls.phone.hasError('maxlength') || updateProfileForm.controls.phone.hasError('minlength')) && submitAttempt)"
             ios="ios-close" md="md-close" item-right text-end padding-top color="danger"></ion-icon>
           <ion-icon *ngIf="(updateProfileForm.controls.phone.valid && updateProfileForm.controls.phone.touched) || (updateProfileForm.controls.phone.valid && submitAttempt)"
-            ios="ios-checkmark" md="md-checkmark" item-right text-end padding-top color="primary"></ion-icon>
+            ios="ios-checkmark" md="md-checkmark" item-right text-end padding-top class="trueIcon" color="primary"></ion-icon>
         </ion-item>
-        <ion-item>
+        <ion-item class="profile-setting">
           <ion-label floating class="">State</ion-label>
           <ion-select formControlName="state" name="state">
             <ion-option value="{{state._id}}" *ngFor="let state of states" checked>{{state.name}}</ion-option>
           </ion-select>
         </ion-item>
-        <ion-item>
+        <ion-item class="profile-setting">
           <ion-label floating>City</ion-label>
           <ion-input type="text" formControlName="city" name="city" value="{{profile.city}}"></ion-input>
           <ion-icon *ngIf="(updateProfileForm.controls.city.hasError('required') && updateProfileForm.controls.city.touched) || (updateProfileForm.controls.city.hasError('required') && updateAttempt)"
             ios="ios-close" md="md-close" item-right text-end padding-top color="danger"></ion-icon>
           <ion-icon *ngIf="(updateProfileForm.controls.city.valid && updateProfileForm.controls.city.touched) || (updateProfileForm.controls.address.valid && updateAttempt)"
-            ios="ios-checkmark" md="md-checkmark" item-right text-end padding-top color="primary"></ion-icon>
+            ios="ios-checkmark" md="md-checkmark" item-right text-end padding-top class="trueIcon" color="primary"></ion-icon>
         </ion-item>
-        <ion-item>
+        <ion-item class="profile-setting">
             <ion-label floating>Twitter Handle</ion-label>
             <ion-input type="text" formControlName="twitter_handle" name="twitter_handle" value="{{profile.twitter_handle ? profile.twitter_handle : ''}}"></ion-input>            
           </ion-item>

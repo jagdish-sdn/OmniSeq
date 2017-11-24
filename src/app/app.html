@@ -18,7 +18,7 @@
     <ion-content class="custom-content" padding-top>
       <ion-list>
         <button class="menus-background" menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-          <img class="side-menu-icon" src="assets/images/{{p.icon}}"><span class="side-menu-title" padding-top>{{p.title}}</span>
+          <img class="side-menu-icon" src="assets/images/{{p.icon}}"><span class="side-menu-title" padding-top text-uppercase>{{p.title}}</span>
         </button>
       </ion-list>
     </ion-content>

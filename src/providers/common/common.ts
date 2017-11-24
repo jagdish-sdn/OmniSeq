@@ -27,7 +27,7 @@ export class CommonProvider {
    */
   showToast(message) {
     if (this.platform.is('cordova')) {
-      this.toast.show(message, '5000', 'bottom').subscribe(
+      this.toast.show(message, '5000', 'top').subscribe(
         toast => {
           console.log(toast);
         }

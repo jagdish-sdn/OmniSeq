@@ -64,7 +64,7 @@ export class SettingPage {
     }
   }
 
-  logout() {
+  logout() {    
     this.events.publish("logout");
   }
 
@@ -73,5 +73,8 @@ export class SettingPage {
   }
   gotochangepwd() {
     this.navCtrl.push(ChangePasswordPage);
+  }
+  gotoaboutus() {
+    this.navCtrl.push(AboutusPage);
   }
 }

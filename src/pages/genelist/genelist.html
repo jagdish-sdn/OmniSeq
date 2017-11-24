@@ -12,8 +12,7 @@
     <ion-col>
       <ion-item class="settingBtn" *ngFor="let list of geneList" (click)="selectme(list)">
         <p class="marker">
-          <img src="assets/images/bullet.png" class="dotListIcon" />
-          {{list.marker}} / {{list.name}}</p>
+          <img class="dotListIcon" /> {{list.marker}} / {{list.name}}</p>
         <p class="function">{{list.irc_function}}</p>
         <p class="para-graph" text-wrap>{{list.biological_function}}</p>
       </ion-item>
@@ -21,8 +20,8 @@
   </ion-row>
   <div *ngIf="showMe">
     <ion-list padding *ngIf="geneList.length == 0">
-      <ion-item padding-top>
-        <img src="assets/images/no-record.png">
+      <ion-item class="noRecordFoundImg" padding-top>
+        <img class="noRecordFound">
       </ion-item>
     </ion-list>
   </div>

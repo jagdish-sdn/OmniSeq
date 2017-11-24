@@ -1,35 +1,38 @@
 page-genedetail {
     .geneImg{
-        width: 320px;
+        width: 100%;
         margin: 0 auto;
         height: auto;
         position: relative;
     }
     .stageTxt{
-        color: #000;
+        color: #1a5293;
         position: absolute;
-        border: 2px solid #1a5293;
-        padding: 10px;
-        box-shadow: 2px 2px 1px #ccc;      
+        border: 1px solid #000;
+        padding: 10px;    border-radius: 4px;
+        box-shadow: 0px 2px 5px #888888;
+        // box-shadow: 2px 2px 1px #ccc; 
+        z-index: 999;
+        // background-color: #cccccc    
     }
     .stageTxt.stage7 {        
         top: 80%;
-        right: 11%;
+        right: 16%;
     }
     .stageTxt.stage6 {        
-        top: 70%;
-        right: 10%;
+        top: 54%;
+        right: 2%;
     }    
     .stageTxt.stage5 {        
-        top: 90px;
-        right: 10px;
+        top: 25%;
+        right: 1%;
     }
     .stageTxt.stage4 {
-        right: 59px;
+        right: 18%;
         top: 10px;
     }
     .stageTxt.stage3 {
-        top: 10px;
+        top: 11%;
     }
     .stageTxt.stage2 {
         top: 100px;
@@ -39,4 +42,7 @@ page-genedetail {
         top: 90%;
         left: 15%;
     }
+    
+    .TitleMain h2{ font-weight: 900; font-size: 1.6rem; }
+    .TitleMain span{ font-weight: 400; font-size: 1.6rem; }
 }

@@ -1,11 +1,148 @@
 <ion-header>
   <ion-navbar>
-      <button ion-button menuToggle>
-          <ion-icon name="menu"></ion-icon>
-        </button>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>Ask a Question</ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content padding>
-
+<ion-content padding class="body-content">
+  <ion-list>
+    <ion-item text-wrap class="settingBtn h3Text" [ngClass]="{active: isGroupShown(3)}">
+      <h3 class="" (click)="toggleGroup(3)">
+        Ask a question about an order
+        <ion-icon class="set-arrow arrowdown" color="success" item-right [name]="isGroupShown(3) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+      </h3>
+      <div *ngIf="isGroupShown(3)">
+        <div class="span3">
+          <form [formGroup]="askQueOrderForm">
+            <div class="form-group">
+              <input type="tel" formControlName="phone" name="phone" class="form-control inputFull" placeholder="IPhone">
+              <ion-icon *ngIf="((askQueOrderForm.controls.phone.hasError('required') || askQueOrderForm.controls.phone.hasError('minlength') || askQueOrderForm.controls.phone.hasError('maxlength')) && askQueOrderForm.controls.phone.touched) || ((askQueOrderForm.controls.phone.hasError('required') || askQueOrderForm.controls.phone.hasError('maxlength') || askQueOrderForm.controls.phone.hasError('minlength')) && orderAttempt)" ios="ios-close" md="md-close" item-right text-end padding-top color="danger"></ion-icon>
+              <ion-icon *ngIf="(askQueOrderForm.controls.phone.valid && askQueOrderForm.controls.phone.touched) || (askQueOrderForm.controls.phone.valid && orderAttempt)" ios="ios-checkmark" md="md-checkmark" item-right text-end padding-top color="primary"></ion-icon>
+            </div>
+            <div class="form-group">
+              <div class="checkbox checkbox-success checkbox-inline">
+                <input type="checkbox" id="inlineCheckbox2" value="yes" formControlName="get_call_back" name="get_call_back" checked="" class="customCheck">
+                <label class="labelControl" for="inlineCheckbox2"> I prefer a telephone call </label>                
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control inputFull" placeholder="Question" formControlName="question" name="question">
+              <ion-icon *ngIf="(askQueOrderForm.controls.question.hasError('required') && askQueOrderForm.controls.question.touched) || (askQueOrderForm.controls.question.hasError('required') && orderAttempt)" ios="ios-close" md="md-close" item-right text-end padding-top color="danger"></ion-icon>
+              <ion-icon *ngIf="(askQueOrderForm.controls.question.valid && askQueOrderForm.controls.question.touched) || (askQueOrderForm.controls.question.valid && orderAttempt)" ios="ios-checkmark" md="md-checkmark" item-right text-end padding-top color="primary"></ion-icon>
+            </div>
+            <div class="submit">
+              <ion-row>
+                <ion-col>
+                  <button (click)="askOrderQuestion()" ion-button padding text-center class="login-button">Send</button>
+                </ion-col>
+              </ion-row>
+            </div>
+          </form>
+        </div>
+      </div>
+    </ion-item>
+    <ion-item text-wrap class="settingBtn h3Text" [ngClass]="{active: isGroupShown(2)}">
+      <h3 class="" (click)="toggleGroup(2)">
+        Ask a technical question
+        <ion-icon class="set-arrow arrowdown" color="success" item-right [name]="isGroupShown(2) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+      </h3>
+      <div *ngIf="isGroupShown(2)">
+        <div class="span3">
+          <form [formGroup]="askQueTechForm">
+            <div class="form-group">
+              <input type="tel" formControlName="phone" name="phone" class="form-control inputFull" placeholder="IPhone">
+              <ion-icon *ngIf="((askQueTechForm.controls.phone.hasError('required') || askQueTechForm.controls.phone.hasError('minlength') || askQueTechForm.controls.phone.hasError('maxlength')) && askQueTechForm.controls.phone.touched) || ((askQueTechForm.controls.phone.hasError('required') || askQueTechForm.controls.phone.hasError('maxlength') || askQueTechForm.controls.phone.hasError('minlength')) && techAttempt)" ios="ios-close" md="md-close" item-right text-end padding-top color="danger"></ion-icon>
+              <ion-icon *ngIf="(askQueTechForm.controls.phone.valid && askQueTechForm.controls.phone.touched) || (askQueTechForm.controls.phone.valid && techAttempt)" ios="ios-checkmark" md="md-checkmark" item-right text-end padding-top color="primary"></ion-icon>
+            </div>
+            <div class="form-group">
+              <div class="checkbox checkbox-success checkbox-inline">
+                <input type="checkbox" id="inlineCheckbox2" value="yes" formControlName="get_call_back" name="get_call_back" checked="" class="customCheck">
+                <label class="labelControl" for="inlineCheckbox2"> I prefer a telephone call </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control inputFull" placeholder="Question" formControlName="question" name="question">
+              <ion-icon *ngIf="(askQueTechForm.controls.question.hasError('required') && askQueTechForm.controls.question.touched) || (askQueTechForm.controls.question.hasError('required') && techAttempt)" ios="ios-close" md="md-close" item-right text-end padding-top color="danger"></ion-icon>
+              <ion-icon *ngIf="(askQueTechForm.controls.question.valid && askQueTechForm.controls.question.touched) || (askQueTechForm.controls.question.valid && techAttempt)" ios="ios-checkmark" md="md-checkmark" item-right text-end padding-top color="primary"></ion-icon>
+            </div>
+            <div class="submit">
+              <ion-row>
+                <ion-col>
+                  <button (click)="askTechQuestion()" ion-button padding text-center class="login-button">Send</button>
+                </ion-col>
+              </ion-row>
+            </div>
+          </form>
+        </div>
+      </div>
+    </ion-item>
+    <ion-item text-wrap class="settingBtn h3Text" [ngClass]="{active: isGroupShown(1)}">
+        <h3 class="" (click)="toggleGroup(1)">
+          Ask a technical question
+          <ion-icon class="set-arrow arrowdown" color="success" item-right [name]="isGroupShown(1) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+        </h3>
+        <div *ngIf="isGroupShown(1)">
+          <div class="span3">
+            <form [formGroup]="askQueForm">
+              <div class="form-group">
+                <input type="tel" formControlName="phone" name="phone" class="form-control inputFull" placeholder="IPhone">
+                <ion-icon *ngIf="((askQueForm.controls.phone.hasError('required') || askQueForm.controls.phone.hasError('minlength') || askQueForm.controls.phone.hasError('maxlength')) && askQueForm.controls.phone.touched) || ((askQueForm.controls.phone.hasError('required') || askQueForm.controls.phone.hasError('maxlength') || askQueForm.controls.phone.hasError('minlength')) && submitAttempt)" ios="ios-close" md="md-close" item-right text-end padding-top color="danger"></ion-icon>
+                <ion-icon *ngIf="(askQueForm.controls.phone.valid && askQueForm.controls.phone.touched) || (askQueForm.controls.phone.valid && submitAttempt)" ios="ios-checkmark" md="md-checkmark" item-right text-end padding-top color="primary"></ion-icon>
+              </div>
+              <div class="form-group">
+                <div class="checkbox checkbox-success checkbox-inline">
+                  <input type="checkbox" id="inlineCheckbox2" value="yes" formControlName="get_call_back" name="get_call_back" checked="" class="customCheck">
+                  <label class="labelControl" for="inlineCheckbox2"> I prefer a telephone call </label>
+                </div>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control inputFull" placeholder="Question" formControlName="question" name="question">
+                <ion-icon *ngIf="(askQueForm.controls.question.hasError('required') && askQueForm.controls.question.touched) || (askQueForm.controls.question.hasError('required') && submitAttempt)" ios="ios-close" md="md-close" item-right text-end padding-top color="danger"></ion-icon>
+                <ion-icon *ngIf="(askQueForm.controls.question.valid && askQueForm.controls.question.touched) || (askQueForm.controls.question.valid && submitAttempt)" ios="ios-checkmark" md="md-checkmark" item-right text-end padding-top color="primary"></ion-icon>
+              </div>
+              <div class="submit">
+                <ion-row>
+                  <ion-col>
+                    <button (click)="askQuestion()" ion-button padding text-center class="login-button">Send</button>
+                  </ion-col>
+                </ion-row>
+              </div>
+            </form>
+          </div>
+        </div>
+      </ion-item>
+    <!-- <ion-item *ngFor="let d of questions; let i=index" text-wrap class="settingBtn h3Text" [ngClass]="{active: isGroupShown(i)}">
+      <h3 class="" (click)="toggleGroup(i)">
+        {{d.title}}
+        <ion-icon class="set-arrow arrowdown" color="success" item-right [name]="isGroupShown(i) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+      </h3>
+      <div *ngIf="isGroupShown(i)">
+        <div class="span3">
+          <form [formGroup]="askQueForm">
+            <div class="form-group">
+              <input type="tel" formControlName="phone" name="phone" class="form-control inputFull" placeholder="IPhone">
+            </div>
+            <div class="form-group">
+              <div class="checkbox checkbox-success checkbox-inline">
+                <input type="checkbox" id="inlineCheckbox2" value="yes" formControlName="get_call_back" name="get_call_back" checked="" class="customCheck">
+                <label class="labelControl" for="inlineCheckbox2"> I prefer a telephone call </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control inputFull" placeholder="Question" formControlName="question" name="question">
+            </div>
+            <div class="submit">
+              <ion-row>
+                <ion-col>
+                  <button (click)="askQuestion(i)" ion-button padding text-center class="login-button">Send</button>
+                </ion-col>
+              </ion-row>
+            </div>
+          </form>
+        </div>
+      </div>
+    </ion-item> -->
+  </ion-list>
 </ion-content>

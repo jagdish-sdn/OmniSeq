@@ -14,7 +14,7 @@ page-profile {
          margin: 0;
          bottom: 8px;
      }
-     .phone-item .label{padding-left: 0;}
+     .phone-item .label{padding-left: 22px;}
      .phone-item.input-has-focus .label{padding-left:0 !important;}
      .phone-item ion-input{padding-left: 22px;}
      .text-input{
@@ -43,11 +43,24 @@ page-profile {
         top: 11%;
     }
     .edit-icon{
-        position: fixed;
-        left: 58%;
+        position: absolute;
+        left: 45%;
         top: 23%;
         bottom: 0px;
         color: #ccc;
         font-size: 39px;
+    }
+    .profileBlock{
+        background-color: #1a5293;
+    }
+    ion-avatar{
+        padding: 30px;
+    }
+    .cameraicon{
+        border: 1px solid;
+        border-radius: 100px;
+        width: 100%;    font-size: 25px;
+        padding: 7px;
+        background-color: #1a5293;
     }
 }

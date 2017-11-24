@@ -31,7 +31,7 @@ export class LoginPage {
     this.loginForm = formBuilder.group({
       email: ['', Validators.compose([
         Validators.required,
-        Validators.pattern('^[a-z0-9]+[a-z0-9]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$')
+        Validators.pattern('^[a-zA-Z0-9]+[a-zA-Z0-9]+[a-zA-Z0-9._]+@[a-z]+\.[a-z.]{2,5}$')
       ])
       ],
       password: ['', Validators.compose([Validators.required])],
@@ -79,6 +79,7 @@ export class LoginPage {
         this.loginForm.value.device_type = this.device_type;
         let device_token = localStorage.getItem("device_token");
         this.loginForm.value.device_token = device_token ? device_token : "staticwebtoken";
+        this.loginForm.value.email = this.loginForm.value.email.toLowerCase();
         this.httpService.postData("user/applogin", this.loginForm.value).subscribe(data => {
           this.common.dismissLoading();
           if(data.status == 200) {

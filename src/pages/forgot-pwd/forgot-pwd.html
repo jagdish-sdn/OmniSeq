@@ -3,7 +3,7 @@
       <ion-row class="login-logo">
         <ion-col>
           <div>
-            <img src="assets/images/Login-logo.gif" />
+            <img src="assets/images/symbol.png" />
           </div>
           <h2 class="login-title">Welcome User</h2>
           <p class="sub-title">Forgot password</p>
@@ -14,8 +14,8 @@
           <ion-col>
             <div inset class="main-div">
               <ion-item >
-                <ion-label floating class="label-title">Email address</ion-label>
-                <ion-input type="text" formControlName="email" name="email" class="input-text-color"></ion-input>
+                <ion-label floating  class="label-title">Email address</ion-label>
+                <ion-input type="text" autocapitalize="off" formControlName="email" name="email" class="input-text-color"></ion-input>
                 <ion-icon *ngIf="((forgotPwdForm.controls.email.hasError('required') || forgotPwdForm.controls.email.hasError('pattern')) && forgotPwdForm.controls.email.touched) || ((forgotPwdForm.controls.email.hasError('required') || forgotPwdForm.controls.email.hasError('pattern')) && submitAttempt)" ios="ios-close" md="md-close" item-right text-end padding-top color="danger"></ion-icon>
                 <ion-icon *ngIf="(forgotPwdForm.controls.email.valid && forgotPwdForm.controls.email.touched) || (forgotPwdForm.controls.email.valid && submitAttempt)" ios="ios-checkmark" md="md-checkmark" item-right text-end padding-top color="primary"></ion-icon>
               </ion-item>           

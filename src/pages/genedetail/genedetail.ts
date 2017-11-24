@@ -37,15 +37,12 @@ export class GenedetailPage {
       this.common.presentLoading();
       this.httpService.getData("gene/get?id=" + this.navParams.data.data._id).subscribe(data => {
         this.common.dismissLoading();
-        if (data.status == 200) {
-          
+        if (data.status == 200) {          
           this.geneDetail = data.data;
           console.log("Gene Detail page this.geneDetail", this.geneDetail);
-        }
-        // else if(data.status == 203) {
-        //   this.events.publish("clearSession");
-        // } 
-        else {
+        } else if(data.status == 203) {
+          this.events.publish("clearSession");
+        } else {
           this.common.showToast(data.message);
         }
       }, error => {

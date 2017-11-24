@@ -47,12 +47,13 @@ export class GenelistPage {
           this.arr = data.data;
           if (q != '') {
             this.search(q);
-          }
-          this.common.dismissLoading();
+          }          
+        } else if(data.status == 203){
+          this.events.publish("clearSession");
         } else {
           this.common.showToast(data.message);
-          this.common.dismissLoading();
         }
+        this.common.dismissLoading();
         this.showMe = "show";
       }, error => {
         console.log("Error=> ", error);

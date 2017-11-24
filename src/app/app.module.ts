@@ -24,7 +24,7 @@ import { GenelistPage } from '../pages/genelist/genelist';
 import { ProfilePage } from '../pages/profile/profile';
 import { ChangePasswordPage } from '../pages/change-password/change-password';
 import { AboutusPage } from '../pages/aboutus/aboutus';
-import { Splash } from '../pages/splash/splash';
+import { CompanionDetailPage } from '../pages/companion-detail/companion-detail';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -51,7 +51,7 @@ import { SettingsProvider } from './../providers/settings/settings';
     ProfilePage,
     ChangePasswordPage,
     AboutusPage,
-    Splash
+    CompanionDetailPage
   ],
   imports: [
     BrowserModule,
@@ -76,7 +76,7 @@ import { SettingsProvider } from './../providers/settings/settings';
     ProfilePage,
     ChangePasswordPage,
     AboutusPage,
-    Splash
+    CompanionDetailPage
   ],
   providers: [
     StatusBar,
