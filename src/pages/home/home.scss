@@ -59,4 +59,14 @@ page-home {
         margin: 0 2px;
         font-style: italic;
     }
+    .counter{
+        position: absolute;
+        top: -5px;
+        left: 13px;
+        border-radius: 100px;
+        border: 1px solid #ccc;
+        width: 18px;
+        height: 18px;
+        background-color: rgba(30,150,40,1);
+    }
 }

@@ -34,7 +34,7 @@ export class GenelistPage {
   ionViewDidLoad() {
   }
 
-  /**Function for got the total no of Gene/marker/Functions
+  /**Function for get the total no of Gene/marker/Functions
    * Created: 13-Nov-2017
    * Creatot: Jagdish Thakre
    */
@@ -42,6 +42,7 @@ export class GenelistPage {
     if (this.networkPro.checkNetwork() == true) {
       this.common.presentLoading();
       this.httpService.getData("gene/search").subscribe(data => {
+        this.common.dismissLoading();
         if (data.status == 200) {
           this.geneList = data.data;
           this.arr = data.data;
@@ -52,8 +53,7 @@ export class GenelistPage {
           this.events.publish("clearSession");
         } else {
           this.common.showToast(data.message);
-        }
-        this.common.dismissLoading();
+        }        
         this.showMe = "show";
       }, error => {
         console.log("Error=> ", error);

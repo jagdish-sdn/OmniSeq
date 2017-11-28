@@ -16,7 +16,7 @@
     </ion-item>     -->
     <ion-item class="settingBtn item-ios">
       <ion-label>Push Notification</ion-label>
-      <ion-toggle [(ngModel)]="pushnotification"></ion-toggle>
+      <ion-toggle [(ngModel)]="pushNotification" (ionChange)="togglePushNoti($event)"></ion-toggle>
     </ion-item>
     <ion-item class="settingBtn item-ios">
       <ion-label>Night Mode</ion-label>

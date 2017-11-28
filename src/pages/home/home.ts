@@ -9,6 +9,8 @@ import { FaqPage } from '../faq/faq';
 import { CompanionPage } from '../companion/companion';
 import { AskQuestionPage } from '../ask-question/ask-question';
 import { CancerPage } from '../cancer/cancer';
+import { QuizPage } from '../quiz/quiz';
+import { NotificationsPage } from '../notifications/notifications';
 
 
 @Component({
@@ -20,6 +22,7 @@ export class HomePage {
   selectedItme: any;
   autoCompleteArr;
   searchText;
+  counter: any = 0;
   constructor(
     public navCtrl: NavController,
     public networkPro: NetworkProvider,
@@ -36,40 +39,16 @@ export class HomePage {
       this.searchedItems = Object.assign([], this.selectedItme);
   }
 
+  ionViewDidEnter(){
+    this.getNotifications();
+  }
+
   /**Autocomplete filter function
    * created : 13-Nov-2017
    * Creator: Jagdish Thakre
    */
   search(value) {
     this.navCtrl.setRoot(GenelistPage, {searchText : value});
-      /*if (!value) {
-        this.returnBlank();
-      } else {
-        if(this.networkPro.checkNetwork() == true) {
-          this.common.presentLoading();
-          this.httpService.getData("gene/search?q="+value).subscribe(data => {
-            this.common.dismissLoading();
-            if(data.status == 200) {
-              this.autoCompleteArr = data.data;
-              this.searchedItems = Object.assign([], this.autoCompleteArr).filter(
-                item => {
-                    if (item.name.toLowerCase().indexOf(value.toLowerCase()) > -1) {
-                        return true;
-                    } else if (item.marker.toLowerCase().indexOf(value.toLowerCase()) > -1) {
-                        return true;
-                    }
-                })
-            } else if(data.status == 203) {
-              this.events.publish("clearSession");
-            } else {
-              this.common.showToast(data.message);
-            }
-          }, error => {
-            console.log("Error=> ", error);
-            this.common.dismissLoading();
-          });
-        }
-      }*/
   }
 
   /**Select searched option and sending on result page
@@ -102,5 +81,32 @@ export class HomePage {
 
   public goToCancer(){
     this.navCtrl.push(CancerPage);
+  }
+
+  public goToQuiz(){
+    this.navCtrl.setRoot(QuizPage);
+  }
+  
+  public goToNoti(){
+    this.navCtrl.push(NotificationsPage);
+  }
+
+  getNotifications() {
+    if (this.networkPro.checkNetwork() == true) {
+      this.common.presentLoading();
+      this.httpService.getData("appuser/getmynotifications").subscribe(data => {
+        this.common.dismissLoading();
+        if (data.status == 200) {
+          this.counter = data.data.length;                    
+        } else if(data.status == 203){
+          this.events.publish("clearSession");
+        } else {
+          this.common.showToast(data.message);
+        }
+      }, error => {
+        console.log("Error=> ", error);
+        this.common.dismissLoading();
+      });
+    }
   }
 }

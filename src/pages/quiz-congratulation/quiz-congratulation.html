@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Quiz</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content class="body-content">
+  <img src="assets/images/congo.png" />
+  <ion-row>
+    <ion-col>
+      <ion-item class="profile-setting">
+        <h3 text-center>
+          <p class="congrats">Good Job!</p>
+          <p text-wrap class="congrats">You have completed the Quiz. Your result is given below...</p>
+        </h3>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-item class="profile-setting">
+        <h3 text-center class="resultMsg">
+          <p padding-bottom class="congrats">Results</p>
+          <span padding-bottom class="congrats">{{message}}</span> =
+          <p padding-top class="totalPoints">{{totalPoints}} points</p>
+        </h3>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row padding-top>
+    <ion-col>
+      <button ion-button padding text-center class="save-button" (click)="nextScreen()">Close</button>
+    </ion-col>
+  </ion-row>
+</ion-content>

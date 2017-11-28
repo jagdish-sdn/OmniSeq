@@ -1,24 +1,113 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the QuizPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { NavController, NavParams, Events, Platform } from 'ionic-angular';
+import { FormBuilder } from '@angular/forms';
+import { NetworkProvider } from '../../providers/network/network';
+import { HttpServiceProvider } from '../../providers/http-service/http-service';
+import { CommonProvider } from '../../providers/common/common';
+import { QuizCongratulationPage } from '../quiz-congratulation/quiz-congratulation';
 
 @Component({
   selector: 'page-quiz',
   templateUrl: 'quiz.html',
 })
 export class QuizPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  queLimit: number = 5;
+  queArr = [];
+  currentIndex = 0;
+  currentQue = {};
+  selected: any;
+  selectedItem: any = {};
+  correctAns = 0;
+  wrongAns = 0;
+  timer: any;
+  interval: any;
+  extratPoints: any;
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public formBuilder: FormBuilder,
+    public networkPro: NetworkProvider,
+    public httpService: HttpServiceProvider,
+    public common: CommonProvider,
+    public events: Events,
+    public platform: Platform
+  ) {
+    this.getQuestions();
+    this.timer = 10;
+    this.extratPoints = 0; 
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad QuizPage');
+  }
+
+  /**Function are useing for get quiz questions from server 
+   * Created : 27-Nov-2017
+   * Creator : Jagdish Thakre
+  */
+  getQuestions() {
+    if (this.networkPro.checkNetwork() == true) {
+      this.common.presentLoading();
+      this.httpService.getData("quiz/getquiz?limit=" + this.queLimit).subscribe(data => {
+        this.common.dismissLoading();
+        if (data.status == 200) {
+          this.queArr = data.data;
+          this.countTime();
+          this.currentQue = this.queArr[this.currentIndex];          
+        } else if (data.status == 203) {
+          this.events.publish("clearSession");
+        } else {
+          this.common.showToast(data.message);
+        }
+      }, error => {
+        this.common.dismissLoading();
+      });
+    }
+  }
+
+  countTime() {
+    this.interval = setInterval(() => {
+      if (this.timer != 0) {
+        this.timer = this.timer - 1;
+        if(this.timer == 0){
+          clearInterval(this.interval);
+        }      
+      }
+    }, 1000);
+  }
+
+  answer(item) {
+    if (!this.selectedItem._id) {
+      this.selectedItem = item;
+      if (this.selectedItem.correct_answer == true) {
+        this.correctAns += 1;
+        if(this.timer<=10 || this.timer >= 9){
+          this.extratPoints += 2;
+        } else if(this.timer<=8 || this.timer >= 6){
+          this.extratPoints += 1.5;
+        } else if(this.timer<=5 || this.timer >= 1){
+          this.extratPoints += 1;
+        }
+      } else {
+        this.wrongAns += 1;
+      }
+    }
+  }
+
+  nextQue() {
+    this.selectedItem = {};
+    if (this.queArr.length > (this.currentIndex + 1)) {
+      if(this.timer != 0){
+        clearInterval(this.interval);
+      }
+      this.currentIndex += 1      
+      this.currentQue = this.queArr[this.currentIndex];
+      this.timer = 10;
+      this.countTime();
+    } else {
+      clearInterval(this.interval);
+      this.currentQue = {};
+      this.navCtrl.setRoot(QuizCongratulationPage, {totalQue: this.queArr.length, correct_answer: this.correctAns, wrong: this.wrongAns, extra_points: this.extratPoints})
+    }
   }
 
 }

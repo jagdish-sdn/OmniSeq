@@ -17,6 +17,8 @@ import { SettingPage } from '../pages/setting/setting';
 import { CompanionPage } from '../pages/companion/companion';
 import { CancerPage } from '../pages/cancer/cancer';
 import { GenelistPage } from '../pages/genelist/genelist';
+import { GenedetailPage } from '../pages/genedetail/genedetail';
+import { CompanionDetailPage } from '../pages/companion-detail/companion-detail';
 
 declare var cordova: any;
 declare var window: any;
@@ -92,11 +94,21 @@ export class MyApp {
         
         this.fcm.onNotification().subscribe(data=>{
           console.log("Notificatoin message ", data);
+
           if(data.wasTapped){
             console.log("Received in background");
           } else {
             console.log("Received in foreground");
           };
+          switch (data.type) {
+            case "new_gene":
+                this.nav.push(GenedetailPage, { data: {'_id': data.id} });        
+              break;
+      
+            case "new_companion":
+                this.nav.push(CompanionDetailPage, {id: data.id})
+              break;
+          }
         })
         
         // this.fcm.onTokenRefresh().subscribe(token=>{

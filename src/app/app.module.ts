@@ -25,6 +25,8 @@ import { ProfilePage } from '../pages/profile/profile';
 import { ChangePasswordPage } from '../pages/change-password/change-password';
 import { AboutusPage } from '../pages/aboutus/aboutus';
 import { CompanionDetailPage } from '../pages/companion-detail/companion-detail';
+import { QuizCongratulationPage } from '../pages/quiz-congratulation/quiz-congratulation';
+import { NotificationsPage } from '../pages/notifications/notifications';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -51,7 +53,9 @@ import { SettingsProvider } from './../providers/settings/settings';
     ProfilePage,
     ChangePasswordPage,
     AboutusPage,
-    CompanionDetailPage
+    CompanionDetailPage,
+    QuizCongratulationPage,
+    NotificationsPage
   ],
   imports: [
     BrowserModule,
@@ -76,7 +80,9 @@ import { SettingsProvider } from './../providers/settings/settings';
     ProfilePage,
     ChangePasswordPage,
     AboutusPage,
-    CompanionDetailPage
+    CompanionDetailPage,
+    QuizCongratulationPage,
+    NotificationsPage
   ],
   providers: [
     StatusBar,

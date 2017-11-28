@@ -5,8 +5,8 @@
     </button>
     <ion-title class="page-header-title">OmniS<!-- <span class="style-s">S</span> -->eq / LabCorp</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only >
-        <ion-icon name="custom-rightNavbutton"></ion-icon>
+      <button ion-button icon-only type="button" (click)="goToNoti()" >
+        <ion-icon name="custom-rightNavbutton"></ion-icon><span class="counter" *ngIf="counter != 0">{{counter}}</span>
       </button>
     </ion-buttons>  
   </ion-navbar>
@@ -72,9 +72,8 @@
         </ion-card>
       </ion-col>
       <ion-col col-6>
-        <ion-card>
+        <ion-card (click)="goToQuiz()">
           <div padding class="card-img-border">
-            <!-- <img src="assets/images/QuizMe.png" item-width="25%" item-height="25%" /> -->
             <img class="img-6">
           </div>
           <div text-center class="home-title">

@@ -6,6 +6,28 @@
     <ion-title>Quiz</ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content padding>
-
+<ion-content padding class="body-content">
+  <div text-center padding-top class="que-counter">Question {{currentIndex+1}}/{{queArr.length}}</div>
+  <ion-item class="profile-setting" padding>
+    <h2 text-center class="timer">00:{{(timer == 10) ? timer : '0'+timer}}</h2>
+  </ion-item>
+  <ion-row *ngIf="currentQue">
+    <ion-col>
+      <ion-item class="profile-setting question-item">
+        <h3 class="titleQuestion">{{currentQue.question}}</h3>
+      </ion-item   >
+    </ion-col>
+  </ion-row>
+  <ion-row *ngIf="currentQue">
+    <ion-col  col-6 *ngFor="let ans of currentQue.answers" (click)="answer(ans)">
+      <ion-item class="settingBtn question-opt" [ngClass]="{right: (selectedItem._id && ans.correct_answer), wrong: (selectedItem._id == ans._id && !ans.correct_answer)}" text-center > 
+          {{ans.ans}}
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row padding-top *ngIf="currentQue">
+    <ion-col>
+      <button ion-button padding text-center class="save-button" (click)="nextQue()">Next</button>
+    </ion-col>
+  </ion-row>
 </ion-content>

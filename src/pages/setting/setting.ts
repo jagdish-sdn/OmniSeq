@@ -21,6 +21,7 @@ export class SettingPage {
   updateProfileForm: any;
   confirmValid: boolean;
   nightmode: boolean;
+  pushNotification: boolean;
   profile: any;
   states = [];
   positions = [];
@@ -39,7 +40,13 @@ export class SettingPage {
     this.settings.getActiveTheme().subscribe(val => {
       this.selectedTheme = val; this.toggleChecked(this.selectedTheme);
     });
-
+    let userDetail = JSON.parse(localStorage.getItem("User"));
+    let notificationStatus = userDetail.push_notification;
+    if(notificationStatus == 0){
+      this.pushNotification = false
+    } else{
+      this.pushNotification = true;
+    }
   }
 
 
@@ -61,6 +68,34 @@ export class SettingPage {
       this.nightmode = true;
     } else {
       this.nightmode = false;
+    }
+  }
+
+  togglePushNoti(){
+    // this.pushNotification = (this.pushNotification == true) ? false : true;         
+    this.updatePushNotification();
+  }
+
+  updatePushNotification(){
+    if (this.networkPro.checkNetwork() == true) {
+      this.common.presentLoading();
+      this.httpService.postData("appuser/updatepushnotification",{}).subscribe(data => {
+        this.common.dismissLoading();
+        if (data.status == 200) {
+          let userDetail = JSON.parse(localStorage.getItem("User"));
+          userDetail.push_notification = data.data.push_notification;
+          localStorage.setItem("User", JSON.stringify(userDetail));
+          // this.pushNotification = (data.data.push_notification == 0) ? false : true; 
+          this.common.showToast(data.message);
+        } else if(data.status == 203) {
+          this.events.publish("clearSession");
+        } else {
+          this.common.showToast(data.message);
+        }
+      }, error => {
+        console.log("Error=> ", error);
+        this.common.dismissLoading();
+      });
     }
   }
 
