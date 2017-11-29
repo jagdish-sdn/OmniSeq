@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform, AlertController, Events } from 'ionic-angular';
+import { Nav, Platform, AlertController, Events, MenuController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { FCM } from '@ionic-native/fcm';
@@ -42,7 +42,8 @@ export class MyApp {
     public httpService: HttpServiceProvider,
     public common: CommonProvider,
     private fcm: FCM,
-    private settings: SettingsProvider
+    private settings: SettingsProvider,
+    public menu: MenuController
   ) {
     
     // setTimeout(function(){
@@ -82,24 +83,54 @@ export class MyApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      /**Notification */
-      if (this.platform.is('cordova')) {
-        // this.fcm.subscribeToTopic('marketing');
-        
-        this.fcm.getToken().then(token=>{
-          localStorage.setItem("device_token", token);
-          console.log("Device Token", token)
-          // backend.registerToken(token);
-        })
-        
-        this.fcm.onNotification().subscribe(data=>{
-          console.log("Notificatoin message ", data);
+      this.push();
+      this.statusBar.styleDefault();
+      if (window.cordova && window.cordova.plugins.Keyboard) {
+        cordova.plugins.Keyboard.disableScroll(true);
+      }
+      this.splashScreen.hide();
 
-          if(data.wasTapped){
-            console.log("Received in background");
-          } else {
-            console.log("Received in foreground");
-          };
+      this.platform.registerBackButtonAction(() => {
+        if(this.menu.isOpen()){
+           this.menu.close()
+        } else if(this.nav.canGoBack()){
+          this.nav.pop();
+        }else{
+          const alert = this.alertCtrl.create({
+            title: 'App termination',
+            message: 'Do you want to close the app?',
+            buttons: [{
+                text: 'Cancel',
+                role: 'cancel',
+                handler: () => {
+                    console.log('Application exit prevented!');
+                }
+            },{
+                text: 'Ok',
+                handler: () => {
+                    this.platform.exitApp(); // Close this application
+                }
+            }]
+        });
+        alert.present();
+        }
+      });
+    });
+  }
+
+  push(){
+    /**Notification */
+    if (this.platform.is('cordova')) {        
+      this.fcm.getToken().then(token=>{
+        localStorage.setItem("device_token", token);
+        console.log("Device Token", token)
+      })
+      
+      this.fcm.onNotification().subscribe(data=>{
+        
+        console.log("Notificatoin message ", data);
+        if(data.wasTapped){
+          //Notification was received on device tray and tapped by the user.
           switch (data.type) {
             case "new_gene":
                 this.nav.push(GenedetailPage, { data: {'_id': data.id} });        
@@ -109,32 +140,16 @@ export class MyApp {
                 this.nav.push(CompanionDetailPage, {id: data.id})
               break;
           }
-        })
-        
-        // this.fcm.onTokenRefresh().subscribe(token=>{
-          // backend.registerToken(token);
-        // })
-        
-        // this.fcm.unsubscribeFromTopic('marketing');
-        
-      } else {
-        localStorage.setItem("device_token", "fTXe0lTVUSU:APA91bGGrbHYkcGTZrSM9mwUSa7XO6Yshm9NXpFPU70nnJ0QuPIfvVS-WjtvhEwsy5_bF6Fv15yu79t6tf-R6z_MVEpBQphU52jOuEvmho6FGCZiqKGUugbBkv6VkcChS3jF0oru36E6");
-      }
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      this.statusBar.styleDefault();
-      if (window.cordova && window.cordova.plugins.Keyboard) {
-        // This requires installation of https://github.com/driftyco/ionic-plugin-keyboard
-        // and can only affect native compiled Ionic2 apps (not webserved).
-        cordova.plugins.Keyboard.disableScroll(true);
-      }
-      this.splashScreen.hide();
-    });
+        }else{
+          //Notification was received in foreground. Maybe the user needs to be notified.
+        }         
+      })                
+    } else {
+      localStorage.setItem("device_token", "fTXe0lTVUSU:APA91bGGrbHYkcGTZrSM9mwUSa7XO6Yshm9NXpFPU70nnJ0QuPIfvVS-WjtvhEwsy5_bF6Fv15yu79t6tf-R6z_MVEpBQphU52jOuEvmho6FGCZiqKGUugbBkv6VkcChS3jF0oru36E6");
+    }
   }
 
   openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
   }
 
@@ -151,8 +166,6 @@ export class MyApp {
         {
           text: 'Yes',
           handler: () => {
-            // localStorage.clear();
-            // this.nav.setRoot(LoginPage);
             this.common.presentLoading();
             this.httpService.postData("user/applogout", {}).subscribe(data => {
               this.common.dismissLoading();

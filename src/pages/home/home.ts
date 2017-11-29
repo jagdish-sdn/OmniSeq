@@ -93,9 +93,9 @@ export class HomePage {
 
   getNotifications() {
     if (this.networkPro.checkNetwork() == true) {
-      this.common.presentLoading();
+      // this.common.presentLoading();
       this.httpService.getData("appuser/getmynotifications").subscribe(data => {
-        this.common.dismissLoading();
+        // this.common.dismissLoading();
         if (data.status == 200) {
           this.counter = data.data.length;                    
         } else if(data.status == 203){
@@ -105,7 +105,7 @@ export class HomePage {
         }
       }, error => {
         console.log("Error=> ", error);
-        this.common.dismissLoading();
+        // this.common.dismissLoading();
       });
     }
   }

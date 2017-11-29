@@ -5,6 +5,6 @@
 
 </ion-header>
 <ion-content class="body-content" padding>
-  <div class="logo"><img [src]="companionData.logo" [alt]="companionData.compainion_name" width="50%" /></div>
+  <div *ngIf="companionData.logo" class="logo"><img [src]="companionData.logo" [alt]="companionData.compainion_name" width="50%" /></div>
   <div [innerHTML]="companionData.data"></div>
 </ion-content>

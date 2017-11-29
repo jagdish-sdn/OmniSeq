@@ -35,12 +35,10 @@ export class AskQuestionPage {
   ) {
     this.askQueForm = formBuilder.group({
       question: ['', Validators.compose([
-        Validators.required,
-        Validators.pattern('^[a-z0-9_.+-]+@[a-z0-9-]+.[a-zA-Z0-9-.]+$')
+        Validators.required
       ])
       ],
       phone: ['', Validators.compose([
-        Validators.required,
         Validators.minLength(this.contactLength),
         Validators.maxLength(this.contactLength),
       ])],
@@ -48,12 +46,10 @@ export class AskQuestionPage {
     });
     this.askQueOrderForm = formBuilder.group({
       question: ['', Validators.compose([
-        Validators.required,
-        Validators.pattern('^[a-z0-9_.+-]+@[a-z0-9-]+.[a-zA-Z0-9-.]+$')
+        Validators.required
       ])
       ],
       phone: ['', Validators.compose([
-        Validators.required,
         Validators.minLength(this.contactLength),
         Validators.maxLength(this.contactLength),
       ])],
@@ -61,17 +57,16 @@ export class AskQuestionPage {
     });
     this.askQueTechForm = formBuilder.group({
       question: ['', Validators.compose([
-        Validators.required,
-        Validators.pattern('^[a-z0-9_.+-]+@[a-z0-9-]+.[a-zA-Z0-9-.]+$')
+        Validators.required
       ])
       ],
       phone: ['', Validators.compose([
-        Validators.required,
         Validators.minLength(this.contactLength),
         Validators.maxLength(this.contactLength),
       ])],
       get_call_back: ['']
     });
+    this.shownGroup = 1;
   }
 
   ionViewDidLoad() {
@@ -99,18 +94,10 @@ export class AskQuestionPage {
     } else {
       this.askQueForm.value.get_call_back = "no";
     } 
-    console.log("ask a question ", this.askQueForm);
-
-    // if(!this.askQueForm.value.phone){
-    //   this.common.showToast("Please enter phone no.");
-    //   return false;
-    // } else if(this.askQueForm.controls.phone.status == "INVALID") {
-    //   this.common.showToast("Phone no should be 10 digits.");
-    //   return false;
-    // } else if(!this.askQueForm.value.question){
-    //   this.common.showToast("Please enter question.");
-    //   return false;
-    // }
+    if(!this.askQueForm.value.phone && (this.askQueForm.value.get_call_back == "yes")){
+      this.common.showToast("Please enter phone no.");
+      return false;
+    }
     if(this.askQueForm.valid)
     this.addQuestion(this.askQueForm.value);
   }
@@ -124,17 +111,10 @@ export class AskQuestionPage {
     } else {
       this.askQueOrderForm.value.get_call_back = "no";
     } 
-
-    // if(!this.askQueOrderForm.value.phone){
-    //   this.common.showToast("Please enter phone no.");
-    //   return false;
-    // } else if(this.askQueOrderForm.controls.phone.status == "INVALID") {
-    //   this.common.showToast("Phone no should be 10 digits.");
-    //   return false;
-    // } else if(!this.askQueOrderForm.value.question){
-    //   this.common.showToast("Please enter question.");
-    //   return false;
-    // }
+    if(!this.askQueOrderForm.value.phone && (this.askQueOrderForm.value.get_call_back == "yes")){
+      this.common.showToast("Please enter phone no.");
+      return false;
+    }
     if(this.askQueOrderForm.valid)
     this.addQuestion(this.askQueOrderForm.value);    
   }
@@ -149,16 +129,10 @@ export class AskQuestionPage {
       this.askQueTechForm.value.get_call_back = "no";
     } 
 
-    // if(!this.askQueTechForm.value.phone){
-    //   this.common.showToast("Please enter phone no.");
-    //   return false;
-    // } else if(this.askQueTechForm.controls.phone.status == "INVALID") {
-    //   this.common.showToast("Phone no should be 10 digits.");
-    //   return false;
-    // } else if(!this.askQueTechForm.value.question){
-    //   this.common.showToast("Please enter question.");
-    //   return false;
-    // }
+    if(!this.askQueTechForm.value.phone && (this.askQueTechForm.value.get_call_back == "yes")){
+      this.common.showToast("Please enter phone no.");
+      return false;
+    }
     if(this.askQueTechForm.valid)
     this.addQuestion(this.askQueTechForm.value);
     

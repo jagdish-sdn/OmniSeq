@@ -39,9 +39,13 @@
           <div *ngIf="geneList.stage2.length>0" class="stage2">
             <span *ngFor="let marker of geneList.stage2; let last = last;" [ngClass]="{'stage_bold': marker.target==1}">{{marker.marker}}{{(!last)?',':''}}</span>
           </div>
-
         </div>
       </ion-item>
     </ion-col>
   </ion-row>
 </ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <div class="footer-title timer" text-wrap>Source: Reprinted from Immunity, Volume 39, Chen, Daniel S. et al., Oncology Meets Immunology: The Cancer-Immunity Cycle, 1-10, Copyright 2013, with permission from Elsevier. <a href="http://dx.doi.org/10.1016/j.immuni.2013.07.012">http://dx.doi.org/10.1016/j.immuni.2013.07.012</a></div>
+  </ion-toolbar>
+</ion-footer>
