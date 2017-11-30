@@ -12,7 +12,7 @@ export class FaqPage {
   faqArr: any;
   page = 1;
   limit = 5;
-  totalRecords = 0;
+  totalRecords: any = 0;
   showMe;
   searchText = {};
   constructor(
@@ -45,7 +45,7 @@ export class FaqPage {
       }
       this.httpService.getData("faq/getall" + queryString).subscribe(data => {
         if (data.status == 200) {
-          this.totalRecords = parseInt(data.total_count);
+          this.totalRecords = parseInt(data.data.total_count);
           if (this.page == 1 || q != '') {
             this.faqArr = data.data.data;            
           } else {
@@ -81,7 +81,6 @@ export class FaqPage {
    * Creator : Jagdish Thakre
    */
   doInfinite(infiniteScroll) {
-
     this.faqList('');
     setTimeout(() => {
       infiniteScroll.complete();
