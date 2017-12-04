@@ -1,6 +1,21 @@
 page-companion-detail {
     .logo img{
         float: right;
+        margin-bottom: 10px;
     }
-
+    .timer{
+        color: #1a5293;
+    }
+    .inner-html{
+        padding: 10px;
+        // width:90%;
+        // overflow-y: scroll;
+    }
+    ion-scroll {
+        position: absolute !important;
+        display: block;
+        width: 100%;
+        height: 100%;
+        top: 11%;
+    }
 }

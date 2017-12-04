@@ -24,7 +24,6 @@ export class GenedetailPage {
   }
 
   ionViewDidLoad() {
-    console.log("page loaded");
   }
 
   /**Function for get gene details
@@ -32,14 +31,12 @@ export class GenedetailPage {
    * Creatot: Jagdish Thakre
    */
   getGeneDetail() {
-    console.log("this.navParams.data._id", this.navParams.data.data._id)
     if (this.networkPro.checkNetwork() == true) {
       this.common.presentLoading();
       this.httpService.getData("gene/get?id=" + this.navParams.data.data._id).subscribe(data => {
         this.common.dismissLoading();
         if (data.status == 200) {          
           this.geneDetail = data.data;
-          console.log("Gene Detail page this.geneDetail", this.geneDetail);
         } else if(data.status == 203) {
           this.events.publish("clearSession");
         } else {

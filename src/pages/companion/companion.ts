@@ -25,7 +25,6 @@ export class CompanionPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CompanionPage');
   }
 
   /**Function for got the total no of Gene/marker

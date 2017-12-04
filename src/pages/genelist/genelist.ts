@@ -24,7 +24,6 @@ export class GenelistPage {
   ) {
     this.searchText = {};
     this.geneList = [];
-    console.log("this.navparam ", this.navparam);
     if (this.navparam.data.searchText) {
       this.searchText.name = this.navparam.data.searchText;
     }

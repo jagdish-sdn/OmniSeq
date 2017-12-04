@@ -30,4 +30,13 @@ page-faq {
         color: #000;
         font-size: 1.6rem;
     }
+    .show-more{
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        word-wrap: break-word;
+    }
+    .show-less{
+        white-space: normal;
+    }
 }

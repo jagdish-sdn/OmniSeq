@@ -34,7 +34,6 @@ export class ForgotPwdPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ForgotPwdPage');
   }
 
   forgotPwd() {

@@ -22,6 +22,7 @@ export class QuizPage {
   timer: any;
   interval: any;
   extratPoints: any;
+  ansSelected: boolean;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -35,6 +36,7 @@ export class QuizPage {
     this.getQuestions();
     this.timer = 10;
     this.extratPoints = 0; 
+    this.ansSelected = false;
   }
 
   ionViewDidLoad() {
@@ -76,6 +78,8 @@ export class QuizPage {
   }
 
   answer(item) {
+    this.ansSelected = true;
+    // console.log("this.ansSelected = true;", this.ansSelected)
     if (!this.selectedItem._id) {
       this.selectedItem = item;
       if (this.selectedItem.correct_answer == true) {
@@ -94,6 +98,7 @@ export class QuizPage {
   }
 
   nextQue() {
+    this.ansSelected = false;
     this.selectedItem = {};
     if (this.queArr.length > (this.currentIndex + 1)) {
       if(this.timer != 0){

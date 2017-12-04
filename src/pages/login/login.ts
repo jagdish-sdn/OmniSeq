@@ -47,7 +47,6 @@ export class LoginPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
   }
   /**
    * Function created for redirect on registration page

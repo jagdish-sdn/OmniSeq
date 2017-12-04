@@ -15,6 +15,7 @@ export class FaqPage {
   totalRecords: any = 0;
   showMe;
   searchText = {};
+  shownGroup = null;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -29,7 +30,7 @@ export class FaqPage {
 
   ionViewDidLoad() {
   }
-
+  
   /**Function for get faq list from server 
    * Created : 17-Nov-2017
    * Creator : Jagdish Thakre
@@ -93,4 +94,15 @@ export class FaqPage {
     this.faqList(q);
   }
 
+  toggleGroup(group) {
+    if (this.isGroupShown(group)) {
+      this.shownGroup = null;
+    } else {
+      this.shownGroup = group;
+    }
+  };
+
+  isGroupShown(group) {
+    return this.shownGroup === group;
+  };
 }

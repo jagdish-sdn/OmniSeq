@@ -5,29 +5,31 @@
     </button>
     <ion-title>FAQs</ion-title>
   </ion-navbar>
-  <ion-searchbar [(ngModel)]="searchText.name"
-  (ionInput)="search(searchText.name)"
-  debounce=500 placeholder="Search Questions"></ion-searchbar>
+  <ion-searchbar [(ngModel)]="searchText.name" (ionInput)="search(searchText.name)" debounce=500 placeholder="Search Questions"></ion-searchbar>
 </ion-header>
-<ion-content class="body-content">    
-    <ion-row>
-      <ion-col>
-        <ion-item class="settingBtn" *ngFor="let list of faqArr">
+<ion-content class="body-content">
+  <ion-row>
+    <ion-col>
+      <div *ngFor="let list of faqArr; let i = index;">
+        <ion-item class="settingBtn" *ngIf="list.question!==''">
           <p class="marker" text-wrap>
-            <img src="assets/images/bullet.png" class="dotListIcon" />
-            {{list.question}}</p>
-          <div text-wrap>{{list.answer}}</div>
+            <img src="assets/images/bullet.png" class="dotListIcon" /> {{list.question}}
+          </p>
+          <div text-wrap *ngIf="list.answer">{{list.answer}}</div>
+          <!-- <div class="{{!isGroupShown(i) ? 'show-more': 'show-less'}}" *ngIf="list.answer">{{list.answer}}</div> -->
+          <!-- <button float-right *ngIf="list.answer.len  gth > 50" type="button" ion-button (click)="toggleGroup(i)" >{{!isGroupShown(i) ? 'Show more': 'Show less'}}</button> -->
         </ion-item>
-      </ion-col>
-    </ion-row>
-    <div *ngIf="showMe">
-      <ion-list padding *ngIf="faqArr.length == 0">
-        <ion-item class="noRecordFoundImg" padding-top>
-          <img class="noRecordFound">
-        </ion-item>
-      </ion-list>
-    </div>
-    <ion-infinite-scroll *ngIf="faqArr.length !== totalRecords" (ionInfinite)="doInfinite($event)">
-        <ion-infinite-scroll-content></ion-infinite-scroll-content>
-    </ion-infinite-scroll>
-  </ion-content>
+      </div>
+    </ion-col>
+  </ion-row>
+  <div *ngIf="showMe">
+    <ion-list padding *ngIf="faqArr.length == 0">
+      <ion-item class="noRecordFoundImg" padding-top>
+        <img class="noRecordFound">
+      </ion-item>
+    </ion-list>
+  </div>
+  <ion-infinite-scroll *ngIf="faqArr.length !== totalRecords" (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

@@ -120,7 +120,6 @@ export class SignupPage {
         {
           text: 'Ok',
           handler: () => {
-            console.log('Ok clicked');
             this.navCtrl.setRoot(LoginPage);
           }
         },
@@ -128,7 +127,6 @@ export class SignupPage {
           text: 'Cancel',
           role: 'cancel',
           handler: () => {
-            console.log('Cancel clicked');
           }
         }        
       ]

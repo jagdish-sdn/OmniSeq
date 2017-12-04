@@ -234,13 +234,11 @@ export class ProfilePage {
             this.common.showToast(data.message);
           }
         },err=>{
-          console.log(err);
           this.imageUploading = false;
         });
       }
     }, (err) => {
       // Handle error
-      console.log(err);
     });
   }
 }
