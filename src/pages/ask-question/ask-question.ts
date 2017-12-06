@@ -158,17 +158,17 @@ export class AskQuestionPage {
     switch(form){
       case 'askQueOrderForm':
         if(this.askQueOrderForm.value.get_call_back) {
-          this.askQueOrderForm.value.get_call_back = true;//"yes";
+          this.askQueOrderForm.value.get_call_back = true;
         } else {
-          this.askQueOrderForm.value.get_call_back = false; //"no";
+          this.askQueOrderForm.value.get_call_back = false;
         }
       break;
       
       case 'askQueTechForm':
         if(this.askQueTechForm.value.get_call_back) {
-          this.askQueTechForm.value.get_call_back = true;//"yes";
+          this.askQueTechForm.value.get_call_back = true;
         } else {
-          this.askQueTechForm.value.get_call_back = false;//"no";
+          this.askQueTechForm.value.get_call_back = false;
         }
       break;
 

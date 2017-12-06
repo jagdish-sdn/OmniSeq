@@ -6,7 +6,7 @@ page-cancer {
         background-size: contain;
         
         width: 100%;}
-   
+
     .stage3{    position: relative;
         left: 0;
         text-align: center;
@@ -14,6 +14,10 @@ page-cancer {
         height: 100px;
         float: left;
         overflow: scroll;}
+        ion-scroll .scroll-content  {
+            overflow: visible !important;
+        }
+        
     .stage3 span{float: left;font-size: 11px;margin-right: 2px;}
 
     .stage4{    position: relative;
@@ -21,36 +25,36 @@ page-cancer {
         text-align:right;
     width: 123px;
         height: 100px;
-        float: right;
+        bottom: 10px;
         overflow: scroll;}
     .stage4 span{float: left;font-size: 11px;margin-right: 2px;}
 
     .stage5{position: relative;
         right: 0;
         width: 80px;
-        height: 100px;
+        height: 80px;
         float: right;
         overflow: scroll;
-        bottom: 30px;}
+        bottom: 50px;}
     .stage5 span{float: left;font-size: 11px;margin-right: 2px;}
 
     .stage6{position: relative;
         right: 0;
-        width: 80px;
+        width: 100px;
         height: 100px;
         float: right;
         overflow: scroll;
-        top: 120px;
+        top: 140px;
         left: 90px;}
     .stage6 span{float: left;font-size: 11px;margin-right: 2px;}
 
     .stage7{    position: relative;
         right: 0;
-        width: 79px;
+        width: 100px;
         height: 100px;
         float: right;
         overflow: scroll;
-        top: 166px;
+        top: 51%;
         left: 90px;
         bottom: 0;}
     .stage7 span{float: left;font-size: 11px;margin-right: 2px;}
