@@ -13,45 +13,31 @@
       <ion-item class="profile-setting" text-center>
         <div class="background_section">
           <div *ngIf="geneList.stage3.length>0" class="stage3">
-            <ion-scroll direction="y" class="theroot">
-              <span *ngFor="let marker of geneList.stage3; let last = last;" [ngClass]="{'stage_bold': marker.target==1}">{{marker.marker}}{{(!last)?',':''}}</span>
-            </ion-scroll>
+            <span *ngFor="let marker of geneList.stage3; let last = last;" [ngClass]="{'stage_bold': marker.target==1}">{{marker.marker}}{{(!last)?',':''}}</span>
           </div>
 
           <div *ngIf="geneList.stage4.length>0" class="stage4">
-            <ion-scroll direction="y" class="theroot">
-              <span *ngFor="let marker of geneList.stage4; let last = last;" [ngClass]="{'stage_bold': marker.target==1}">{{marker.marker}}{{(!last)?',':''}}</span>
-            </ion-scroll>
+            <span *ngFor="let marker of geneList.stage4; let last = last;" [ngClass]="{'stage_bold': marker.target==1}">{{marker.marker}}{{(!last)?',':''}}</span>
           </div>
 
           <div *ngIf="geneList.stage5.length>0" class="stage5">
-            <ion-scroll direction="y" class="theroot">
-              <span *ngFor="let marker of geneList.stage5; let last = last;" [ngClass]="{'stage_bold': marker.target==1}">{{marker.marker}}{{(!last)?',':''}}</span>
-            </ion-scroll>
+            <span *ngFor="let marker of geneList.stage5; let last = last;" [ngClass]="{'stage_bold': marker.target==1}">{{marker.marker}}{{(!last)?',':''}}</span>
           </div>
 
           <div *ngIf="geneList.stage6.length>0" class="stage6">
-            <ion-scroll direction="y" class="theroot">
-              <span *ngFor="let marker of geneList.stage6; let last = last;" [ngClass]="{'stage_bold': marker.target==1}">{{marker.marker}}{{(!last)?',':''}}</span>
-            </ion-scroll>
+            <span *ngFor="let marker of geneList.stage6; let last = last;" [ngClass]="{'stage_bold': marker.target==1}">{{marker.marker}}{{(!last)?',':''}}</span>
           </div>
 
           <div *ngIf="geneList.stage7.length>0" class="stage7">
-            <ion-scroll direction="y" class="theroot">
-              <span *ngFor="let marker of geneList.stage7; let last = last;" [ngClass]="{'stage_bold': marker.target==1}">{{marker.marker}}{{(!last)?',':''}}</span>
-            </ion-scroll>
+            <span *ngFor="let marker of geneList.stage7; let last = last;" [ngClass]="{'stage_bold': marker.target==1}">{{marker.marker}}{{(!last)?',':''}}</span>
           </div>
 
           <div *ngIf="geneList.stage1.length>0" class="stage1">
-            <ion-scroll direction="y" class="theroot">
-              <span *ngFor="let marker of geneList.stage1; let last = last;" [ngClass]="{'stage_bold': marker.target==1}">{{marker.marker}}{{(!last)?',':''}}</span>
-            </ion-scroll>
+            <span *ngFor="let marker of geneList.stage1; let last = last;" [ngClass]="{'stage_bold': marker.target==1}">{{marker.marker}}{{(!last)?',':''}}</span>
           </div>
 
           <div *ngIf="geneList.stage2.length>0" class="stage2">
-            <ion-scroll direction="y" class="theroot">
-              <span *ngFor="let marker of geneList.stage2; let last = last;" [ngClass]="{'stage_bold': marker.target==1}">{{marker.marker}}{{(!last)?',':''}}</span>
-            </ion-scroll>
+            <span *ngFor="let marker of geneList.stage2; let last = last;" [ngClass]="{'stage_bold': marker.target==1}">{{marker.marker}}{{(!last)?',':''}}</span>
           </div>
         </div>
       </ion-item>
@@ -60,9 +46,6 @@
 </ion-content>
 <ion-footer>
   <ion-toolbar>
-    <div class="footer-title timer" text-wrap>Source: Reprinted from Immunity, Volume 39, Chen, Daniel S. et al., Oncology Meets Immunology: The Cancer-Immunity Cycle,
-      1-10, Copyright 2013, with permission from Elsevier.
-      <a href="http://dx.doi.org/10.1016/j.immuni.2013.07.012">http://dx.doi.org/10.1016/j.immuni.2013.07.012</a>
-    </div>
+    <div class="footer-title timer" text-wrap>Source: Reprinted from Immunity, Volume 39, Chen, Daniel S. et al., Oncology Meets Immunology: The Cancer-Immunity Cycle, 1-10, Copyright 2013, with permission from Elsevier. <a href="http://dx.doi.org/10.1016/j.immuni.2013.07.012">http://dx.doi.org/10.1016/j.immuni.2013.07.012</a></div>
   </ion-toolbar>
 </ion-footer>

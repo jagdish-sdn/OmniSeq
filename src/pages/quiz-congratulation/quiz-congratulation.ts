@@ -28,4 +28,8 @@ export class QuizCongratulationPage {
     this.navCtrl.setRoot(HomePage)
   }
 
+  ionViewWillLeave() {
+      this.navCtrl.setRoot(HomePage);
+    }
+
 }

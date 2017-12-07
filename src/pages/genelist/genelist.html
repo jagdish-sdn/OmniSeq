@@ -12,8 +12,9 @@
     <ion-col>
       <ion-item class="settingBtn" *ngFor="let list of geneList" (click)="selectme(list)">
         <p class="marker">
-          <img class="dotListIcon" /> {{list.marker}} / {{list.name}}</p>
-        <p class="function">{{list.irc_function}}</p>
+          <img class="dotListIcon" /> {{list.marker}}</p>
+        <p class="function"> {{list.name}}</p>
+        <p class="function-sub">{{list.irc_function}}</p>
         <p class="para-graph" text-wrap>{{list.biological_function}}</p>
       </ion-item>
     </ion-col>

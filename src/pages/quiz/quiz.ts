@@ -111,7 +111,7 @@ export class QuizPage {
     } else {
       clearInterval(this.interval);
       this.currentQue = {};
-      this.navCtrl.setRoot(QuizCongratulationPage, {totalQue: this.queArr.length, correct_answer: this.correctAns, wrong: this.wrongAns, extra_points: this.extratPoints})
+      this.navCtrl.push(QuizCongratulationPage, {totalQue: this.queArr.length, correct_answer: this.correctAns, wrong: this.wrongAns, extra_points: this.extratPoints})
     }
   }
 

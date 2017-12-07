@@ -84,7 +84,7 @@ export class HomePage {
   }
 
   public goToQuiz(){
-    this.navCtrl.setRoot(QuizPage);
+    this.navCtrl.push(QuizPage);
   }
   
   public goToNoti(){

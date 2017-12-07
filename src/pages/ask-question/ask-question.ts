@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Events } from 'ionic-angular';
+import { NavController, NavParams, Events, AlertController } from 'ionic-angular';
 import { NetworkProvider } from '../../providers/network/network';
 import { HttpServiceProvider } from '../../providers/http-service/http-service';
 import { CommonProvider } from '../../providers/common/common';
@@ -25,7 +25,8 @@ export class AskQuestionPage {
     public httpService: HttpServiceProvider,
     public common: CommonProvider,
     public formBuilder: FormBuilder,
-    public events: Events
+    public events: Events,
+    public alertCtrl: AlertController
   ) {
     this.askQueForm = formBuilder.group({
       question: ['', Validators.compose([
@@ -81,7 +82,6 @@ export class AskQuestionPage {
   askQuestion(){
     this.submitAttempt = true;
     this.askQueForm.value.question_type = "app";    
-     
     if(!this.askQueForm.value.phone && (this.askQueForm.value.get_call_back)){
       this.common.showToast("Please enter phone no.");
       return false;
@@ -136,6 +136,28 @@ export class AskQuestionPage {
   }
   
   addQuestion(formdata){
+    const alert = this.alertCtrl.create({
+      title: 'Ask a Question',
+      message: "Are you sure, You want to ask this question?",
+      buttons: [
+        {
+          text: 'Yes',
+          handler: () => {
+            this.saveQuestion(formdata);
+          }
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+          }
+        }        
+      ]
+    });
+    alert.present();   
+  }
+
+  public saveQuestion(formdata){
     if (this.networkPro.checkNetwork() == true) {
       this.common.presentLoading();
       this.httpService.postData("query/send",formdata).subscribe(data => {

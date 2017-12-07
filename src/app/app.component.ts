@@ -91,8 +91,12 @@ export class MyApp {
       this.splashScreen.hide();
 
       this.platform.registerBackButtonAction(() => {
+        let view = this.nav.getActive();
+        console.log(view.component.name);
         if(this.menu.isOpen()){
            this.menu.close()
+        } else if(view.component.name == 'QuizCongratulationPage'){
+          this.nav.setRoot(HomePage);
         } else if(this.nav.canGoBack()){
           this.nav.pop();
         }else{
@@ -150,7 +154,7 @@ export class MyApp {
   }
 
   openPage(page) {
-    this.nav.setRoot(page.component);
+    this.nav.push(page.component);
   }
 
  /**
