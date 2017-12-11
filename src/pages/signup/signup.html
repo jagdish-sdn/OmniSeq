@@ -12,7 +12,6 @@
     <form [formGroup]="signupForm">
     <ion-row class="form-padding">
       <ion-col>
-        <!-- <div inset class="main-div"> -->
           <ion-row>
             <ion-col class="col-pad">
                 <ion-item>
@@ -68,7 +67,6 @@
             <ion-icon *ngIf="(!confirmValid && signupForm.controls.conf_password.touched) || (!confirmValid && submitAttempt)" ios="ios-close" md="md-close" item-right text-end padding-top color="danger"></ion-icon>
             <ion-icon *ngIf="(confirmValid && signupForm.controls.conf_password.touched) || (confirmValid && submitAttempt)" ios="ios-checkmark" md="md-checkmark" item-right text-end padding-top color="primary"></ion-icon>
           </ion-item>
-        <!-- </div> -->
       </ion-col>
     </ion-row>
     <ion-row>
