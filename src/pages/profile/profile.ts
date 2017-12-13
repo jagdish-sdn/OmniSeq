@@ -94,8 +94,6 @@ export class ProfilePage {
           this.updateProfileForm.controls["position"].patchValue(this.profile.position);
           this.updateProfileForm.controls["state"].patchValue(this.profile.state);
           this.userImage = this.profile.profile_image;
-        } else if(data.status == 203) {
-          this.events.publish("clearSession");
         } else {
           this.common.showToast(data.message);
         }
@@ -117,8 +115,6 @@ export class ProfilePage {
         // this.common.dismissLoading();
         if (data.status == 200) {
           this.states = data.data;
-        } else if(data.status == 203) {
-          this.events.publish("clearSession");
         } else {
           this.common.showToast(data.message);
         }
@@ -149,9 +145,7 @@ export class ProfilePage {
             this.events.publish("userProfile");
             this.common.dismissLoading();
             this.common.showToast(data.message);
-            this.navCtrl.setRoot(SettingPage);
-          } else if(data.status == 203) {
-            this.events.publish("clearSession");
+            this.navCtrl.push(SettingPage);
           } else {
             this.common.dismissLoading();
             this.common.showToast(data.message);
@@ -228,8 +222,6 @@ export class ProfilePage {
             this.userImage = this.uploadProfileImage;
             // this.getUserDetails();
             this.common.showToast(data.message);
-          } else if(data.status == 203) {
-            this.events.publish("clearSession");
           } else{
             this.common.showToast(data.message);
           }

@@ -4,6 +4,7 @@ import { NetworkProvider } from '../../providers/network/network';
 import { HttpServiceProvider } from '../../providers/http-service/http-service';
 import { CommonProvider } from '../../providers/common/common';
 import { GenedetailPage } from '../genedetail/genedetail';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-genelist',
@@ -20,7 +21,8 @@ export class GenelistPage {
     public httpService: HttpServiceProvider,
     public common: CommonProvider,
     public events: Events,
-    public navparam: NavParams
+    public navparam: NavParams,
+    private storage: Storage
   ) {
     this.searchText = {};
     this.geneList = [];
@@ -38,24 +40,33 @@ export class GenelistPage {
    * Creatot: Jagdish Thakre
    */
   getGeneList(q) {
-    if (this.networkPro.checkNetwork() == true) {
+    if (this.networkPro.checkOnline() == true) {
       this.common.presentLoading();
       this.httpService.getData("gene/search").subscribe(data => {
-        this.common.dismissLoading();
         if (data.status == 200) {
+          this.storage.set('geneList', data.data);
           this.geneList = data.data;
           this.arr = data.data;
           if (q != '') {
             this.search(q);
-          }          
-        } else if(data.status == 203){
-          this.events.publish("clearSession");
+          }
         } else {
           this.common.showToast(data.message);
-        }        
+        }
         this.showMe = "show";
+        this.common.dismissLoading();
       }, error => {
-        console.log("Error=> ", error);
+        this.showMe = "show";
+        this.common.dismissLoading();
+      });
+    } else {
+      this.common.presentLoading();
+      this.storage.get('geneList').then((val) => {
+        this.geneList = val;
+        this.arr = val;
+        if (q != '') {
+          this.search(q);
+        }
         this.showMe = "show";
         this.common.dismissLoading();
       });
@@ -80,10 +91,7 @@ export class GenelistPage {
           }
           else if (item.irc_function.toLowerCase().indexOf(value.toLowerCase()) > -1) {
             return true;
-          } 
-          // else if (item.mechanism_of_action.toLowerCase().indexOf(value.toLowerCase()) > -1) {
-          //   return true;
-          // }
+          }
         })
     }
   }

@@ -4,6 +4,6 @@
   </ion-navbar>
 </ion-header>
 <ion-content class="body-content" padding>
-  <div *ngIf="companionData.logo" class="logo"><img [src]="companionData.logo" [alt]="companionData.compainion_name" width="50%" /></div>
+  <div *ngIf="companionData.logo" class="logo"><img [src]="isOnline ? companionData.logo : fileDir+companionData.basename" [alt]="companionData.compainion_name" width="50%" /></div>
   <div class="inner-html" text-center [innerHTML]="companionData.data"></div>
 </ion-content>

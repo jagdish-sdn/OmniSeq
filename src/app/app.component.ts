@@ -7,6 +7,8 @@ import { FCM } from '@ionic-native/fcm';
 import { HttpServiceProvider } from '../providers/http-service/http-service';
 import { CommonProvider } from '../providers/common/common';
 import { SettingsProvider } from './../providers/settings/settings';
+import { SqliteStorageProvider } from '../providers/sqlite-storage/sqlite-storage';
+import { NetworkProvider } from '../providers/network/network';
 
 import { LoginPage } from '../pages/login/login';
 import { HomePage } from '../pages/home/home';
@@ -29,13 +31,13 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage: any;
   profile = {};
-  userId = localStorage.getItem('UserId');  
+  userId = localStorage.getItem('UserId');
   selectedTheme: String;
-  pages: Array<{title: string, component: any, icon:any}>;
+  pages: Array<{ title: string, component: any, icon: any }>;
 
   constructor(
-    public platform: Platform, 
-    public statusBar: StatusBar, 
+    public platform: Platform,
+    public statusBar: StatusBar,
     public splashScreen: SplashScreen,
     public alertCtrl: AlertController,
     private events: Events,
@@ -43,41 +45,60 @@ export class MyApp {
     public common: CommonProvider,
     private fcm: FCM,
     private settings: SettingsProvider,
-    public menu: MenuController
+    public menu: MenuController,
+    public sqlite: SqliteStorageProvider,
+    public networkPro: NetworkProvider,
   ) {
-    
-    // setTimeout(function(){
-    //   document.getElementById("custom-overlay").style.display = "none";      
-    // }, 3000);
-    if(this.userId) {
-      this.profileInfo();
-      this.rootPage = HomePage;
+    if (this.userId) {
+      if (this.networkPro.checkOnline() == true) {
+        this.httpService.getData("user/checklogin").subscribe(data => {
+          if (data.status == 200) {
+            localStorage.setItem("UserId", data.data.user._id);
+            localStorage.setItem("User", JSON.stringify(data.data.user));
+            this.storeData();
+            this.profileInfo();
+            this.rootPage = HomePage;
+          } else {
+            this.events.publish("clearSession");
+          }
+        }, error => {
+          console.log("Error=> ", error);
+        });
+      } else {
+        this.storeData();
+        this.profileInfo();
+        this.rootPage = HomePage;
+      }
     } else {
       this.rootPage = LoginPage;
     }
+
     this.settings.getActiveTheme().subscribe(val => this.selectedTheme = val);
     this.statusBar.backgroundColorByHexString('#1a5293');
     this.initializeApp();
 
     /* used for an example of ngFor and navigation*/
     this.pages = [
-      { title: 'OmniSeq / LabCorp', component: HomePage, icon: "menu-icon.png" },      
-      { title: 'Gene LookUp', component: GenelistPage, icon: "GeneLookup_sidemenu.png" },      
-      { title: 'Companion / Complementary Dx', component: CompanionPage, icon: "CancerImmuneCycle_sidemenu.png" },      
-      { title: 'Cancer Immune Cycle', component: CancerPage, icon: "Companion_ComplementaryDx_sidemenu.png" },      
+      { title: 'OmniSeq / LabCorp', component: HomePage, icon: "menu-icon.png" },
+      { title: 'Gene LookUp', component: GenelistPage, icon: "GeneLookup_sidemenu.png" },
+      { title: 'Companion / Complementary Dx', component: CompanionPage, icon: "CancerImmuneCycle_sidemenu.png" },
+      { title: 'Cancer Immune Cycle', component: CancerPage, icon: "Companion_ComplementaryDx_sidemenu.png" },
       { title: 'FAQ', component: FaqPage, icon: "FAQs_sidemenu.png" },
       { title: 'Ask a Question', component: AskQuestionPage, icon: "AskaQuestion_sidemenu.png" },
       { title: 'Quiz', component: QuizPage, icon: "QuizMe_sidemenu.png" },
       { title: 'Settings', component: SettingPage, icon: "Settings.png" },
     ];
-    this.events.subscribe("userProfile",()=>{
-        this.profileInfo();
+    this.events.subscribe("userProfile", () => {
+      this.profileInfo();
     });
-    this.events.subscribe("clearSession",()=>{
-        this.clearSession();
+    this.events.subscribe("clearSession", () => {
+      this.clearSession();
     });
-    this.events.subscribe("logout",()=>{
-        this.logOut();
+    this.events.subscribe("logout", () => {
+      this.logOut();
+    });
+    this.events.subscribe("sqliteStorage", () => {
+      this.storeData();
     });
   }
 
@@ -93,75 +114,83 @@ export class MyApp {
       this.platform.registerBackButtonAction(() => {
         let view = this.nav.getActive();
         console.log(view.component.name);
-        if(this.menu.isOpen()){
-           this.menu.close()
-        } else if(view.component.name == 'QuizCongratulationPage'){
+        if (this.menu.isOpen()) {
+          this.menu.close()
+        } else if (view.component.name == 'QuizCongratulationPage') {
           this.nav.setRoot(HomePage);
-        } else if(this.nav.canGoBack()){
+        } else if (this.nav.canGoBack()) {
           this.nav.pop();
-        }else{
+        } else {
           const alert = this.alertCtrl.create({
             title: 'App termination',
             message: 'Do you want to close the app?',
             buttons: [{
-                text: 'Cancel',
-                role: 'cancel',
-                handler: () => {
-                    console.log('Application exit prevented!');
-                }
-            },{
-                text: 'Ok',
-                handler: () => {
-                    this.platform.exitApp(); // Close this application
-                }
+              text: 'Cancel',
+              role: 'cancel',
+              handler: () => {
+                console.log('Application exit prevented!');
+              }
+            }, {
+              text: 'Ok',
+              handler: () => {
+                this.platform.exitApp(); // Close this application
+              }
             }]
-        });
-        alert.present();
+          });
+          alert.present();
         }
       });
     });
   }
 
-  push(){
+  push() {
     /**Notification */
-    if (this.platform.is('cordova')) {        
-      this.fcm.getToken().then(token=>{
+    if (this.platform.is('cordova')) {
+      this.fcm.getToken().then(token => {
         localStorage.setItem("device_token", token);
         console.log("Device Token", token)
       })
-      
-      this.fcm.onNotification().subscribe(data=>{
-        
+
+      this.fcm.onNotification().subscribe(data => {
+
         console.log("Notificatoin message ", data);
-        if(data.wasTapped){
+        if (data.wasTapped) {
           //Notification was received on device tray and tapped by the user.
           switch (data.type) {
             case "new_gene":
-                this.nav.push(GenedetailPage, { data: {'_id': data.id} });        
+              this.nav.push(GenedetailPage, { data: { '_id': data.id } });
               break;
-      
+
             case "new_companion":
-                this.nav.push(CompanionDetailPage, {id: data.id})
+              this.nav.push(CompanionDetailPage, { id: data.id })
               break;
           }
-        }else{
+        } else {
           //Notification was received in foreground. Maybe the user needs to be notified.
-        }         
-      })                
+        }
+      })
     } else {
       localStorage.setItem("device_token", "fTXe0lTVUSU:APA91bGGrbHYkcGTZrSM9mwUSa7XO6Yshm9NXpFPU70nnJ0QuPIfvVS-WjtvhEwsy5_bF6Fv15yu79t6tf-R6z_MVEpBQphU52jOuEvmho6FGCZiqKGUugbBkv6VkcChS3jF0oru36E6");
     }
   }
 
   openPage(page) {
-    this.nav.push(page.component);
+    if ((page.component == AskQuestionPage) || (page.component == QuizPage)) {
+      if (this.networkPro.checkOnline() == true) {
+        this.nav.push(page.component);
+      } else {
+        this.common.showToast('Nerwork is not available!!');
+      }
+    } else {
+      this.nav.push(page.component);
+    }
   }
 
- /**
-  * Function using for clear application localstorage
-  * Created: 08-Nov-2017
-  * Create By: Jagdish Thakre
-  */
+  /**
+   * Function using for clear application localstorage
+   * Created: 08-Nov-2017
+   * Create By: Jagdish Thakre
+   */
   logOut() {
     const alert = this.alertCtrl.create({
       title: 'Logout',
@@ -173,7 +202,7 @@ export class MyApp {
             this.common.presentLoading();
             this.httpService.postData("user/applogout", {}).subscribe(data => {
               this.common.dismissLoading();
-              if(data.status == 200 || data.status == 203) {
+              if (data.status == 200 || data.status == 203) {
                 let device_token = localStorage.getItem("device_token");
                 localStorage.clear();
                 localStorage.setItem("device_token", device_token);
@@ -192,7 +221,7 @@ export class MyApp {
           role: 'cancel',
           handler: () => {
           }
-        }        
+        }
       ]
     });
     alert.present();
@@ -214,6 +243,15 @@ export class MyApp {
     localStorage.clear();
     localStorage.setItem("device_token", device_token);
     this.common.dismissLoading();
-    this.nav.setRoot(LoginPage);    
+    this.nav.setRoot(LoginPage);
+  }
+
+  /**
+   * Function created for store data in local database
+   * Created: 11-12-17
+   * Created By: Jagdish Thakre
+   */
+  storeData() {
+    this.sqlite.storeOfflineData();
   }
 }

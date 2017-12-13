@@ -6,6 +6,8 @@ import { HttpServiceProvider } from '../../providers/http-service/http-service';
 import { CommonProvider } from '../../providers/common/common';
 import { QuizCongratulationPage } from '../quiz-congratulation/quiz-congratulation';
 
+import { HomePage } from '../home/home';
+
 @Component({
   selector: 'page-quiz',
   templateUrl: 'quiz.html',
@@ -33,10 +35,15 @@ export class QuizPage {
     public events: Events,
     public platform: Platform
   ) {
-    this.getQuestions();
-    this.timer = 10;
-    this.extratPoints = 0; 
-    this.ansSelected = false;
+    if (this.networkPro.checkOnline() == true) {
+      this.getQuestions();
+      this.timer = 10;
+      this.extratPoints = 0;
+      this.ansSelected = false;
+    } else {
+      this.common.showToast('Nerwork is not available!!');
+      this.navCtrl.push(HomePage);
+    }
   }
 
   ionViewDidLoad() {
@@ -54,9 +61,7 @@ export class QuizPage {
         if (data.status == 200) {
           this.queArr = data.data;
           this.countTime();
-          this.currentQue = this.queArr[this.currentIndex];          
-        } else if (data.status == 203) {
-          this.events.publish("clearSession");
+          this.currentQue = this.queArr[this.currentIndex];
         } else {
           this.common.showToast(data.message);
         }
@@ -70,9 +75,9 @@ export class QuizPage {
     this.interval = setInterval(() => {
       if (this.timer != 0) {
         this.timer = this.timer - 1;
-        if(this.timer == 0){
+        if (this.timer == 0) {
           clearInterval(this.interval);
-        }      
+        }
       }
     }, 1000);
   }
@@ -84,11 +89,11 @@ export class QuizPage {
       this.selectedItem = item;
       if (this.selectedItem.correct_answer == true) {
         this.correctAns += 1;
-        if(this.timer<=10 || this.timer >= 9){
+        if (this.timer <= 10 || this.timer >= 9) {
           this.extratPoints += 2;
-        } else if(this.timer<=8 || this.timer >= 6){
+        } else if (this.timer <= 8 || this.timer >= 6) {
           this.extratPoints += 1.5;
-        } else if(this.timer<=5 || this.timer >= 1){
+        } else if (this.timer <= 5 || this.timer >= 1) {
           this.extratPoints += 1;
         }
       } else {
@@ -101,17 +106,17 @@ export class QuizPage {
     this.ansSelected = false;
     this.selectedItem = {};
     if (this.queArr.length > (this.currentIndex + 1)) {
-      if(this.timer != 0){
+      if (this.timer != 0) {
         clearInterval(this.interval);
       }
-      this.currentIndex += 1      
+      this.currentIndex += 1
       this.currentQue = this.queArr[this.currentIndex];
       this.timer = 10;
       this.countTime();
     } else {
       clearInterval(this.interval);
       this.currentQue = {};
-      this.navCtrl.push(QuizCongratulationPage, {totalQue: this.queArr.length, correct_answer: this.correctAns, wrong: this.wrongAns, extra_points: this.extratPoints})
+      this.navCtrl.push(QuizCongratulationPage, { totalQue: this.queArr.length, correct_answer: this.correctAns, wrong: this.wrongAns, extra_points: this.extratPoints })
     }
   }
 

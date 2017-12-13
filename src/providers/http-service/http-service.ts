@@ -3,6 +3,7 @@
  * Creator: Jagdish Thakre
 */
 import { Injectable } from '@angular/core';
+import { Events } from 'ionic-angular';
 import { Headers, Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { CONFIG } from '../../config/config';
@@ -14,7 +15,10 @@ import 'rxjs/add/observable/throw';
 @Injectable()
 export class HttpServiceProvider {
 
-  constructor(public http: Http) {
+  constructor(
+    public http: Http,
+    public events: Events
+  ) {
   }
 
   createAuthorizationHeader(headers: Headers) {
@@ -67,7 +71,12 @@ export class HttpServiceProvider {
   
   private extractData(res: Response) {
     let body = res.json();
-    return body || {};
+    if(body.status == 203){
+      this.events.publish("clearSession");
+      return {};
+    }else{
+      return body || {};
+    }
   }
   /**
    * Function created for handle error's

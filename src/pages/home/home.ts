@@ -35,11 +35,11 @@ export class HomePage {
     this.searchText = {};
   }
 
-  returnBlank() {
+  public returnBlank() {
       this.searchedItems = Object.assign([], this.selectedItme);
   }
 
-  ionViewDidEnter(){
+  public ionViewDidEnter(){
     this.getNotifications();
   }
 
@@ -47,7 +47,7 @@ export class HomePage {
    * created : 13-Nov-2017
    * Creator: Jagdish Thakre
    */
-  search(value) {
+  public search(value) {
     this.navCtrl.setRoot(GenelistPage, {searchText : value});
   }
 
@@ -55,7 +55,7 @@ export class HomePage {
    * Created : 13-Nov-2017
    * Creator : Jagdish Thakre
    */
-  selectItem(item) {
+  public selectItem(item) {
       this.navCtrl.push(GenedetailPage, {data: item});
   }
 
@@ -63,16 +63,20 @@ export class HomePage {
    * Created : 14-Nov-2017
    * Creator : Jagdish Thakre
    */
-  genelist() {
+  public genelist() {
     this.navCtrl.push(GenelistPage);
   }
 
-  faqPage(){
+  public faqPage(){
     this.navCtrl.push(FaqPage);
   }
 
   public goToAskquestion(){
-    this.navCtrl.push(AskQuestionPage);
+    if (this.networkPro.checkOnline() == true) {
+      this.navCtrl.push(AskQuestionPage);
+    }else {
+      this.common.showToast('Nerwork is not available!!');
+    }
   }
 
   public goToCompanion(){
@@ -84,22 +88,28 @@ export class HomePage {
   }
 
   public goToQuiz(){
-    this.navCtrl.push(QuizPage);
+    if (this.networkPro.checkOnline() == true) {
+      this.navCtrl.push(QuizPage);
+    }else {
+      this.common.showToast('Nerwork is not available!!');
+    }
   }
   
   public goToNoti(){
-    this.navCtrl.push(NotificationsPage);
+    if (this.networkPro.checkOnline() == true) {
+      this.navCtrl.push(NotificationsPage);
+    }else {
+      this.common.showToast('Nerwork is not available!!');
+    }
   }
 
-  getNotifications() {
-    if (this.networkPro.checkNetwork() == true) {
+  public getNotifications() {
+    if (this.networkPro.checkOnline() == true) {
       // this.common.presentLoading();
       this.httpService.getData("appuser/getmynotifications").subscribe(data => {
         // this.common.dismissLoading();
         if (data.status == 200) {
           this.counter = data.data.length;                    
-        } else if(data.status == 203){
-          this.events.publish("clearSession");
         } else {
           this.common.showToast(data.message);
         }

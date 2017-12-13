@@ -4,6 +4,7 @@ import { NetworkProvider } from '../../providers/network/network';
 import { HttpServiceProvider } from '../../providers/http-service/http-service';
 import { CommonProvider } from '../../providers/common/common';
 import { GenelistPage } from '../genelist/genelist';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-cancer',
@@ -27,7 +28,8 @@ export class CancerPage {
     public networkPro: NetworkProvider,
     public httpService: HttpServiceProvider,
     public common: CommonProvider,
-    public events: Events
+    public events: Events,
+    public storage: Storage
   ) {
     this.getGeneList();
   }
@@ -40,23 +42,28 @@ export class CancerPage {
    * Creatot: Jagdish Thakre
    */
   getGeneList() {
-    if (this.networkPro.checkNetwork() == true) {
+    if (this.networkPro.checkOnline() == true) {
       this.common.presentLoading();
       this.httpService.getData("gene/search").subscribe(data => {
         if (data.status == 200) {
+          this.storage.set('geneList', data.data);
           data.data.map((item:any) => {
             this.geneList['stage'+item.stage].push({ marker: item.marker, target: item.druggable_target });
           });    
-        } else if(data.status == 203){
-          this.events.publish("clearSession");
         } else {
           this.common.showToast(data.message);
         }
         this.common.dismissLoading();
-        this.showMe = "show";
       }, error => {
         console.log("Error=> ", error);
-        this.showMe = "show";
+        this.common.dismissLoading();
+      });
+    } else {
+      this.common.presentLoading();
+      this.storage.get('geneList').then((val) => {
+        val.map((item:any) => {
+          this.geneList['stage'+item.stage].push({ marker: item.marker, target: item.druggable_target });
+        });
         this.common.dismissLoading();
       });
     }

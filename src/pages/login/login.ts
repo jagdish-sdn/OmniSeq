@@ -39,7 +39,7 @@ export class LoginPage {
     });
 
     if(this.platform.is('ios')){
-      this.device_type = "Ios"
+      this.device_type = "iOS"
     } else {
       this.device_type = "Android";
     }
@@ -86,6 +86,7 @@ export class LoginPage {
             localStorage.setItem("User", JSON.stringify(data.data.user));
             localStorage.setItem("Token", JSON.stringify(data.data.token));
             this.events.publish("userProfile");
+            this.events.publish("sqliteStorage");
             this.navCtrl.setRoot(HomePage);
           } else {
             this.common.showToast(data.message);

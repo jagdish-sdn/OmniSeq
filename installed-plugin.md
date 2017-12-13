@@ -21,3 +21,15 @@ npm install --save @ionic-native/date-picker
 /*Camera plugin*/
 ionic cordova plugin add cordova-plugin-camera
 npm install --save @ionic-native/camera
+
+/*LocalStorage Plugin*/
+ionic cordova plugin add cordova-sqlite-storage
+npm install --save @ionic/storage
+
+/*File Transfer plugin*/
+ionic cordova plugin add cordova-plugin-file-transfer
+npm install --save @ionic-native/file-transfer
+
+/*File plugin*/
+ionic cordova plugin add cordova-plugin-file
+npm install --save @ionic-native/file

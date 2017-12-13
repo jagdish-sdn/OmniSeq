@@ -11,12 +11,10 @@
     <button ion-item class="settingBtn item-ios" (click)="gotoprofile()">
       Profile
     </button>
-    <!-- <ion-item padding-bottom>
-      <ion-label >Profile</ion-label>      
-    </ion-item>     -->
     <ion-item class="settingBtn item-ios">
       <ion-label>Push Notification</ion-label>
-      <ion-toggle [(ngModel)]="pushNotification" (ionChange)="togglePushNoti($event)"></ion-toggle>
+      <ion-toggle *ngIf="!disable" disabled="true" [(ngModel)]="pushNotification" (ionChange)="togglePushNoti($event)"></ion-toggle>
+      <ion-toggle *ngIf="disable" disabled="false" [(ngModel)]="pushNotification" (ionChange)="togglePushNoti($event)"></ion-toggle>
     </ion-item>
     <ion-item class="settingBtn item-ios">
       <ion-label>Night Mode</ion-label>

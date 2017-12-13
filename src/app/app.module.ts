@@ -7,6 +7,9 @@ import { Toast } from '@ionic-native/toast';
 import { FCM } from '@ionic-native/fcm';
 import { DatePicker } from '@ionic-native/date-picker';
 import { Camera } from '@ionic-native/camera';
+import { IonicStorageModule } from '@ionic/storage';
+import { FileTransfer } from '@ionic-native/file-transfer';
+import { File } from '@ionic-native/file';
 
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
@@ -34,6 +37,7 @@ import { NetworkProvider } from '../providers/network/network';
 import { HttpServiceProvider } from '../providers/http-service/http-service';
 import { CommonProvider } from '../providers/common/common';
 import { SettingsProvider } from './../providers/settings/settings';
+import { SqliteStorageProvider } from '../providers/sqlite-storage/sqlite-storage';
 
 @NgModule({
   declarations: [
@@ -61,6 +65,10 @@ import { SettingsProvider } from './../providers/settings/settings';
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot({
+      name: '__omnidb',
+         driverOrder: ['indexeddb', 'sqlite', 'websql']
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -96,7 +104,10 @@ import { SettingsProvider } from './../providers/settings/settings';
     Toast,
     FCM,
     DatePicker,
-    Camera
+    Camera,
+    SqliteStorageProvider,
+    FileTransfer,
+    File    
   ]
 })
 export class AppModule {}

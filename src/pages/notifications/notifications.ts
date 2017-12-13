@@ -36,14 +36,12 @@ export class NotificationsPage {
    * Creatot: Jagdish Thakre
    */
   getNotifications() {
-    if (this.networkPro.checkNetwork() == true) {
+    if (this.networkPro.checkOnline() == true) {
       this.common.presentLoading();
       this.httpService.getData("appuser/getmynotifications").subscribe(data => {
         this.common.dismissLoading();
         if (data.status == 200) {
           this.notiList = data.data;                    
-        } else if(data.status == 203){
-          this.events.publish("clearSession");
         } else {
           this.common.showToast(data.message);
         }        
@@ -53,6 +51,9 @@ export class NotificationsPage {
         this.showMe = "show";
         this.common.dismissLoading();
       });
+    }else{
+      this.common.showToast('Nerwork is not available!!');
+      this.showMe = "show";
     }
   }
 

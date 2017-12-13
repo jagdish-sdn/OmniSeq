@@ -3,6 +3,7 @@ import { NavController, NavParams, Events } from 'ionic-angular';
 import { NetworkProvider } from '../../providers/network/network';
 import { HttpServiceProvider } from '../../providers/http-service/http-service';
 import { CommonProvider } from '../../providers/common/common';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-faq',
@@ -15,6 +16,7 @@ export class FaqPage {
   totalRecords: any = 0;
   showMe;
   searchText = {};
+  arr: any = [];
   shownGroup = null;
   constructor(
     public navCtrl: NavController,
@@ -22,7 +24,8 @@ export class FaqPage {
     public networkPro: NetworkProvider,
     public httpService: HttpServiceProvider,
     public common: CommonProvider,
-    public events: Events
+    public events: Events,
+    private storage: Storage
   ) {
     this.faqArr = [];
     this.faqList('');
@@ -30,13 +33,13 @@ export class FaqPage {
 
   ionViewDidLoad() {
   }
-  
+
   /**Function for get faq list from server 
    * Created : 17-Nov-2017
    * Creator : Jagdish Thakre
    * */
   public faqList(q) {
-    if (this.networkPro.checkNetwork() == true) {
+    if (this.networkPro.checkOnline() == true) {
       if (this.page == 1) {
         this.common.presentLoading();
       }
@@ -48,18 +51,16 @@ export class FaqPage {
         if (data.status == 200) {
           this.totalRecords = parseInt(data.data.total_count);
           if (this.page == 1 || q != '') {
-            this.faqArr = data.data.data;            
+            this.faqArr = data.data.data;
           } else {
             for (let i = 0; i < data.data.data.length; i++) {
               this.faqArr.push(data.data.data[i]);
             }
-          }          
+          }
           if (data.data.data.length > 0) {
             this.page += 1;
           }
-        } else if(data.status == 203){
-          this.events.publish("clearSession");
-        }else {
+        } else {
           this.common.showToast(data.message);
           if (this.page == 1) {
             this.common.dismissLoading();
@@ -74,7 +75,41 @@ export class FaqPage {
           this.common.dismissLoading();
         }
       });
+    } else {
+      if (q == '') {
+        this.common.presentLoading();
+      }
+      this.storage.get('faqList').then((val) => {
+        console.log("val", val);
+        this.faqArr = val.data;
+        this.arr = val.data;
+        this.totalRecords = val.total_count;
+        if (q != '') {
+          this.searchFaq(q);
+        }
+        this.showMe = "show";
+        if (q == '') {
+          this.common.dismissLoading();
+        }
+      });
     }
+  }
+
+  searchFaq(value) {
+    if (!value) {
+      this.returnBlank();
+    } else {
+      this.faqArr = Object.assign([], this.arr).filter(
+        item => {
+          if (item.question.toLowerCase().indexOf(value.toLowerCase()) > -1) {
+            return true;
+          }
+        })
+    }
+  }
+
+  returnBlank() {
+    this.faqArr = Object.assign([], this.arr);
   }
 
   /**Function for infinite scrolling

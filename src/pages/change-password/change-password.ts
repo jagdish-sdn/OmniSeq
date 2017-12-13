@@ -57,8 +57,6 @@ export class ChangePasswordPage {
             this.common.dismissLoading();
             this.common.showToast(data.message);
             this.navCtrl.setRoot(SettingPage);
-          } else if(data.status == 203){
-            this.events.publish("clearSession");
           } else {
             this.common.dismissLoading();
             this.common.showToast(data.message);

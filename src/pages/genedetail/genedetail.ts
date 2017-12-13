@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
-import { NetworkProvider } from '../../providers/network/network';
 import { HttpServiceProvider } from '../../providers/http-service/http-service';
+import { NetworkProvider } from '../../providers/network/network';
 import { CommonProvider } from '../../providers/common/common';
+import { Storage } from '@ionic/storage';
 
 @IonicPage()
 @Component({
@@ -11,41 +12,46 @@ import { CommonProvider } from '../../providers/common/common';
 })
 export class GenedetailPage {
   geneDetail: any;
+  geneList: any = [];
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public networkPro: NetworkProvider,
     public httpService: HttpServiceProvider,
+    public networkPro: NetworkProvider,
     public common: CommonProvider,
-    public events: Events
+    public events: Events,
+    private storage: Storage
+    
   ) {
     this.geneDetail = {};
-    this.getGeneDetail();
-  }
-
-  ionViewDidLoad() {
+    this.storage.get('geneList').then((val) => {
+      this.geneList = val;
+      this.getGeneDetail();
+    });    
   }
 
   /**Function for get gene details
    * Created: 14-Nov-2017
    * Creatot: Jagdish Thakre
    */
-  getGeneDetail() {
-    if (this.networkPro.checkNetwork() == true) {
+  getGeneDetail() {    
+    if (this.networkPro.checkOnline() == true) {
       this.common.presentLoading();
-      this.httpService.getData("gene/get?id=" + this.navParams.data.data._id).subscribe(data => {
-        this.common.dismissLoading();
-        if (data.status == 200) {          
-          this.geneDetail = data.data;
-        } else if(data.status == 203) {
-          this.events.publish("clearSession");
+      this.httpService.getData("gene/search").subscribe(data => {        
+        if (data.status == 200) {
+          this.storage.set('geneList', data.data);
+          this.geneDetail = this.geneList.find((item:any) => { return item._id == this.navParams.data.data._id });
         } else {
           this.common.showToast(data.message);
         }
+        this.common.dismissLoading();
       }, error => {
-        console.log("Error=> ", error);
         this.common.dismissLoading();
       });
+    }else{
+      this.common.presentLoading();
+      this.geneDetail = this.geneList.find((item:any) => { return item._id == this.navParams.data.data._id });
+      this.common.dismissLoading();
     }
   }
   

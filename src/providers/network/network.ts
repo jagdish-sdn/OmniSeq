@@ -19,27 +19,42 @@ export class NetworkProvider {
     private platform: Platform
   ) {
   }
+
   /**
    * Function created for check internet connection
    * Created: 31-Oct-2017
    * Creator: Jagdish Thakre
    */
   checkNetwork() {
-      let type:string;      
-      type = this.network.type;
-      if(this.platform.is('core') || this.platform.is('mobileweb')) {
-        return true;
-      } else {     
-        return this.check(type);      
-      }
+    let type: string;
+    type = this.network.type;
+    if (this.platform.is('core') || this.platform.is('mobileweb')) {
+      return true;
+    } else {
+      return this.check(type);
+    }
   }
 
-  check(type) {
-    if(type == "unknown" || type == "none" || type == undefined){
-        this.showNetworkAlert();        
+  checkOnline() {
+    let type: string;
+    type = this.network.type;
+    if (this.platform.is('core') || this.platform.is('mobileweb')) {
+      return true;
+    } else {
+      if (type == "unknown" || type == "none" || type == undefined) {
+        return false;
       } else {
         return true;
       }
+    }
+  }
+
+  check(type) {
+    if (type == "unknown" || type == "none" || type == undefined) {
+      this.showNetworkAlert();
+    } else {
+      return true;
+    }
   }
 
   showNetworkAlert() {
@@ -49,7 +64,7 @@ export class NetworkProvider {
       buttons: [
         {
           text: 'Cancel',
-          handler: () => {}
+          handler: () => { }
         },
         {
           text: 'Open Settings',
@@ -63,6 +78,7 @@ export class NetworkProvider {
     });
     networkAlert.present();
   }
+
   /**
    * Function created for redirect on mobile internet setting
    * Created: 31-Oct-2017

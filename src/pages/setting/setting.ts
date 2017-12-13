@@ -27,6 +27,7 @@ export class SettingPage {
   positions = [];
   contactLength = 10;
   showMe = 0;
+  disable : any;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -42,11 +43,15 @@ export class SettingPage {
     });
     let userDetail = JSON.parse(localStorage.getItem("User"));
     let notificationStatus = userDetail.push_notification;
-    if(notificationStatus == 0){
+    if (notificationStatus == 0) {
       this.pushNotification = false
-    } else{
+    } else {
       this.pushNotification = true;
     }
+    setInterval(() => {
+      this.disable = this.networkPro.checkOnline();
+    }, 200);
+    this.disable = this.networkPro.checkOnline();
   }
 
 
@@ -71,24 +76,20 @@ export class SettingPage {
     }
   }
 
-  togglePushNoti(){
-    // this.pushNotification = (this.pushNotification == true) ? false : true;         
-    this.updatePushNotification();
+  togglePushNoti() {
+    this.updatePushNotification();    
   }
 
-  updatePushNotification(){
-    if (this.networkPro.checkNetwork() == true) {
+  updatePushNotification() {
+    if (this.networkPro.checkOnline() == true) {
       this.common.presentLoading();
-      this.httpService.postData("appuser/updatepushnotification",{}).subscribe(data => {
+      this.httpService.postData("appuser/updatepushnotification", {}).subscribe(data => {
         this.common.dismissLoading();
         if (data.status == 200) {
           let userDetail = JSON.parse(localStorage.getItem("User"));
           userDetail.push_notification = data.data.push_notification;
           localStorage.setItem("User", JSON.stringify(userDetail));
-          // this.pushNotification = (data.data.push_notification == 0) ? false : true; 
           this.common.showToast(data.message);
-        } else if(data.status == 203) {
-          this.events.publish("clearSession");
         } else {
           this.common.showToast(data.message);
         }
@@ -96,19 +97,36 @@ export class SettingPage {
         console.log("Error=> ", error);
         this.common.dismissLoading();
       });
+    } else {
+      this.pushNotification = false;
+      this.common.showToast('Nerwork is not available!!');
     }
   }
 
-  logout() {    
-    this.events.publish("logout");
+  logout() {
+    if (this.networkPro.checkOnline() == true) {
+      this.events.publish("logout");
+    } else {
+      this.common.showToast('Nerwork is not available!!');
+    }
   }
 
   gotoprofile() {
-    this.navCtrl.push(ProfilePage);
+    if (this.networkPro.checkOnline() == true) {
+      this.navCtrl.push(ProfilePage);
+    } else {
+      this.common.showToast('Nerwork is not available!!');
+    }
   }
+
   gotochangepwd() {
-    this.navCtrl.push(ChangePasswordPage);
+    if (this.networkPro.checkOnline() == true) {
+      this.navCtrl.push(ChangePasswordPage);
+    } else {
+      this.common.showToast('Nerwork is not available!!');
+    }
   }
+
   gotoaboutus() {
     this.navCtrl.push(AboutusPage);
   }

@@ -3,6 +3,8 @@ import { NavController, Events, NavParams } from 'ionic-angular';
 import { NetworkProvider } from '../../providers/network/network';
 import { HttpServiceProvider } from '../../providers/http-service/http-service';
 import { CommonProvider } from '../../providers/common/common';
+import { Storage } from '@ionic/storage';
+import { File } from '@ionic-native/file';
 
 import { CompanionDetailPage } from '../companion-detail/companion-detail';
 
@@ -13,15 +15,21 @@ import { CompanionDetailPage } from '../companion-detail/companion-detail';
 export class CompanionPage {
   companyList = [];
   showMe: any;
+  isOnline: any;
+  fileDir: any;
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     public networkPro: NetworkProvider,
     public httpService: HttpServiceProvider,
     public common: CommonProvider,
-    public events: Events
+    public events: Events,
+    private storage: Storage, 
+    private file: File
   ) {
     this.getCompanyList();
+    this.fileDir = this.file.dataDirectory;
+    this.isOnline = this.networkPro.checkOnline();
   }
 
   ionViewDidLoad() {
@@ -32,13 +40,12 @@ export class CompanionPage {
    * Creatot: Jagdish Thakre
    */
   getCompanyList() {
-    if (this.networkPro.checkNetwork() == true) {
+    if (this.networkPro.checkOnline() == true) {
       this.common.presentLoading();
       this.httpService.getData("companion/getall").subscribe(data => {
         if (data.status == 200) {
+          this.storage.set('companionList', data.data.data);
             this.companyList = data.data.data;  
-        } else if(data.status == 203){
-          this.events.publish("clearSession");
         } else {
           this.common.showToast(data.message);
         }
@@ -49,7 +56,14 @@ export class CompanionPage {
         this.showMe = "show";
         this.common.dismissLoading();
       });
-    }    
+    } else {
+      this.common.presentLoading();
+      this.storage.get('companionList').then((val) => {
+        this.companyList = val;
+        this.showMe = "show";
+        this.common.dismissLoading();
+      });
+    }  
   }
 
   goToDetail(id){
