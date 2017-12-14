@@ -59,6 +59,7 @@ export class CompanionPage {
     } else {
       this.common.presentLoading();
       this.storage.get('companionList').then((val) => {
+        console.log("Companion ", val);
         this.companyList = val;
         this.showMe = "show";
         this.common.dismissLoading();
@@ -68,6 +69,11 @@ export class CompanionPage {
 
   goToDetail(id){
     this.navCtrl.push(CompanionDetailPage, {id: id})
+  }
+
+  public imageName(url){
+    let imgSplit = url.split('/');
+    return imgSplit[imgSplit.length - 1 ];
   }
 
 }

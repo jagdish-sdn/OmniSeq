@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NetworkProvider } from '../../providers/network/network';
 import { HttpServiceProvider } from '../../providers/http-service/http-service';
 import { CommonProvider } from '../../providers/common/common';
+import { CONFIG } from '../../config/config';
 
 import { LoginPage } from '../login/login';
 
@@ -34,24 +35,24 @@ export class SignupPage {
       {name: 'Sales Executive'},
       {name: 'Other'}
     ];
-    this.contactLength = 10;
+    this.contactLength = CONFIG.ValidExpr.contactLength;
     this.submitAttempt = false;
     // this.confirmValid = true;
     this.signupForm = formBuilder.group({
       firstname: ['', Validators.compose([
         Validators.maxLength(30),
-        Validators.pattern('[a-zA-Z]*'),
+        Validators.pattern(CONFIG.ValidExpr.firstname),
         Validators.required])
       ],
       lastname: ['', Validators.compose([
         Validators.maxLength(30),
-        Validators.pattern('[a-zA-Z]*'),
+        Validators.pattern(CONFIG.ValidExpr.lastname),
         Validators.required])
       ],
       institution: ['', Validators.compose([Validators.required])],
       email: ['', Validators.compose([
           Validators.required,
-          Validators.pattern('^[a-zA-Z0-9]+[a-zA-Z0-9]+[a-zA-Z0-9._]+@[a-z]+\.[a-z.]{2,5}$')
+          Validators.pattern(CONFIG.ValidExpr.email)
         ])
       ],
       password: ['', Validators.compose([Validators.required])],

@@ -48,7 +48,7 @@ export class HomePage {
    * Creator: Jagdish Thakre
    */
   public search(value) {
-    this.navCtrl.setRoot(GenelistPage, {searchText : value});
+    this.navCtrl.push(GenelistPage, {searchText : value});
   }
 
   /**Select searched option and sending on result page

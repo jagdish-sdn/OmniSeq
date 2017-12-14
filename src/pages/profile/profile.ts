@@ -7,6 +7,7 @@ import { DatePicker } from '@ionic-native/date-picker';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 
 import { CommonProvider } from '../../providers/common/common';
+import { CONFIG } from '../../config/config';
 import { SettingPage } from '../setting/setting';
 
 @Component({
@@ -25,7 +26,7 @@ export class ProfilePage {
   profile: any;
   states = [];
   positions = [];
-  contactLength = 10;
+  contactLength = CONFIG.ValidExpr.contactLength;
   maxDate;
   zipLength = 5;
   userStroage: any = {};

@@ -62,4 +62,8 @@ export class CompanionDetailPage {
       });
     }
   }
+  public imageName(url){
+    let imgSplit = url.split('/');
+    return imgSplit[imgSplit.length - 1 ];
+  }
 }

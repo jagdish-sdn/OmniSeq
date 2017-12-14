@@ -9,5 +9,11 @@ export const CONFIG= {
 
     MESSAGES: {
         RegSuccessMsg: "Your registration information was successfully submitted. You will receive an e-mail notifying you when you can access the app."
+    },
+    ValidExpr: {
+        email: '^[a-zA-Z0-9]+[a-zA-Z0-9]+[a-zA-Z0-9._]+@[a-z]*[.]{1,1}[a-z]{2,5}$',
+        contactLength: 10,
+        firstname: '[a-zA-Z]*',
+        lastname: '[a-zA-Z ]*'
     }
 } 

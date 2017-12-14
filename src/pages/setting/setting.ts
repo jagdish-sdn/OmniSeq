@@ -51,7 +51,7 @@ export class SettingPage {
     setInterval(() => {
       this.disable = this.networkPro.checkOnline();
     }, 200);
-    this.disable = this.networkPro.checkOnline();
+    this.disable = this.networkPro.checkOnline();     
   }
 
 

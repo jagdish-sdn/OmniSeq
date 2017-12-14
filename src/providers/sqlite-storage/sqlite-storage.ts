@@ -82,16 +82,18 @@ export class SqliteStorageProvider {
           for(let i=0; i<tempArr.length; i++){
             let imgSplit = tempArr[i].logo.split('/');
             let url = tempArr[i].logo;
-            let filename = imgSplit[imgSplit.length - 1 ];//"logo-img"+i+'.jpg';
+            let filename = imgSplit[imgSplit.length - 1 ];
             tempArr[i].basename = filename;
-            fileTransfer.download(url, this.file.dataDirectory + filename).then((entry) => {              
+            fileTransfer.download(url, this.file.dataDirectory + filename).then((entry) => {
             }, (error) => {
               console.log("image download error ", error);
               // handle error
             });
             if(i==(data.data.data.length - 1)) {
-              this.storage.remove('companionList');
-              this.storage.set('companionList', tempArr);
+              console.log('companionList', tempArr);
+              // setTimeout(() => {
+                this.storage.set('companionList', tempArr);
+              // }, 1000);              
             }
           }       
           

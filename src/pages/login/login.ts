@@ -4,6 +4,7 @@ import { NetworkProvider } from '../../providers/network/network';
 import { HttpServiceProvider } from '../../providers/http-service/http-service';
 import { CommonProvider } from '../../providers/common/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CONFIG } from '../../config/config';
 
 import { SignupPage } from '../signup/signup';
 import { ForgotPwdPage } from '../forgot-pwd/forgot-pwd';
@@ -31,7 +32,7 @@ export class LoginPage {
     this.loginForm = formBuilder.group({
       email: ['', Validators.compose([
         Validators.required,
-        Validators.pattern('^[a-zA-Z0-9]+[a-zA-Z0-9]+[a-zA-Z0-9._]+@[a-z]+\.[a-z.]{2,5}$')
+        Validators.pattern(CONFIG.ValidExpr.email)
       ])
       ],
       password: ['', Validators.compose([Validators.required])],

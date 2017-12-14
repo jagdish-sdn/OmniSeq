@@ -192,39 +192,43 @@ export class MyApp {
    * Create By: Jagdish Thakre
    */
   logOut() {
-    const alert = this.alertCtrl.create({
-      title: 'Logout',
-      message: "Are you sure, You want to logout!",
-      buttons: [
-        {
-          text: 'Yes',
-          handler: () => {
-            this.common.presentLoading();
-            this.httpService.postData("user/applogout", {}).subscribe(data => {
-              this.common.dismissLoading();
-              if (data.status == 200 || data.status == 203) {
-                let device_token = localStorage.getItem("device_token");
-                localStorage.clear();
-                localStorage.setItem("device_token", device_token);
-                this.nav.setRoot(LoginPage);
-              } else {
-                this.common.showToast(data.message);
-              }
-            }, error => {
-              console.log("Error=> ", error);
-              this.common.dismissLoading();
-            });
+    if (this.networkPro.checkOnline() == true) {
+      const alert = this.alertCtrl.create({
+        title: 'Logout',
+        message: "Are you sure, You want to logout!",
+        buttons: [
+          {
+            text: 'Yes',
+            handler: () => {
+              this.common.presentLoading();
+              this.httpService.postData("user/applogout", {}).subscribe(data => {
+                this.common.dismissLoading();
+                if (data.status == 200 || data.status == 203) {
+                  let device_token = localStorage.getItem("device_token");
+                  localStorage.clear();
+                  localStorage.setItem("device_token", device_token);
+                  this.nav.setRoot(LoginPage);
+                } else {
+                  this.common.showToast(data.message);
+                }
+              }, error => {
+                console.log("Error=> ", error);
+                this.common.dismissLoading();
+              });
+            }
+          },
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            handler: () => {
+            }
           }
-        },
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          handler: () => {
-          }
-        }
-      ]
-    });
-    alert.present();
+        ]
+      });
+      alert.present();
+    } else {
+      this.common.showToast('Nerwork is not available!!');
+    }
   }
 
   /**
