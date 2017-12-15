@@ -59,7 +59,6 @@ export class CompanionPage {
     } else {
       this.common.presentLoading();
       this.storage.get('companionList').then((val) => {
-        console.log("Companion ", val);
         this.companyList = val;
         this.showMe = "show";
         this.common.dismissLoading();

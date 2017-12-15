@@ -3,6 +3,7 @@ import { Nav, Platform, AlertController, Events, MenuController } from 'ionic-an
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { FCM } from '@ionic-native/fcm';
+import { AppVersion } from '@ionic-native/app-version';
 
 import { HttpServiceProvider } from '../providers/http-service/http-service';
 import { CommonProvider } from '../providers/common/common';
@@ -48,6 +49,7 @@ export class MyApp {
     public menu: MenuController,
     public sqlite: SqliteStorageProvider,
     public networkPro: NetworkProvider,
+    private appVersion: AppVersion
   ) {
     if (this.userId) {
       if (this.networkPro.checkOnline() == true) {
@@ -105,6 +107,7 @@ export class MyApp {
   initializeApp() {
     this.platform.ready().then(() => {
       this.push();
+      this.checkVersion();
       this.statusBar.styleDefault();
       if (window.cordova && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.disableScroll(true);
@@ -148,29 +151,63 @@ export class MyApp {
     if (this.platform.is('cordova')) {
       this.fcm.getToken().then(token => {
         localStorage.setItem("device_token", token);
-        console.log("Device Token", token)
       })
 
       this.fcm.onNotification().subscribe(data => {
 
         console.log("Notificatoin message ", data);
         if (data.wasTapped) {
-          //Notification was received on device tray and tapped by the user.
           switch (data.type) {
             case "new_gene":
               this.nav.push(GenedetailPage, { data: { '_id': data.id } });
               break;
-
             case "new_companion":
               this.nav.push(CompanionDetailPage, { id: data.id })
               break;
           }
         } else {
-          //Notification was received in foreground. Maybe the user needs to be notified.
         }
       })
     } else {
       localStorage.setItem("device_token", "fTXe0lTVUSU:APA91bGGrbHYkcGTZrSM9mwUSa7XO6Yshm9NXpFPU70nnJ0QuPIfvVS-WjtvhEwsy5_bF6Fv15yu79t6tf-R6z_MVEpBQphU52jOuEvmho6FGCZiqKGUugbBkv6VkcChS3jF0oru36E6");
+    }
+  }
+
+  sarvajeet.kakade
+  093705495540
+
+  checkVersion() {
+    if (this.platform.is('cordova')) {
+      const alert = this.alertCtrl.create({
+        title: 'OmniSeq',
+        message: "update available",
+        buttons: [
+          {
+            text: 'Ok',
+            handler: () => {
+              if (this.platform.is('ios')) {
+                window.open('itms-apps://itunes.apple.com/us/app/domainsicle-domain-name-search/id511364723?ls=1&mt=8'); // or itms://
+              } else if (this.platform.is('android')) {
+                window.open('market://details?id=com.pluz.app');
+              }
+            }
+          }
+        ]
+      });
+      // this.httpService.postData("user/applogout", {}).subscribe(data => {
+      //   if (data.status == 200) {
+      //   } else {
+      //     this.common.showToast(data.message);
+      //   }
+      // }, error => {
+      //   console.log("Error=> ", error);
+      // });
+      this.appVersion.getVersionNumber().then((val) => {
+        console.log("this.appVersion) ", val);
+        if (val == "0.0.1") {
+          alert.present();
+        }
+      });
     }
   }
 

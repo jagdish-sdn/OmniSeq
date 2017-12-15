@@ -10,6 +10,7 @@ import { Camera } from '@ionic-native/camera';
 import { IonicStorageModule } from '@ionic/storage';
 import { FileTransfer } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
+import { AppVersion } from '@ionic-native/app-version';
 
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
@@ -107,7 +108,8 @@ import { SqliteStorageProvider } from '../providers/sqlite-storage/sqlite-storag
     Camera,
     SqliteStorageProvider,
     FileTransfer,
-    File    
+    File,
+    AppVersion
   ]
 })
 export class AppModule {}

@@ -33,3 +33,8 @@ npm install --save @ionic-native/file-transfer
 /*File plugin*/
 ionic cordova plugin add cordova-plugin-file
 npm install --save @ionic-native/file
+
+/*Package Info*/
+ionic cordova plugin add cordova-plugin-app-version
+npm install --save @ionic-native/app-version
+
