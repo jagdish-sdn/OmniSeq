@@ -79,7 +79,7 @@ export class MyApp {
     this.statusBar.backgroundColorByHexString('#1a5293');
     this.initializeApp();
 
-    /* used for an example of ngFor and navigation*/
+    /*used for an example of ngFor and navigation*/
     this.pages = [
       { title: 'OmniSeq / LabCorp', component: HomePage, icon: "menu-icon.png" },
       { title: 'Gene LookUp', component: GenelistPage, icon: "GeneLookup_sidemenu.png" },
@@ -154,8 +154,6 @@ export class MyApp {
       })
 
       this.fcm.onNotification().subscribe(data => {
-
-        console.log("Notificatoin message ", data);
         if (data.wasTapped) {
           switch (data.type) {
             case "new_gene":
@@ -165,16 +163,12 @@ export class MyApp {
               this.nav.push(CompanionDetailPage, { id: data.id })
               break;
           }
-        } else {
-        }
+        } else {}
       })
     } else {
       localStorage.setItem("device_token", "fTXe0lTVUSU:APA91bGGrbHYkcGTZrSM9mwUSa7XO6Yshm9NXpFPU70nnJ0QuPIfvVS-WjtvhEwsy5_bF6Fv15yu79t6tf-R6z_MVEpBQphU52jOuEvmho6FGCZiqKGUugbBkv6VkcChS3jF0oru36E6");
     }
   }
-
-  sarvajeet.kakade
-  093705495540
 
   checkVersion() {
     if (this.platform.is('cordova')) {

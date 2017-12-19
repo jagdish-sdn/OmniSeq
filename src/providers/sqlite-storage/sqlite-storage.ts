@@ -90,13 +90,9 @@ export class SqliteStorageProvider {
               // handle error
             });
             if(i==(data.data.data.length - 1)) {
-              console.log('companionList', tempArr);
-              // setTimeout(() => {
-                this.storage.set('companionList', tempArr);
-              // }, 1000);              
+              this.storage.set('companionList', tempArr);
             }
-          }       
-          
+          }
         } else{
           this.storage.set('companionList', []);
         }       

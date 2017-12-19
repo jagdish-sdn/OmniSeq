@@ -35,9 +35,6 @@ export class CompanionDetailPage {
       this.isOnline = this.networkPro.checkOnline();
   }
 
-  ionViewDidLoad() {
-  }
-
   getCompanionDetails(id){
     if (this.networkPro.checkOnline() == true) {
       this.common.presentLoading();

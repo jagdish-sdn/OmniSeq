@@ -46,9 +46,6 @@ export class QuizPage {
     }
   }
 
-  ionViewDidLoad() {
-  }
-
   /**Function are useing for get quiz questions from server 
    * Created : 27-Nov-2017
    * Creator : Jagdish Thakre

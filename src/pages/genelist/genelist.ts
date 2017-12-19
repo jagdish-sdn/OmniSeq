@@ -31,10 +31,7 @@ export class GenelistPage {
     }
     this.getGeneList(this.searchText.name ? this.searchText.name : '');
   }
-
-  ionViewDidLoad() {
-  }
-
+  
   /**Function for get the total no of Gene/marker/Functions
    * Created: 13-Nov-2017
    * Creatot: Jagdish Thakre

@@ -34,9 +34,6 @@ export class CancerPage {
     this.getGeneList();
   }
 
-  ionViewDidLoad() {
-  }
-
   /**Function for got the total no of Gene/marker
    * Created: 23-Nov-2017
    * Creatot: Jagdish Thakre
@@ -70,7 +67,7 @@ export class CancerPage {
   }
 
   search(value) {
-    this.navCtrl.setRoot(GenelistPage, {searchText : value});
+    this.navCtrl.push(GenelistPage, {searchText : value});
   }
 
 }

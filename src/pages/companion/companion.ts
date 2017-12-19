@@ -32,9 +32,6 @@ export class CompanionPage {
     this.isOnline = this.networkPro.checkOnline();
   }
 
-  ionViewDidLoad() {
-  }
-
   /**Function for got the total no of Gene/marker
    * Created: 23-Nov-2017
    * Creatot: Jagdish Thakre

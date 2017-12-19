@@ -31,10 +31,7 @@ export class ChangePasswordPage {
       conf_password: ['']
     });
   }
-
-  ionViewDidLoad() {
-  }
-
+  
   onConfChange() {
     if (this.changePwdForm.value.password !== this.changePwdForm.value.conf_password) {
       this.confirmValid = false;

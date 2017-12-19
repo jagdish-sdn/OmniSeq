@@ -29,26 +29,23 @@ export class LoginPage {
     public platform: Platform
   ) {
     this.submitAttempt = false;
+    /**Initializing login form controls name form*/
     this.loginForm = formBuilder.group({
       email: ['', Validators.compose([
         Validators.required,
         Validators.pattern(CONFIG.ValidExpr.email)
-      ])
-      ],
-      password: ['', Validators.compose([Validators.required])],
-      conf_password: ['']
+      ])],
+      password: ['', Validators.compose([Validators.required])]
     });
 
+    /**Idendifying device type(Android or IOS)*/
     if(this.platform.is('ios')){
       this.device_type = "iOS"
     } else {
       this.device_type = "Android";
     }
-
   }
 
-  ionViewDidLoad() {
-  }
   /**
    * Function created for redirect on registration page
    * Created: 01-Nov-2017

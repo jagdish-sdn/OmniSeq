@@ -54,10 +54,6 @@ export class SettingPage {
     this.disable = this.networkPro.checkOnline();     
   }
 
-
-  ionViewDidLoad() {
-  }
-
   toggleAppTheme() {
     if (this.selectedTheme === 'dark-theme') {
       this.settings.setActiveTheme('blue-theme');

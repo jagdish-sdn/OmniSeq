@@ -65,9 +65,7 @@ export class SignupPage {
       ])]
     });
   }
-
-  ionViewDidLoad() {
-  }
+  
   /**
    * Function created for register requested user with
    * Created: 01-Nov-2017

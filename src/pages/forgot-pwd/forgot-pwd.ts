@@ -33,9 +33,6 @@ export class ForgotPwdPage {
     });
   }
 
-  ionViewDidLoad() {
-  }
-
   forgotPwd() {
     this.submitAttempt = true;
     if (this.forgotPwdForm.valid) {

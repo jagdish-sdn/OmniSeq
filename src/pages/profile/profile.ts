@@ -77,9 +77,6 @@ export class ProfilePage {
     this.maxDate = todayDate.getFullYear() + '-' + todaymonth + '-' + todayDate.getDate();
   }
 
-  ionViewDidLoad() {
-
-  }
   /**Function are useing for get profile detail from server 
    * Created : 15-Nov-2017
    * Creator : Jagdish Thakre

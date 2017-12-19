@@ -30,10 +30,7 @@ export class FaqPage {
     this.faqArr = [];
     this.faqList('');
   }
-
-  ionViewDidLoad() {
-  }
-
+  
   /**Function for get faq list from server 
    * Created : 17-Nov-2017
    * Creator : Jagdish Thakre

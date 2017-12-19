@@ -64,9 +64,6 @@ export class AskQuestionPage {
     this.shownGroup = 1;
   }
 
-  ionViewDidLoad() {
-  }
-
   toggleGroup(group) {
     if (this.isGroupShown(group)) {
       this.shownGroup = null;

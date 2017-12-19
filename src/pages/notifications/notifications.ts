@@ -24,9 +24,6 @@ export class NotificationsPage {
     // this.getNotifications();
   }
 
-  ionViewDidLoad() {
-  }
-
   ionViewDidEnter(){
     this.getNotifications();
   }

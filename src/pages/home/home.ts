@@ -12,7 +12,6 @@ import { CancerPage } from '../cancer/cancer';
 import { QuizPage } from '../quiz/quiz';
 import { NotificationsPage } from '../notifications/notifications';
 
-
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
