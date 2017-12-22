@@ -8,12 +8,14 @@ export const CONFIG= {
     // HTTP_HOST_URL: "http://172.10.53.103:5091/api/v1/",
 
     MESSAGES: {
-        RegSuccessMsg: "Your registration information was successfully submitted. You will receive an e-mail notifying you when you can access the app."
+        RegSuccessMsg: "Your registration information was successfully submitted. You will receive an e-mail notifying you when you can access the app.",
+        NetworkMsg: "Nerwork is not available!!"
     },
     ValidExpr: {
         email: '^[a-zA-Z0-9]+[a-zA-Z0-9]+[a-zA-Z0-9._]+@[a-z]*[.]{1,1}[a-z]{2,5}$',
         contactLength: 10,
         firstname: '[a-zA-Z]*',
-        lastname: '[a-zA-Z ]*'
+        lastname: '[a-zA-Z ]*',
+        number: '[0-9]*'
     }
 } 

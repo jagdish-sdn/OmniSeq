@@ -10,6 +10,7 @@ import { CommonProvider } from '../providers/common/common';
 import { SettingsProvider } from './../providers/settings/settings';
 import { SqliteStorageProvider } from '../providers/sqlite-storage/sqlite-storage';
 import { NetworkProvider } from '../providers/network/network';
+import { CONFIG } from '../config/config';
 
 import { LoginPage } from '../pages/login/login';
 import { HomePage } from '../pages/home/home';
@@ -22,6 +23,7 @@ import { CancerPage } from '../pages/cancer/cancer';
 import { GenelistPage } from '../pages/genelist/genelist';
 import { GenedetailPage } from '../pages/genedetail/genedetail';
 import { CompanionDetailPage } from '../pages/companion-detail/companion-detail';
+//import { from } from 'rxjs/observable/from';
 
 declare var cordova: any;
 declare var window: any;
@@ -51,34 +53,6 @@ export class MyApp {
     public networkPro: NetworkProvider,
     private appVersion: AppVersion
   ) {
-    if (this.userId) {
-      if (this.networkPro.checkOnline() == true) {
-        this.httpService.getData("user/checklogin").subscribe(data => {
-          if (data.status == 200) {
-            localStorage.setItem("UserId", data.data.user._id);
-            localStorage.setItem("User", JSON.stringify(data.data.user));
-            this.storeData();
-            this.profileInfo();
-            this.rootPage = HomePage;
-          } else {
-            this.events.publish("clearSession");
-          }
-        }, error => {
-          console.log("Error=> ", error);
-        });
-      } else {
-        this.storeData();
-        this.profileInfo();
-        this.rootPage = HomePage;
-      }
-    } else {
-      this.rootPage = LoginPage;
-    }
-
-    this.settings.getActiveTheme().subscribe(val => this.selectedTheme = val);
-    this.statusBar.backgroundColorByHexString('#1a5293');
-    this.initializeApp();
-
     /*used for an example of ngFor and navigation*/
     this.pages = [
       { title: 'OmniSeq / LabCorp', component: HomePage, icon: "menu-icon.png" },
@@ -102,6 +76,34 @@ export class MyApp {
     this.events.subscribe("sqliteStorage", () => {
       this.storeData();
     });
+
+    if (this.userId) {
+      if (this.networkPro.checkOnline() == true) {
+        this.httpService.getData("user/checklogin").subscribe(data => {
+          if (data.status == 200) {
+            localStorage.setItem("UserId", data.data.user._id);
+            localStorage.setItem("User", JSON.stringify(data.data.user));
+            this.storeData();
+            this.profileInfo();
+            this.rootPage = HomePage;
+          } else {
+            this.storeData();
+          }
+        }, error => {
+          console.log("Error=> ", error);
+        });
+      } else {
+        this.storeData();
+        this.profileInfo();
+        this.rootPage = HomePage;
+      }
+    } else {
+      this.rootPage = LoginPage;
+    }
+
+    this.settings.getActiveTheme().subscribe(val => this.selectedTheme = val);
+    this.statusBar.backgroundColorByHexString('#1a5293');
+    this.initializeApp();
   }
 
   initializeApp() {
@@ -116,7 +118,6 @@ export class MyApp {
 
       this.platform.registerBackButtonAction(() => {
         let view = this.nav.getActive();
-        console.log(view.component.name);
         if (this.menu.isOpen()) {
           this.menu.close()
         } else if (view.component.name == 'QuizCongratulationPage') {
@@ -188,19 +189,26 @@ export class MyApp {
           }
         ]
       });
-      // this.httpService.postData("user/applogout", {}).subscribe(data => {
-      //   if (data.status == 200) {
-      //   } else {
-      //     this.common.showToast(data.message);
-      //   }
-      // }, error => {
-      //   console.log("Error=> ", error);
-      // });
-      this.appVersion.getVersionNumber().then((val) => {
-        console.log("this.appVersion) ", val);
-        if (val == "0.0.1") {
-          alert.present();
+      this.httpService.getData("user/getappversion").subscribe(data => {
+        if (data.status == 200) {
+          this.appVersion.getVersionNumber().then((val) => {
+              if(this.platform.is('android')){
+                if(val !== data.data.android_play_store_version){
+                  alert.present();
+                }
+              } else if(this.platform.is('ios')) {
+                if(val !== data.data.apple_itune_version){
+                  alert.present();
+                }
+              } else {
+                alert.present();
+              }
+          });
+        } else {
+          this.common.showToast(data.message);
         }
+      }, error => {
+        console.log("Error=> ", error);
       });
     }
   }
@@ -210,7 +218,7 @@ export class MyApp {
       if (this.networkPro.checkOnline() == true) {
         this.nav.push(page.component);
       } else {
-        this.common.showToast('Nerwork is not available!!');
+        this.common.showToast(CONFIG.MESSAGES.NetworkMsg);
       }
     } else {
       this.nav.push(page.component);

@@ -62,6 +62,7 @@ export class SignupPage {
         Validators.required,
         Validators.minLength(this.contactLength),
         Validators.maxLength(this.contactLength),
+        Validators.pattern(CONFIG.ValidExpr.number)
       ])]
     });
   }

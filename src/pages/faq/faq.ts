@@ -12,7 +12,7 @@ import { Storage } from '@ionic/storage';
 export class FaqPage {
   faqArr: any;
   page = 1;
-  limit = 5;
+  limit = 10;
   totalRecords: any = 0;
   showMe;
   searchText = {};

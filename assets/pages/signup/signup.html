@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>signup</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <form [formGroup]="signupForm">
+    <ion-row class="form-padding">
+      <ion-col>
+        <ion-item>
+          <ion-label floating>Full Name</ion-label>
+          <ion-input autoscrollElement type="text" formControlName="fullname" name="fullname"></ion-input>
+          <ion-icon *ngIf="((signupForm.controls.fullname.hasError('required') || signupForm.controls.fullname.hasError('maxlength') || signupForm.controls.fullname.hasError('pattern')) && signupForm.controls.fullname.touched) || ((signupForm.controls.fullname.hasError('required') || signupForm.controls.fullname.hasError('maxlength') || signupForm.controls.fullname.hasError('pattern')) && submitAttempt)"
+            ios="ios-close" md="md-close" item-right text-end padding-top color="danger"></ion-icon>
+          <ion-icon *ngIf="(signupForm.controls.fullname.valid && signupForm.controls.fullname.touched) || (signupForm.controls.fullname.valid && submitAttempt)"
+            ios="ios-checkmark" md="md-checkmark" item-right text-end padding-top color="primary"></ion-icon>
+        </ion-item>
+        <ion-item class="phone-item">
+          <ion-label floating>Phone Number</ion-label>
+          <span item-left class="phone-code">+1</span>
+          <ion-input autoscrollElement type="tel" formControlName="phone" name="phone"></ion-input>
+          <ion-icon *ngIf="((signupForm.controls.phone.hasError('pattern') || signupForm.controls.phone.hasError('required') || signupForm.controls.phone.hasError('minlength') || signupForm.controls.phone.hasError('maxlength')) && signupForm.controls.phone.touched) || ((signupForm.controls.phone.hasError('pattern') || signupForm.controls.phone.hasError('required') || signupForm.controls.phone.hasError('maxlength') || signupForm.controls.phone.hasError('minlength')) && submitAttempt)"
+            ios="ios-close" md="md-close" item-right text-end padding-top color="danger"></ion-icon>
+          <ion-icon *ngIf="(signupForm.controls.phone.valid && signupForm.controls.phone.touched) || (signupForm.controls.phone.valid && submitAttempt)"
+            ios="ios-checkmark" md="md-checkmark" item-right text-end padding-top color="primary"></ion-icon>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Email</ion-label>
+          <ion-input autoscrollElement autocapitalize="off" type="text" formControlName="email" name="email"></ion-input>
+          <ion-icon *ngIf="((signupForm.controls.email.hasError('required') || signupForm.controls.email.hasError('pattern')) && signupForm.controls.email.touched) || ((signupForm.controls.email.hasError('required') || signupForm.controls.email.hasError('pattern')) && submitAttempt)"
+            ios="ios-close" md="md-close" item-right text-end padding-top color="danger"></ion-icon>
+          <ion-icon *ngIf="(signupForm.controls.email.valid && signupForm.controls.email.touched) || (signupForm.controls.email.valid && submitAttempt)"
+            ios="ios-checkmark" md="md-checkmark" item-right text-end padding-top color="primary"></ion-icon>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>City</ion-label>
+          <ion-input autoscrollElement type="text" formControlName="city" name="city"></ion-input>
+          <ion-icon *ngIf="(signupForm.controls.city.hasError('required') && signupForm.controls.city.touched) || (signupForm.controls.city.hasError('required') && submitAttempt)"
+            ios="ios-close" md="md-close" item-right text-end padding-top color="danger"></ion-icon>
+          <ion-icon *ngIf="(signupForm.controls.city.valid && signupForm.controls.city.touched) || (signupForm.controls.city.valid && submitAttempt)"
+            ios="ios-checkmark" md="md-checkmark" item-right text-end padding-top color="primary"></ion-icon>
+        </ion-item>
+        <ion-item>
+          <ion-label floating class="">Gender</ion-label>
+          <ion-select autoscrollElement formControlName="gender" name="gender">
+            <ion-option value="{{gender.name}}" selected *ngFor="let gender of genders">{{gender.name}}</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>DOB</ion-label>
+          <ion-datetime displayFormat="DD MM YYYY" pickerFormat="YYYY-MM-DD" formControlName="dob" name="dob"></ion-datetime>
+          <!-- <ion-input autoscrollElement type="dob" formControlName="dob" name="dob"></ion-input> -->
+          <!-- <ion-icon *ngIf="(signupForm.controls.dob.hasError('required') && signupForm.controls.dob.touched) || (signupForm.controls.dob.hasError('required') && submitAttempt)"
+            ios="ios-close" md="md-close" item-right text-end padding-top color="danger"></ion-icon>
+          <ion-icon *ngIf="(signupForm.controls.dob.valid && signupForm.controls.dob.touched) || (signupForm.controls.dob.valid && submitAttempt)"
+            ios="ios-checkmark" md="md-checkmark" item-right text-end padding-top color="primary"></ion-icon> -->
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button padding text-center class="signup-button" (click)="signup()">Signup</button>
+      </ion-col>
+    </ion-row>
+  </form>
+  <ion-row>
+    <ion-col>
+      <div padding text-center class="signup-btn">
+        Already a User ?
+        <strong (click)="goToLogin()">Login</strong>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-content>

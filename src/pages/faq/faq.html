@@ -11,11 +11,15 @@
   <ion-row>
     <ion-col>
       <div *ngFor="let list of faqArr; let i = index;">
-        <ion-item class="settingBtn" *ngIf="list.question!==''">
-          <p class="marker" text-wrap>
-            <img src="assets/images/bullet.png" class="dotListIcon" /> {{list.question}}
+        <ion-item class="settingBtn" *ngIf="list.question!==''" [ngClass]="{active: isGroupShown(i)}">
+          <p (click)="toggleGroup(i)" class="marker" *ngIf="!isGroupShown(i)">
+            <img src="assets/images/bullet.png" class="dotListIcon" /> {{list.question}}            
           </p>
-          <div text-wrap *ngIf="list.answer">{{list.answer}}</div>
+          <p (click)="toggleGroup(i)" class="marker" *ngIf="isGroupShown(i)" text-wrap>
+            <img src="assets/images/bullet.png" class="dotListIcon" /> {{list.question}}            
+          </p>
+          <ion-icon class="set-arrow arrowdown" color="success" item-right [name]="isGroupShown(i) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+          <div text-wrap *ngIf="list.answer && isGroupShown(i)">{{list.answer}}</div>
           <!-- <div class="{{!isGroupShown(i) ? 'show-more': 'show-less'}}" *ngIf="list.answer">{{list.answer}}</div> -->
           <!-- <button float-right *ngIf="list.answer.len  gth > 50" type="button" ion-button (click)="toggleGroup(i)" >{{!isGroupShown(i) ? 'Show more': 'Show less'}}</button> -->
         </ion-item>

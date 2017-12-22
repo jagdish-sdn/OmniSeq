@@ -4,6 +4,7 @@ import { NetworkProvider } from '../../providers/network/network';
 import { HttpServiceProvider } from '../../providers/http-service/http-service';
 import { CommonProvider } from '../../providers/common/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CONFIG } from '../../config/config';
 
 @Component({
   selector: 'page-ask-question',
@@ -36,6 +37,7 @@ export class AskQuestionPage {
       phone: ['', Validators.compose([
         Validators.minLength(this.contactLength),
         Validators.maxLength(this.contactLength),
+        Validators.pattern(CONFIG.ValidExpr.number)
       ])],
       get_call_back: ['']
     });
@@ -47,6 +49,7 @@ export class AskQuestionPage {
       phone: ['', Validators.compose([
         Validators.minLength(this.contactLength),
         Validators.maxLength(this.contactLength),
+        Validators.pattern(CONFIG.ValidExpr.number)
       ])],
       get_call_back: ['']
     });
@@ -58,6 +61,7 @@ export class AskQuestionPage {
       phone: ['', Validators.compose([
         Validators.minLength(this.contactLength),
         Validators.maxLength(this.contactLength),
+        Validators.pattern(CONFIG.ValidExpr.number)
       ])],
       get_call_back: ['']
     });
@@ -94,7 +98,7 @@ export class AskQuestionPage {
         this.addQuestion(this.askQueForm.value);
       }
     } else {
-      this.common.showToast('Nerwork is not available!!');
+      this.common.showToast(CONFIG.MESSAGES.NetworkMsg);
     }
   }
 

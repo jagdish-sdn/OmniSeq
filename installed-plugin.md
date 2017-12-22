@@ -6,7 +6,7 @@ npm install --save @ionic-native/network
 ionic cordova plugin add cordova.plugins.diagnostic
 npm install --save @ionic-native/diagnostic
 
-/*Toas Plugin*/
+/*Toast Plugin*/
 ionic cordova plugin add cordova-plugin-x-toast
 npm install --save @ionic-native/toast
 

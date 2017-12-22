@@ -13,6 +13,7 @@ import { Storage } from '@ionic/storage';
 export class GenedetailPage {
   geneDetail: any;
   geneList: any = [];
+  showMe: boolean = false;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -41,17 +42,23 @@ export class GenedetailPage {
         if (data.status == 200) {
           this.storage.set('geneList', data.data);
           this.geneDetail = this.geneList.find((item:any) => { return item._id == this.navParams.data.data._id });
+          console.log("this.geneDetail ", this.geneDetail);
+          this.showMe = true;
         } else {
           this.common.showToast(data.message);
+          this.showMe = true;
         }
         this.common.dismissLoading();
+        this.showMe = true;
       }, error => {
+        this.showMe = true;
         this.common.dismissLoading();
       });
     }else{
       this.common.presentLoading();
       this.geneDetail = this.geneList.find((item:any) => { return item._id == this.navParams.data.data._id });
       this.common.dismissLoading();
+      this.showMe = true;
     }
   }
   

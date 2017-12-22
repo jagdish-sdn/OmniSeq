@@ -32,7 +32,7 @@
             </div>
             <div class="form-group" *ngIf="askQueOrderForm.value.get_call_back">
               <input type="tel" formControlName="phone" name="phone" class="form-control inputFull" placeholder="Phone">
-              <ion-icon *ngIf="((askQueOrderForm.controls.phone.hasError('minlength') || askQueOrderForm.controls.phone.hasError('maxlength')) && askQueOrderForm.controls.phone.touched) || ((askQueOrderForm.controls.phone.hasError('maxlength') || askQueOrderForm.controls.phone.hasError('minlength')) && orderAttempt)"
+              <ion-icon *ngIf="((askQueOrderForm.controls.phone.hasError('pattern') || askQueOrderForm.controls.phone.hasError('minlength') || askQueOrderForm.controls.phone.hasError('maxlength')) && askQueOrderForm.controls.phone.touched) || ((askQueOrderForm.controls.phone.hasError('pattern') || askQueOrderForm.controls.phone.hasError('maxlength') || askQueOrderForm.controls.phone.hasError('minlength')) && orderAttempt)"
                 ios="ios-close" md="md-close" item-right text-end padding-top color="danger"></ion-icon>
               <ion-icon *ngIf="(askQueOrderForm.controls.phone.valid && askQueOrderForm.controls.phone.touched) || (askQueOrderForm.controls.phone.valid && orderAttempt)"
                 ios="ios-checkmark" md="md-checkmark" item-right text-end padding-top color="primary"></ion-icon>
@@ -72,7 +72,7 @@
             </div>
             <div class="form-group" *ngIf="askQueTechForm.value.get_call_back">
               <input type="tel" formControlName="phone" name="phone" class="form-control inputFull" placeholder="Phone">
-              <ion-icon *ngIf="((askQueTechForm.controls.phone.hasError('minlength') || askQueTechForm.controls.phone.hasError('maxlength')) && askQueTechForm.controls.phone.touched) || ((askQueTechForm.controls.phone.hasError('maxlength') || askQueTechForm.controls.phone.hasError('minlength')) && techAttempt)"
+              <ion-icon *ngIf="((askQueTechForm.controls.phone.hasError('pattern') || askQueTechForm.controls.phone.hasError('minlength') || askQueTechForm.controls.phone.hasError('maxlength')) && askQueTechForm.controls.phone.touched) || ((askQueTechForm.controls.phone.hasError('pattern') || askQueTechForm.controls.phone.hasError('maxlength') || askQueTechForm.controls.phone.hasError('minlength')) && techAttempt)"
                 ios="ios-close" md="md-close" item-right text-end padding-top color="danger"></ion-icon>
               <ion-icon *ngIf="(askQueTechForm.controls.phone.valid && askQueTechForm.controls.phone.touched) || (askQueTechForm.controls.phone.valid && techAttempt)"
                 ios="ios-checkmark" md="md-checkmark" item-right text-end padding-top color="primary"></ion-icon>
@@ -112,7 +112,7 @@
             </div>
             <div class="form-group" *ngIf="askQueForm.value.get_call_back">
               <input type="tel" formControlName="phone" name="phone" class="form-control inputFull" placeholder="Phone">
-              <ion-icon *ngIf="((askQueForm.controls.phone.hasError('minlength') || askQueForm.controls.phone.hasError('maxlength')) && askQueForm.controls.phone.touched) || ((askQueForm.controls.phone.hasError('maxlength') || askQueForm.controls.phone.hasError('minlength')) && submitAttempt)"
+              <ion-icon *ngIf="((askQueForm.controls.phone.hasError('pattern') || askQueForm.controls.phone.hasError('minlength') || askQueForm.controls.phone.hasError('maxlength')) && askQueForm.controls.phone.touched) || ((askQueForm.controls.phone.hasError('pattern') ||askQueForm.controls.phone.hasError('maxlength') || askQueForm.controls.phone.hasError('minlength')) && submitAttempt)"
                 ios="ios-close" md="md-close" item-right text-end padding-top color="danger"></ion-icon>
               <ion-icon *ngIf="(askQueForm.controls.phone.valid && askQueForm.controls.phone.touched) || (askQueForm.controls.phone.valid && submitAttempt)"
                 ios="ios-checkmark" md="md-checkmark" item-right text-end padding-top color="primary"></ion-icon>

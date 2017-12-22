@@ -13,7 +13,7 @@ export class QuizCongratulationPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams
-  ) { }
+  ) {}
 
   ionViewDidLoad() {
     let navparam = this.navParams.data;
@@ -25,11 +25,11 @@ export class QuizCongratulationPage {
   }
 
   public nextScreen(){
-    this.navCtrl.setRoot(HomePage)
+    this.navCtrl.setRoot(HomePage);
   }
 
   ionViewWillLeave() {
-      this.navCtrl.setRoot(HomePage);
-    }
+    this.navCtrl.setRoot(HomePage);
+  }
 
 }

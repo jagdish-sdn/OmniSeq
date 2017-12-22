@@ -24,7 +24,8 @@ page-quiz {
     .question-opt{
         border: 1px solid #727272 !important;
         box-shadow: 1px 0 0 0 #727272 !important;
-        border-radius: 2px !important;        
+        border-radius: 2px !important;  
+        height: 100%;      
     }
     .question-opt.right{
         background: rgba(30,150,40,1);

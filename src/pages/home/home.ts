@@ -11,6 +11,7 @@ import { AskQuestionPage } from '../ask-question/ask-question';
 import { CancerPage } from '../cancer/cancer';
 import { QuizPage } from '../quiz/quiz';
 import { NotificationsPage } from '../notifications/notifications';
+import { CONFIG } from '../../config/config';
 
 @Component({
   selector: 'page-home',
@@ -47,6 +48,7 @@ export class HomePage {
    * Creator: Jagdish Thakre
    */
   public search(value) {
+    this.searchText.name = '';
     this.navCtrl.push(GenelistPage, {searchText : value});
   }
 
@@ -74,7 +76,7 @@ export class HomePage {
     if (this.networkPro.checkOnline() == true) {
       this.navCtrl.push(AskQuestionPage);
     }else {
-      this.common.showToast('Nerwork is not available!!');
+      this.common.showToast(CONFIG.MESSAGES.NetworkMsg);
     }
   }
 
@@ -90,7 +92,7 @@ export class HomePage {
     if (this.networkPro.checkOnline() == true) {
       this.navCtrl.push(QuizPage);
     }else {
-      this.common.showToast('Nerwork is not available!!');
+      this.common.showToast(CONFIG.MESSAGES.NetworkMsg);
     }
   }
   
@@ -98,7 +100,7 @@ export class HomePage {
     if (this.networkPro.checkOnline() == true) {
       this.navCtrl.push(NotificationsPage);
     }else {
-      this.common.showToast('Nerwork is not available!!');
+      this.common.showToast(CONFIG.MESSAGES.NetworkMsg);
     }
   }
 

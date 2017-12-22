@@ -63,8 +63,7 @@ export class NotificationsPage {
         switch (notificationData.data.type) {
           case "new_gene":
               this.navCtrl.push(GenedetailPage, { data: {'_id': notificationData.data.id} });        
-            break;
-    
+            break;    
           case "new_companion":
               this.navCtrl.push(CompanionDetailPage, {id: notificationData.data.id})
             break;

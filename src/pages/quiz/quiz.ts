@@ -5,6 +5,7 @@ import { NetworkProvider } from '../../providers/network/network';
 import { HttpServiceProvider } from '../../providers/http-service/http-service';
 import { CommonProvider } from '../../providers/common/common';
 import { QuizCongratulationPage } from '../quiz-congratulation/quiz-congratulation';
+import { CONFIG } from '../../config/config';
 
 import { HomePage } from '../home/home';
 
@@ -41,7 +42,7 @@ export class QuizPage {
       this.extratPoints = 0;
       this.ansSelected = false;
     } else {
-      this.common.showToast('Nerwork is not available!!');
+      this.common.showToast(CONFIG.MESSAGES.NetworkMsg);
       this.navCtrl.push(HomePage);
     }
   }
