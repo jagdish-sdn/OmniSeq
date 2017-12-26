@@ -19,9 +19,7 @@
             <img src="assets/images/bullet.png" class="dotListIcon" /> {{list.question}}            
           </p>
           <ion-icon class="set-arrow arrowdown" color="success" item-right [name]="isGroupShown(i) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
-          <div text-wrap *ngIf="list.answer && isGroupShown(i)">{{list.answer}}</div>
-          <!-- <div class="{{!isGroupShown(i) ? 'show-more': 'show-less'}}" *ngIf="list.answer">{{list.answer}}</div> -->
-          <!-- <button float-right *ngIf="list.answer.len  gth > 50" type="button" ion-button (click)="toggleGroup(i)" >{{!isGroupShown(i) ? 'Show more': 'Show less'}}</button> -->
+          <div text-wrap *ngIf="list.answer && isGroupShown(i)">{{list.answer}}</div>          
         </ion-item>
       </div>
     </ion-col>
