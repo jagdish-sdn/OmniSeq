@@ -42,6 +42,8 @@ export class CompanionDetailPage {
         if (data.status == 200) {
             this.companionData = data.data;
             this.companionData.data = this.sanitized.bypassSecurityTrustHtml(this.companionData.data);
+        } else if(data.status == 203) {
+          this.events.publish("clearSession");
         } else {
           this.common.showToast(data.message);
         }

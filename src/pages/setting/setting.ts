@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Events } from 'ionic-angular';
+import { NavController, NavParams, Events, Platform } from 'ionic-angular';
 import { SettingsProvider } from './../../providers/settings/settings';
 import { FormBuilder } from '@angular/forms';
 import { NetworkProvider } from '../../providers/network/network';
@@ -8,6 +8,7 @@ import { CommonProvider } from '../../providers/common/common';
 import { ProfilePage } from '../profile/profile';
 import { ChangePasswordPage } from '../change-password/change-password';
 import { AboutusPage } from '../aboutus/aboutus';
+import { AppVersion } from '@ionic-native/app-version';
 
 @Component({
   selector: 'page-setting',
@@ -28,6 +29,7 @@ export class SettingPage {
   contactLength = 10;
   showMe = 0;
   disable : any;
+  version: any = "0.0.1";
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -36,7 +38,9 @@ export class SettingPage {
     public networkPro: NetworkProvider,
     public httpService: HttpServiceProvider,
     public common: CommonProvider,
-    public events: Events
+    public events: Events,
+    private platform: Platform,
+    private appVersion: AppVersion
   ) {
     this.settings.getActiveTheme().subscribe(val => {
       this.selectedTheme = val; this.toggleChecked(this.selectedTheme);
@@ -51,7 +55,13 @@ export class SettingPage {
     setInterval(() => {
       this.disable = this.networkPro.checkOnline();
     }, 200);
-    this.disable = this.networkPro.checkOnline();     
+    this.disable = this.networkPro.checkOnline();
+    /**Get Current version*/
+    if (this.platform.is('cordova')) {
+      this.appVersion.getVersionNumber().then((val) => {
+        this.version = val;
+      });
+    }
   }
 
   toggleAppTheme() {
@@ -86,7 +96,9 @@ export class SettingPage {
           userDetail.push_notification = data.data.push_notification;
           localStorage.setItem("User", JSON.stringify(userDetail));
           this.common.showToast(data.message);
-        } else {
+        } else if(data.status == 203) {
+          this.events.publish("clearSession");
+        }  else {
           this.common.showToast(data.message);
         }
       }, error => {

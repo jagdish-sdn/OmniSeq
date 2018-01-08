@@ -47,6 +47,8 @@ export class CancerPage {
           data.data.map((item:any) => {
             this.geneList['stage'+item.stage].push({ marker: item.marker, target: item.druggable_target });
           });    
+        } else if(data.status == 203) {
+          this.events.publish("clearSession");
         } else {
           this.common.showToast(data.message);
         }

@@ -44,6 +44,8 @@ export class GenedetailPage {
           this.geneDetail = this.geneList.find((item:any) => { return item._id == this.navParams.data.data._id });
           console.log("this.geneDetail ", this.geneDetail);
           this.showMe = true;
+        } else if(data.status == 203) {
+          this.events.publish("clearSession");
         } else {
           this.common.showToast(data.message);
           this.showMe = true;

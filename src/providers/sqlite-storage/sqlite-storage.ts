@@ -42,7 +42,9 @@ export class SqliteStorageProvider {
       this.httpService.getData("gene/search").subscribe(data => {
         if (data.status == 200) {
           this.storage.set('geneList', data.data);
-        } else {
+        } else if(data.status == 203) {
+          this.events.publish("clearSession");
+        }  else {
           this.storage.set('geneList', []);
         }       
       }, error => {
@@ -60,7 +62,9 @@ export class SqliteStorageProvider {
       this.httpService.getData("faq/getall").subscribe(data => {
         if (data.status == 200) {
           this.storage.set('faqList', data.data);
-        } else{
+        } else if(data.status == 203) {
+          this.events.publish("clearSession");
+        }  else{
           this.storage.set('faqList', []);
         }       
       }, error => {
@@ -87,13 +91,14 @@ export class SqliteStorageProvider {
             fileTransfer.download(url, this.file.dataDirectory + filename).then((entry) => {
             }, (error) => {
               console.log("image download error ", error);
-              // handle error
             });
             if(i==(data.data.data.length - 1)) {
               this.storage.set('companionList', tempArr);
             }
           }
-        } else{
+        } else if(data.status == 203) {
+          this.events.publish("clearSession");
+        }  else{
           this.storage.set('companionList', []);
         }       
       }, error => {

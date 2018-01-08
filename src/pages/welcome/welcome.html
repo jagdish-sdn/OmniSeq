@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar>
+    <div text-center>
+      <img src="assets/images/2.png" class="header-img" />
+    </div>
+  </ion-navbar>
+</ion-header>
+<ion-content padding class="body-content">
+  <ion-item (click)="goToHome()" text-center>
+    <img src="assets/images/1.png" />
+  </ion-item>
+  <ion-item text-center (click)="goToCallBrief()">
+    <h3 class="call-brief">Call De-Brief Survey</h3>
+  </ion-item>
+  <ion-item text-center>
+    <img src="assets/images/3.png" />
+    <div class="coming-soon">Coming Soon</div>
+  </ion-item>
+  <ion-item text-center>
+    <img style="width:100%;" src="assets/images/4.png" />
+  </ion-item>
+</ion-content>
+<ion-footer>
+  <ion-item text-center>
+    <h4 text-center class="version">Version: {{version}} Lasted Update: 04-Jan-2018</h4>
+  </ion-item>
+</ion-footer>

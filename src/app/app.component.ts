@@ -23,11 +23,13 @@ import { CancerPage } from '../pages/cancer/cancer';
 import { GenelistPage } from '../pages/genelist/genelist';
 import { GenedetailPage } from '../pages/genedetail/genedetail';
 import { CompanionDetailPage } from '../pages/companion-detail/companion-detail';
+import { WelcomePage } from '../pages/welcome/welcome';
 //import { from } from 'rxjs/observable/from';
 
 declare var cordova: any;
 declare var window: any;
 @Component({
+  selector: 'page-app',
   templateUrl: 'app.html'
 })
 export class MyApp {
@@ -55,6 +57,7 @@ export class MyApp {
   ) {
     /*used for an example of ngFor and navigation*/
     this.pages = [
+      { title: 'Home', component: WelcomePage, icon: "home.png" },
       { title: 'OmniSeq / LabCorp', component: HomePage, icon: "menu-icon.png" },
       { title: 'Gene LookUp', component: GenelistPage, icon: "GeneLookup_sidemenu.png" },
       { title: 'Companion / Complementary Dx', component: CompanionPage, icon: "CancerImmuneCycle_sidemenu.png" },
@@ -64,6 +67,7 @@ export class MyApp {
       { title: 'Quiz', component: QuizPage, icon: "QuizMe_sidemenu.png" },
       { title: 'Settings', component: SettingPage, icon: "Settings.png" },
     ];
+    
     this.events.subscribe("userProfile", () => {
       this.profileInfo();
     });
@@ -85,22 +89,25 @@ export class MyApp {
             localStorage.setItem("User", JSON.stringify(data.data.user));
             this.storeData();
             this.profileInfo();
-            this.rootPage = HomePage;
+            this.rootPage = WelcomePage;
+          } else if(data.status == 203) {
+            this.clearSession();
           } else {
             this.storeData();
           }
         }, error => {
+          this.common.showToast(CONFIG.MESSAGES.SessionMsg);
+          this.clearSession();
           console.log("Error=> ", error);
         });
       } else {
         this.storeData();
         this.profileInfo();
-        this.rootPage = HomePage;
+        this.rootPage = WelcomePage;
       }
     } else {
       this.rootPage = LoginPage;
     }
-
     this.settings.getActiveTheme().subscribe(val => this.selectedTheme = val);
     this.statusBar.backgroundColorByHexString('#1a5293');
     this.initializeApp();
@@ -118,10 +125,13 @@ export class MyApp {
 
       this.platform.registerBackButtonAction(() => {
         let view = this.nav.getActive();
+        console.log("view.component.name ", view.component.name);
         if (this.menu.isOpen()) {
           this.menu.close()
         } else if (view.component.name == 'QuizCongratulationPage') {
           this.nav.setRoot(HomePage);
+        } else if(view.component.name == 'HomePage'){
+          this.nav.setRoot(WelcomePage);
         } else if (this.nav.canGoBack()) {
           this.nav.pop();
         } else {
@@ -204,6 +214,8 @@ export class MyApp {
                 alert.present();
               }
           });
+        } else if(data.status == 203) {
+          this.clearSession();
         } else {
           this.common.showToast(data.message);
         }
@@ -220,6 +232,8 @@ export class MyApp {
       } else {
         this.common.showToast(CONFIG.MESSAGES.NetworkMsg);
       }
+    } else if(page.Component == WelcomePage) {
+      this.nav.setRoot(page.component);
     } else {
       this.nav.push(page.component);
     }

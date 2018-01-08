@@ -1,0 +1,26 @@
+page-welcome {
+    .scroll-content {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+    .item-inner{
+        border-bottom: 0 !important;
+    }
+    img{
+        width: 80%;
+    }
+    .call-brief{
+        font-weight: bold;
+        font-size: x-large;
+    }
+    .toolbar-background {
+        background-color: #fff !important;
+    }
+    .header-img{
+        padding: 7px;
+    }
+    .coming-soon{
+        font-weight: 500;
+    }
+}

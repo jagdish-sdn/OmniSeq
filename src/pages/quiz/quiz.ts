@@ -60,6 +60,8 @@ export class QuizPage {
           this.queArr = data.data;
           this.countTime();
           this.currentQue = this.queArr[this.currentIndex];
+        } else if(data.status == 203) {
+          this.events.publish("clearSession");
         } else {
           this.common.showToast(data.message);
         }

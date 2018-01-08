@@ -43,6 +43,8 @@ export class CompanionPage {
         if (data.status == 200) {
           this.storage.set('companionList', data.data.data);
             this.companyList = data.data.data;  
+        } else if(data.status == 203) {
+          this.events.publish("clearSession");
         } else {
           this.common.showToast(data.message);
         }

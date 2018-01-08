@@ -11,10 +11,10 @@ import { CompanionDetailPage } from '../companion-detail/companion-detail';
   templateUrl: 'notifications.html',
 })
 export class NotificationsPage {
-  notiList : any = [];
-  showMe :  any;
+  notiList: any = [];
+  showMe: any;
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
     public networkPro: NetworkProvider,
     public httpService: HttpServiceProvider,
@@ -24,7 +24,7 @@ export class NotificationsPage {
     // this.getNotifications();
   }
 
-  ionViewDidEnter(){
+  ionViewDidEnter() {
     this.getNotifications();
   }
 
@@ -38,35 +38,42 @@ export class NotificationsPage {
       this.httpService.getData("appuser/getmynotifications").subscribe(data => {
         this.common.dismissLoading();
         if (data.status == 200) {
-          this.notiList = data.data;                    
+          this.notiList = data.data;
+        } else if(data.status == 203) {
+          this.events.publish("clearSession");
         } else {
           this.common.showToast(data.message);
-        }        
+        }
         this.showMe = "show";
       }, error => {
         console.log("Error=> ", error);
         this.showMe = "show";
         this.common.dismissLoading();
       });
-    }else{
+    } else {
       this.common.showToast('Nerwork is not available!!');
       this.showMe = "show";
     }
   }
 
-  public viewDetails(notificationData:any) {
+  public viewDetails(notificationData: any) {
     if (this.networkPro.checkNetwork() == true) {
       this.common.presentLoading();
-      this.httpService.postData("appuser/updatemynotifications", {"_id": notificationData._id
+      this.httpService.postData("appuser/updatemynotifications", {
+        "_id": notificationData._id
       }).subscribe(data => {
         this.common.dismissLoading();
-        switch (notificationData.data.type) {
-          case "new_gene":
-              this.navCtrl.push(GenedetailPage, { data: {'_id': notificationData.data.id} });        
-            break;    
-          case "new_companion":
-              this.navCtrl.push(CompanionDetailPage, {id: notificationData.data.id})
-            break;
+        if (data.status == 203) {
+          this.events.publish("clearSession");
+        } else {
+          switch (notificationData.data.type) {
+            case "new_gene":
+              this.navCtrl.push(GenedetailPage, { data: { '_id': notificationData.data.id } });
+              break;
+            case "new_companion":
+              this.navCtrl.push(CompanionDetailPage, { id: notificationData.data.id })
+              break;
+          }
         }
       }, error => {
         this.common.dismissLoading();

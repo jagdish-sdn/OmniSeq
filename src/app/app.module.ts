@@ -31,6 +31,9 @@ import { AboutusPage } from '../pages/aboutus/aboutus';
 import { CompanionDetailPage } from '../pages/companion-detail/companion-detail';
 import { QuizCongratulationPage } from '../pages/quiz-congratulation/quiz-congratulation';
 import { NotificationsPage } from '../pages/notifications/notifications';
+import { WelcomePage } from '../pages/welcome/welcome';
+import { ComprehensivePage } from '../pages/comprehensive/comprehensive';
+import { BriefSurveyPage } from '../pages/brief-survey/brief-survey';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -60,7 +63,10 @@ import { SqliteStorageProvider } from '../providers/sqlite-storage/sqlite-storag
     AboutusPage,
     CompanionDetailPage,
     QuizCongratulationPage,
-    NotificationsPage
+    NotificationsPage,
+    WelcomePage,
+    ComprehensivePage,
+    BriefSurveyPage
   ],
   imports: [
     BrowserModule,
@@ -91,7 +97,10 @@ import { SqliteStorageProvider } from '../providers/sqlite-storage/sqlite-storag
     AboutusPage,
     CompanionDetailPage,
     QuizCongratulationPage,
-    NotificationsPage
+    NotificationsPage,
+    WelcomePage,
+    ComprehensivePage,
+    BriefSurveyPage
   ],
   providers: [
     StatusBar,

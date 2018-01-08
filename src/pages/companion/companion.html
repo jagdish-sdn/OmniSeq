@@ -7,7 +7,7 @@
   </ion-navbar>
 </ion-header>
 <ion-content class="body-content" padding>
-  <ion-grid *ngIf="companyList">
+  <ion-grid *ngIf="companyList && showMe">
     <ion-row>
       <ion-col col-6 *ngFor="let comp of companyList; let i = index;" (click)="goToDetail(comp._id)">
         <ion-card class="companion-card">

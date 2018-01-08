@@ -47,6 +47,8 @@ export class GenelistPage {
           if (q != '') {
             this.search(q);
           }
+        }else if(data.status == 203) {
+          this.events.publish("clearSession");
         } else {
           this.common.showToast(data.message);
         }
@@ -56,7 +58,7 @@ export class GenelistPage {
         this.showMe = "show";
         this.common.dismissLoading();
       });
-    } else {
+    }  else {
       this.common.presentLoading();
       this.storage.get('geneList').then((val) => {
         this.geneList = val;

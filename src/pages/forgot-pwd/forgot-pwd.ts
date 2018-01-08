@@ -43,6 +43,8 @@ export class ForgotPwdPage {
           if (data.status == 200) {
             this.common.showToast(data.message);
             this.navCtrl.setRoot(LoginPage);
+          } else if(data.status == 203) {
+            this.events.publish("clearSession");
           } else {
             this.common.showToast(data.message);
           }

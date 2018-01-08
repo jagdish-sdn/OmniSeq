@@ -169,6 +169,8 @@ export class AskQuestionPage {
         this.common.dismissLoading();
         if (data.status == 200) {
           this.common.showToast(data.message);
+        } else if(data.status == 203) {
+          this.events.publish("clearSession");
         } else {
           this.common.showToast(data.message);
         }

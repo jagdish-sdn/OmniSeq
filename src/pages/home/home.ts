@@ -111,6 +111,8 @@ export class HomePage {
         // this.common.dismissLoading();
         if (data.status == 200) {
           this.counter = data.data.length;                    
+        } else if(data.status == 203) {
+          this.events.publish("clearSession");
         } else {
           this.common.showToast(data.message);
         }

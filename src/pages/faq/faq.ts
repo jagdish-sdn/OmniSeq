@@ -57,6 +57,8 @@ export class FaqPage {
           if (data.data.data.length > 0) {
             this.page += 1;
           }
+        } else if(data.status == 203) {
+          this.events.publish("clearSession");
         } else {
           this.common.showToast(data.message);
           if (this.page == 1) {

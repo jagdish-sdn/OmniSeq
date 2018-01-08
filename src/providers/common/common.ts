@@ -69,8 +69,7 @@ export class CommonProvider {
   logoutLoading() {
     this.loading = this.loadingCtrl.create({
       content: 'Session has been expired...'
-    });
-  
+    });  
     this.loading.present();
   }
 

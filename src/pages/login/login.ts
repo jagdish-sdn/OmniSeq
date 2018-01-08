@@ -8,11 +8,12 @@ import { CONFIG } from '../../config/config';
 
 import { SignupPage } from '../signup/signup';
 import { ForgotPwdPage } from '../forgot-pwd/forgot-pwd';
-import { HomePage } from '../home/home';
+// import { HomePage } from '../home/home';
+import { WelcomePage } from '../welcome/welcome';
 
 @Component({
   selector: 'page-login',
-  templateUrl: 'login.html',
+  templateUrl: 'login.html'
 })
 export class LoginPage {
   loginForm: FormGroup;
@@ -85,7 +86,7 @@ export class LoginPage {
             localStorage.setItem("Token", JSON.stringify(data.data.token));
             this.events.publish("userProfile");
             this.events.publish("sqliteStorage");
-            this.navCtrl.setRoot(HomePage);
+            this.navCtrl.setRoot(WelcomePage);
           } else {
             this.common.showToast(data.message);
           }
