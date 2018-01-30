@@ -1,0 +1,19 @@
+Note: multiple device login handle for device token
+
+
+1) Fix the session timeout issue. DONE
+2) Solve Screen load issue on session time-out. DONE
+
+1) Test the screen back and hardware back button issue. DONE
+2) Test the gene lookup detail screen with name position. DONE
+
+Daily Scrum/ Standup Meeting: OmniSeq 5 Jan 2018
+
+Jagdish Thakre:
+=============
+1. Create certificates in apple account.
+2. Setup project with client certificate and create IPA.
+
+
+
+https://github.com/Kunena/Kunena-Forum/wiki/Create-a-new-branch-with-git-and-manage-branches

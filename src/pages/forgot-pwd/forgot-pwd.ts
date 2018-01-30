@@ -38,6 +38,7 @@ export class ForgotPwdPage {
     if (this.forgotPwdForm.valid) {
       if (this.networkPro.checkNetwork() == true) {
         this.common.presentLoading();
+        this.forgotPwdForm.value.req_from = 'app';
         this.httpService.postData("user/reqresetpassword", this.forgotPwdForm.value).subscribe(data => {
           this.common.dismissLoading();
           if (data.status == 200) {

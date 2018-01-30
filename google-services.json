@@ -1,58 +1,27 @@
 {
   "project_info": {
-    "project_number": "665028359307",
-    "firebase_url": "https://ionic2pushdemo.firebaseio.com",
-    "project_id": "ionic2pushdemo",
-    "storage_bucket": "ionic2pushdemo.appspot.com"
+    "project_number": "395648227948",
+    "firebase_url": "https://omniseq-android.firebaseio.com",
+    "project_id": "omniseq-android",
+    "storage_bucket": "omniseq-android.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:665028359307:android:dd3ab7f3b244ad6d",
-        "android_client_info": {
-          "package_name": "com.test.app"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "665028359307-b4darsdgdf4otgq3e9e58mlea624nb6n.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDfZ7QIWMMk8jLfStmQou2McRba_r8ZAzg"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:665028359307:android:5662e45253f09b0e",
+        "mobilesdk_app_id": "1:395648227948:android:5662e45253f09b0e",
         "android_client_info": {
           "package_name": "com.healtcare.omniseq"
         }
       },
       "oauth_client": [
         {
-          "client_id": "665028359307-b4darsdgdf4otgq3e9e58mlea624nb6n.apps.googleusercontent.com",
+          "client_id": "395648227948-4shonfc3gdsn1g66dlqiumjfeuet0dhm.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDfZ7QIWMMk8jLfStmQou2McRba_r8ZAzg"
+          "current_key": "AIzaSyCwqcctJMChbGJim3SWLo1BOUCq0n75jWU"
         }
       ],
       "services": {

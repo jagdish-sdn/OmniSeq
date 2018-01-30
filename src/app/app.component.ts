@@ -182,26 +182,26 @@ export class MyApp {
   }
 
   checkVersion() {
-    if (this.platform.is('cordova')) {
-      const alert = this.alertCtrl.create({
-        title: 'OmniSeq',
-        message: "update available",
-        buttons: [
-          {
-            text: 'Ok',
-            handler: () => {
-              if (this.platform.is('ios')) {
-                window.open('itms-apps://itunes.apple.com/us/app/domainsicle-domain-name-search/id511364723?ls=1&mt=8'); // or itms://
-              } else if (this.platform.is('android')) {
-                window.open('market://details?id=com.pluz.app');
-              }
-            }
-          }
-        ]
-      });
+    if (this.platform.is('cordova')) {      
       this.httpService.getData("user/getappversion").subscribe(data => {
         if (data.status == 200) {
           this.appVersion.getVersionNumber().then((val) => {
+            const alert = this.alertCtrl.create({
+              title: 'OmniSeq',
+              message: "update available",
+              buttons: [
+                {
+                  text: 'Ok',
+                  handler: () => {
+                    if (this.platform.is('ios')) {
+                      window.open('itms-apps://itunes.apple.com/us/app/domainsicle-domain-name-search/id511364723?ls=1&mt=8'); // or itms://
+                    } else if (this.platform.is('android')) {
+                      window.open('market://details?id=com.healtcare.omniseq');
+                    }
+                  }
+                }
+              ]
+            });
               if(this.platform.is('android')){
                 if(val !== data.data.android_play_store_version){
                   alert.present();

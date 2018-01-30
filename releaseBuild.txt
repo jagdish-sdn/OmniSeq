@@ -1,0 +1,11 @@
+Release Build
+
+ionic cordova build --release android
+
+Jar Signer
+
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.keystore android-release-unsigned.apk OmniSeq
+
+//Passpharse:  OmniSeq
+
+./zipalign -v 4 android-release-unsigned.apk OmniSeq.apk

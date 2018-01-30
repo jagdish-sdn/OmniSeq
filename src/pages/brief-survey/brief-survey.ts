@@ -62,7 +62,6 @@ export class BriefSurveyPage {
     this.stateList();
     // this.briffSurveyForm.controls['Competitor'].patchValue('Foundation');
     this.briffSurveyForm.controls['role'].patchValue('Pathologist');
-
   }
 
   public submitSurvey() {
