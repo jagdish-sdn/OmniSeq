@@ -30,7 +30,7 @@ declare var cordova: any;
 declare var window: any;
 @Component({
   selector: 'page-app',
-  templateUrl: 'app.html'
+  templateUrl: 'app.html',
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;

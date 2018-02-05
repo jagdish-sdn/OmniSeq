@@ -11,6 +11,8 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'cancer.html',
 })
 export class CancerPage {
+  showControls: boolean = true;
+  scale: number = 1;
   searchText = {};
   geneList = {
     stage1: [],
@@ -21,9 +23,9 @@ export class CancerPage {
     stage6: [],
     stage7: []
   };
-  showMe : any;
+  showMe: any;
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
     public networkPro: NetworkProvider,
     public httpService: HttpServiceProvider,
@@ -44,10 +46,10 @@ export class CancerPage {
       this.httpService.getData("gene/search").subscribe(data => {
         if (data.status == 200) {
           this.storage.set('geneList', data.data);
-          data.data.map((item:any) => {
-            this.geneList['stage'+item.stage].push({ marker: item.marker, target: item.druggable_target });
-          });    
-        } else if(data.status == 203) {
+          data.data.map((item: any) => {
+            this.geneList['stage' + item.stage].push({ marker: item.marker, target: item.druggable_target });
+          });
+        } else if (data.status == 203) {
           this.events.publish("clearSession");
         } else {
           this.common.showToast(data.message);
@@ -60,8 +62,8 @@ export class CancerPage {
     } else {
       this.common.presentLoading();
       this.storage.get('geneList').then((val) => {
-        val.map((item:any) => {
-          this.geneList['stage'+item.stage].push({ marker: item.marker, target: item.druggable_target });
+        val.map((item: any) => {
+          this.geneList['stage' + item.stage].push({ marker: item.marker, target: item.druggable_target });
         });
         this.common.dismissLoading();
       });
@@ -69,7 +71,14 @@ export class CancerPage {
   }
 
   search(value) {
-    this.navCtrl.push(GenelistPage, {searchText : value});
+    this.navCtrl.push(GenelistPage, { searchText: value });
   }
 
+  afterZoomIn(event) {
+    console.log('After ZoomIn Event: ', event);
+  }
+
+  afterZoomOut(event) {
+    console.log('After ZoomOut Event: ', event);
+  }
 }

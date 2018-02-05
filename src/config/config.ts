@@ -14,7 +14,7 @@ export const CONFIG= {
         SessionMsg: "Session expired!"
     },
     ValidExpr: {
-        email: '^[a-zA-Z0-9]+[a-zA-Z0-9]+[a-zA-Z0-9._]+@[a-z]*[.]{1,1}[a-z]{2,5}$',
+        email: '^[ a-zA-Z0-9]+[a-zA-Z0-9]+[a-zA-Z0-9._]+@[a-z]*[.]{1,1}[a-z ]{2,5}$',
         contactLength: 10,
         firstname: '[a-zA-Z]*',
         lastname: '[a-zA-Z ]*',

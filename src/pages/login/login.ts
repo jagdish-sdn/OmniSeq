@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { NavController, NavParams, Events, Platform } from 'ionic-angular';
 import { NetworkProvider } from '../../providers/network/network';
 import { HttpServiceProvider } from '../../providers/http-service/http-service';
@@ -44,7 +44,19 @@ export class LoginPage {
       this.device_type = "iOS"
     } else {
       this.device_type = "Android";
-    }
+    }    
+  }
+  ngOnInit(){
+    this.loginForm.valueChanges
+    .map((value) => {
+        // Here you can manipulate your value        
+        value.email = value.email.trim();
+        return value;
+    })
+    // .filter((value) => this.loginForm.valid)
+    .subscribe((value) => {
+      this.loginForm.value.email = value.email;
+    });
   }
 
   /**
@@ -70,7 +82,6 @@ export class LoginPage {
    */
   login() {
     this.submitAttempt = true;
-    // this.navCtrl.setRoot(HomePage);
     if(this.loginForm.valid) {
       if(this.networkPro.checkNetwork() == true) {
         this.common.presentLoading();

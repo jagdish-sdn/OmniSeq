@@ -42,6 +42,8 @@ import { HttpServiceProvider } from '../providers/http-service/http-service';
 import { CommonProvider } from '../providers/common/common';
 import { SettingsProvider } from './../providers/settings/settings';
 import { SqliteStorageProvider } from '../providers/sqlite-storage/sqlite-storage';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ZoomAreaModule } from 'ionic2-zoom-area';
 
 @NgModule({
   declarations: [
@@ -71,10 +73,12 @@ import { SqliteStorageProvider } from '../providers/sqlite-storage/sqlite-storag
   imports: [
     BrowserModule,
     HttpModule,
+    BrowserAnimationsModule,
+    ZoomAreaModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot({
       name: '__omnidb',
-         driverOrder: ['indexeddb', 'sqlite', 'websql']
+      driverOrder: ['indexeddb', 'sqlite', 'websql'],
     })
   ],
   bootstrap: [IonicApp],
@@ -118,7 +122,8 @@ import { SqliteStorageProvider } from '../providers/sqlite-storage/sqlite-storag
     SqliteStorageProvider,
     FileTransfer,
     File,
-    AppVersion
+    AppVersion,
+    ZoomAreaModule
   ]
 })
 export class AppModule {}
