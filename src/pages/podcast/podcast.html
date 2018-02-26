@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Podcast</ion-title>
+  </ion-navbar>
+  <!-- <ion-searchbar [(ngModel)]="searchText.title" (ionInput)="searchepisode(searchText.title)" debounce=500 placeholder="Search Podcast Episode"></ion-searchbar> -->
+</ion-header>
+<ion-content class="body-content">
+  <!-- <div class="profileBlock" text-center>
+    <ion-avatar>
+      <img text-center class="userImage topic-img" src="{{topicDetail.imgUrl}}" />
+    </ion-avatar>
+    <div class="episod-title">
+      <p>{{topicDetail.title}}</p>
+      <p class="topicdesc">{{topicDetail.desc}}</p>
+    </div>
+    <div class="subscribe-btn">
+      <button ion-button padding text-center class="save-button" *ngIf="topicDetail.is_subscribe == false" (click)="subscribe()">Subscribe</button>
+      <button ion-button padding text-center class="save-button" *ngIf="topicDetail.is_subscribe == true" (click)="subscribe()">Unsubscribe</button>
+    </div>
+  </div> -->
+  <ion-searchbar [(ngModel)]="searchText.title" (ionInput)="searchepisode(searchText.title)" debounce=500 placeholder="Search Podcast Episode"></ion-searchbar>
+  <ion-list>
+    <ion-item class="settingBtn" *ngFor="let podcast of podcasts; let i=index;">
+      <ion-avatar (click)="currentTrack = podcast;playAudio(i);inItTrack = true;" item-left>
+        <img src="{{podcast.art}}">
+      </ion-avatar>
+      <!-- <button type="button" ion-button padding (click)="play(podcast, i);playAudio(i);inItTrack = true;">Play</button>
+      <button type="button" ion-button padding (click)="pauseSelectedTrack()">Pause</button> -->
+      <p (click)="goToPodcastDetail(podcast)" class="topic-title">{{podcast.title}}</p>
+      <span class="uploaded">{{podcast.date}}</span>
+      <p (click)="goToPodcastDetail(podcast)" class="topic-desc">{{podcast.desc}}</p>
+      <span (click)="downloadfile(podcast.contentUrl, i)" *ngIf="podcast.isDownloaded == false">
+        <ion-icon class="down-icon" name="md-download"></ion-icon>
+      </span>
+      <span (click)="deletefile(podcast.contentUrl, i, podcast.contentUrl)" *ngIf="podcast.isDownloaded == true">
+        <ion-icon class="down-icon" name="md-trash"></ion-icon>
+      </span>&nbsp;&nbsp;
+      <!-- <span (click)="checkPlay(podcast,i)" *ngIf="podcast.isDownloaded == true && podcast.isPlaying == false">
+        <ion-icon class="down-icon" name="md-play"></ion-icon>
+      </span>
+      <span (click)="pauseaudio(podcast,i)" *ngIf="podcast.isDownloaded == true && podcast.isPlaying == true">
+        <ion-icon class="down-icon" name="md-pause"></ion-icon>
+      </span> -->
+      <span class="duration">{{millisToMinutesAndSeconds(podcast.totalDuration)}}</span>
+    </ion-item>
+  </ion-list>
+  <div *ngIf="showMe">
+    <ion-list padding *ngIf="podcasts.length == 0">
+      <ion-item style="border-bottom:0 !important;" class="noRecordFoundImg" padding-top>
+        <img class="noRecordFound">
+      </ion-item>
+    </ion-list>
+  </div>
+  <ion-infinite-scroll *ngIf="podcasts.length !== totalRecords" (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
+<ion-footer *ngIf="currentPlay.title">
+  <ion-toolbar>
+    <ion-item class="footer-item">
+      <ion-avatar class="footer-avt" item-left>
+        <img src="{{currentPlay.art}}">
+      </ion-avatar>
+      <p class="topic-title-play">{{currentPlay.title}}</p>
+      <audio-track #audioTrack [track]="currentTrack" [autoplay]="true" (onFinish)="onTrackFinished($event)">
+        <div style="display: flex">
+          <audio-track-progress-bar *ngIf="audioTrack && !audioTrack.isLoading" duration progress [audioTrack]="audioTrack" style="width: 100%;margin-right: 10%;"></audio-track-progress-bar>
+        </div>
+        <div style="display: flex;">
+          <ion-spinner *ngIf="audioTrack && audioTrack.isLoading"></ion-spinner>
+        </div>
+        <div class="play-icon">
+          <ion-icon ios="ios-play" md="md-play" *ngIf="!trackPlay && !inItTrack" (click)="playMe();playPauseSong();inItTrack = true;"></ion-icon>
+          <ion-icon ios="ios-play" md="md-play" *ngIf="!trackPlay && inItTrack" (click)="playPauseSong();audioTrack.play()"></ion-icon>
+          <ion-icon ios="ios-pause" md="md-pause" id='yourId' *ngIf="trackPlay" (click)="playPauseSong();audioTrack.pause()"></ion-icon>
+        </div>
+      </audio-track>
+    </ion-item>
+  </ion-toolbar>
+</ion-footer>

@@ -15,6 +15,8 @@ export class GenelistPage {
   searchText: any;
   arr = [];
   showMe: any;
+  type: any = 'geneList';
+  listUrl: any = 'gene/search';
   constructor(
     public navCtrl: NavController,
     public networkPro: NetworkProvider,
@@ -29,9 +31,17 @@ export class GenelistPage {
     if (this.navparam.data.searchText) {
       this.searchText.name = this.navparam.data.searchText;
     }
+    if (this.navparam.data.type) {
+      this.type = this.navparam.data.type;
+      if (this.type == 'geneList') {
+        this.listUrl = 'gene/search';
+      } else {
+        this.listUrl = 'genecomprehensive/search';
+      }
+    }
     this.getGeneList(this.searchText.name ? this.searchText.name : '');
   }
-  
+
   /**Function for get the total no of Gene/marker/Functions
    * Created: 13-Nov-2017
    * Creatot: Jagdish Thakre
@@ -39,28 +49,28 @@ export class GenelistPage {
   getGeneList(q) {
     if (this.networkPro.checkOnline() == true) {
       this.common.presentLoading();
-      this.httpService.getData("gene/search").subscribe(data => {
+      this.httpService.getData(this.listUrl).subscribe(data => {
         if (data.status == 200) {
-          this.storage.set('geneList', data.data);
+          this.storage.set(this.type, data.data);
+          this.showMe = "show";
+          this.common.dismissLoading();
           this.geneList = data.data;
           this.arr = data.data;
           if (q != '') {
             this.search(q);
           }
-        }else if(data.status == 203) {
+        } else if (data.status == 203) {
           this.events.publish("clearSession");
         } else {
           this.common.showToast(data.message);
         }
-        this.showMe = "show";
-        this.common.dismissLoading();
       }, error => {
         this.showMe = "show";
         this.common.dismissLoading();
       });
-    }  else {
+    } else {
       this.common.presentLoading();
-      this.storage.get('geneList').then((val) => {
+      this.storage.get(this.type).then((val) => {
         this.geneList = val;
         this.arr = val;
         if (q != '') {
@@ -104,6 +114,6 @@ export class GenelistPage {
    * Creator : Jagdish Thakre
    */
   selectme(item) {
-    this.navCtrl.push(GenedetailPage, { data: item });
+    this.navCtrl.push(GenedetailPage, { data: item, type: this.type });
   }
 }

@@ -10,6 +10,7 @@
 <ion-content class="body-content">
   <ion-row>
     <ion-col>
+      <div *ngIf="type == 'geneList'">
       <ion-item class="settingBtn" *ngFor="let list of geneList" (click)="selectme(list)">
         <p class="marker">
           <img class="dotListIcon" /> {{list.marker}}</p>
@@ -17,6 +18,16 @@
         <p class="function-sub">{{list.irc_function}}</p>
         <p class="para-graph" text-wrap>{{list.biological_function}}</p>
       </ion-item>
+    </div>
+    <div *ngIf="type == 'comprehnsiveList'">
+      <ion-item class="settingBtn" *ngFor="let list of geneList" (click)="selectme(list)">
+        <p class="marker">
+          <img class="dotListIcon" /> {{list.gene_symbol}}</p>
+        <p class="function"> {{list.gene_name}}</p>
+        <p class="function-sub">{{list.gene_type}}</p>
+        <p class="para-graph" text-wrap>{{list.mutation_function}}</p>
+      </ion-item>
+    </div>
     </ion-col>
   </ion-row>
   <div *ngIf="showMe">

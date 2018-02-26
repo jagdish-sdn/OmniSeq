@@ -26,6 +26,7 @@ export class QuizPage {
   interval: any;
   extratPoints: any;
   ansSelected: boolean;
+  contentType : any = 'report';
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -36,6 +37,10 @@ export class QuizPage {
     public events: Events,
     public platform: Platform
   ) {
+
+    if (this.navParams.data.type) {
+      this.contentType = this.navParams.data.type;
+    } else {}
     if (this.networkPro.checkOnline() == true) {
       this.getQuestions();
       this.timer = 10;
@@ -54,7 +59,14 @@ export class QuizPage {
   getQuestions() {
     if (this.networkPro.checkNetwork() == true) {
       this.common.presentLoading();
-      this.httpService.getData("quiz/getquiz?limit=" + this.queLimit).subscribe(data => {
+      let queryString = '?limit='+this.queLimit;
+      if(this.contentType == 'report') {
+        queryString += "&type="+1;
+      } else {
+        queryString += "&type="+2;
+      }
+
+      this.httpService.getData("quiz/getquiz" + queryString).subscribe(data => {
         this.common.dismissLoading();
         if (data.status == 200) {
           this.queArr = data.data;
@@ -116,7 +128,7 @@ export class QuizPage {
     } else {
       clearInterval(this.interval);
       this.currentQue = {};
-      this.navCtrl.push(QuizCongratulationPage, { totalQue: this.queArr.length, correct_answer: this.correctAns, wrong: this.wrongAns, extra_points: this.extratPoints })
+      this.navCtrl.push(QuizCongratulationPage, { totalQue: this.queArr.length, correct_answer: this.correctAns, wrong: this.wrongAns, extra_points: this.extratPoints, type: this.contentType })
     }
   }
 

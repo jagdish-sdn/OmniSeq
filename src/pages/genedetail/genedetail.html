@@ -6,7 +6,7 @@
 <ion-content class="body-content">
   <form>
     <ion-row *ngIf="showMe">
-      <ion-col>
+      <ion-col *ngIf="type == 'geneList'">
         <div text-center class="TitleMain">
           <h2 class="timer">
             <span><strong>{{geneDetail.marker}}</strong></span>
@@ -19,7 +19,7 @@
           </ion-item> -->
           <ion-item class="settingBtn">
             <ion-label floating>Gene Name</ion-label>
-            <ion-input type="text" readonly name="name" value="{{geneDetail.name}}" class="input-text-color"></ion-input>
+            <ion-textarea row="5" type="text" readonly name="name" value="{{geneDetail.name}}" class="input-text-color"></ion-textarea>
           </ion-item>
           <ion-item class="settingBtn">
             <ion-label floating>Mechanism of Action</ion-label>
@@ -39,7 +39,8 @@
           </ion-item>
           <ion-item class="settingBtn">
             <ion-label floating>Alias</ion-label>
-            <ion-input type="text" readonly name="alias" value="{{geneDetail.alias}}" class="input-text-color"></ion-input>
+            <ion-textarea type="text" readonly text-wrap name="alias" value="{{geneDetail.alias}}" class="input-text-color" row="5"></ion-textarea>
+            <!-- <ion-input type="text" readonly name="alias" value="{{geneDetail.alias}}" class="input-text-color"></ion-input> -->
           </ion-item>
           <ion-item padding-top class="settingBtn">
             <div *ngIf="geneDetail.marker" class="stageTxt stage{{geneDetail.stage}}">{{geneDetail.marker}}</div>
@@ -47,6 +48,56 @@
           </ion-item>
         </div>
       </ion-col>
+      <ion-col *ngIf="type == 'comprehnsiveList'">
+          <div text-center class="TitleMain">
+            <h2 class="timer">
+              <span><strong>{{geneDetail.gene_symbol}}</strong></span>
+            </h2>
+          </div>
+          <div class="main-div">
+            <ion-item class="settingBtn">
+              <ion-label floating>Gene Name</ion-label>
+              <ion-input type="text" readonly name="gene_name" value="{{geneDetail.gene_name}}" class="input-text-color"></ion-input>
+            </ion-item>
+            <ion-item class="settingBtn">
+                <ion-label floating>Gene Type</ion-label>
+                <ion-input type="text" readonly name="gene_type" value="{{geneDetail.gene_type}}" class="input-text-color"></ion-input>
+              </ion-item>
+            <ion-item class="settingBtn">
+              <ion-label floating>Variant Type Identified</ion-label>
+              <ion-textarea type="text" readonly text-wrap name="variant_type" value="{{geneDetail.variant_type}}" class="input-text-color" row="5"></ion-textarea>
+            </ion-item>
+            <ion-item class="settingBtn">
+              <ion-label floating>Hereditary</ion-label>
+              <ion-input type="text" readonly name="hereditary" value="{{geneDetail.hereditary}}" class="input-text-color"></ion-input>
+            </ion-item>
+            <ion-item class="settingBtn">
+              <ion-label floating>Hallmark of Cancer</ion-label>
+              <ion-input type="text" readonly name="hallmark" value="{{geneDetail.hallmark}}" class="input-text-color"></ion-input>
+            </ion-item>
+            <ion-item class="settingBtn">
+              <ion-label floating>Therapeutic mechanism of action</ion-label>
+              <ion-textarea type="text" readonly name="therapeutic" value="{{geneDetail.therapeutic}}" class="input-text-color" row="5"></ion-textarea>
+            </ion-item>
+            <ion-item class="settingBtn">
+                <ion-label floating>Mutation Function</ion-label>
+                <ion-textarea type="text" readonly name="mutation_function" value="{{geneDetail.mutation_function}}" class="input-text-color" row="5"></ion-textarea>
+              </ion-item>
+              <ion-item class="settingBtn">
+                  <ion-label floating>Antagonist</ion-label>
+                  <ion-input type="text" readonly name="target_pecific_agonist" value="{{geneDetail.target_pecific_agonist}}" class="input-text-color" ></ion-input>
+                </ion-item>
+            <ion-item class="settingBtn">
+              <ion-label floating>Alias</ion-label>
+              <ion-textarea type="text" readonly text-wrap name="comalias" value="{{geneDetail.alias}}" class="input-text-color" row="5"></ion-textarea>
+              <!-- <ion-input type="text" readonly name="alias" value="{{geneDetail.alias}}" class="input-text-color"></ion-input> -->
+            </ion-item>
+            <!-- <ion-item padding-top class="settingBtn" *ngIf="type != 'geneList'">
+              <div *ngIf="geneDetail.marker" class="stageTxt stage{{geneDetail.stage}}">{{geneDetail.marker}}</div>
+              <img class="geneImg" />
+            </ion-item> -->
+          </div>
+        </ion-col>
     </ion-row>
   </form>
 </ion-content>

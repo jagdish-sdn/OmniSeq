@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
+import { ComprehensivePage} from '../comprehensive/comprehensive';
 
 @IonicPage()
 @Component({
@@ -25,11 +26,15 @@ export class QuizCongratulationPage {
   }
 
   public nextScreen(){
-    this.navCtrl.setRoot(HomePage);
+    if(this.navParams.data.type == 'report') {
+      this.navCtrl.setRoot(HomePage);
+    } else {
+      this.navCtrl.setRoot(ComprehensivePage);
+    }
   }
 
   ionViewWillLeave() {
-    this.navCtrl.setRoot(HomePage);
+    this.nextScreen();
   }
 
 }

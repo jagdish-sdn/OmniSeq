@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, Events, NavParams } from 'ionic-angular';
+import { NavController, Events, NavParams, Platform } from 'ionic-angular';
 import { NetworkProvider } from '../../providers/network/network';
 import { HttpServiceProvider } from '../../providers/http-service/http-service';
 import { CommonProvider } from '../../providers/common/common';
@@ -25,10 +25,17 @@ export class CompanionPage {
     public common: CommonProvider,
     public events: Events,
     private storage: Storage, 
-    private file: File
+    private file: File,
+    public platform: Platform
   ) {
     this.getCompanyList();
-    this.fileDir = this.file.dataDirectory;
+    if (this.platform.is("android")) {
+      this.fileDir = this.file.externalRootDirectory + 'OmniSeq/';
+    } else {
+      let imgsrc = this.file.documentsDirectory;;
+      this.fileDir = imgsrc.replace(/^file:\/\//, '');
+    }
+    // this.fileDir = this.file.externalRootDirectory + 'OmniSeq/';//this.file.dataDirectory;
     this.isOnline = this.networkPro.checkOnline();
   }
 

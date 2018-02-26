@@ -38,3 +38,12 @@ npm install --save @ionic-native/file
 ionic cordova plugin add cordova-plugin-app-version
 npm install --save @ionic-native/app-version
 
+/*Audio Plugin*/
+npm install --save ionic-audio@3.2.0
+
+/*Check File Write Permission*/
+cordova plugin add cordova-plugin-android-permissions@0.10.0
+
+/*Market Plugin*/
+ionic cordova plugin add cordova-plugin-market
+npm install --save @ionic-native/market

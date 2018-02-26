@@ -69,12 +69,41 @@ page-brief-survey {
         // border-bottom: 1px solid #1a5293;
     }
     .square-box{
-        border: 1px solid;
+        border: 1px solid #ccc;
         padding: inherit;
         margin-top: 4px;
     }
     .dark-theme .item-md.item-block .item-inner {
         border-bottom: 1px solid #fff !important;
     }
+    .toggle-status{
+        position: absolute;
+        right: 27px;
+        top: 0;
+        font-weight: 700;
+    }
+    .toggle-status.s1{
+        top: 20px !important;
+    }
+    .s2{
+        top: 13px !important;
+    }
+    @media only screen and (min-width: 600px) {
+        .togglech .item-inner{
+            padding-top: 30px;
+        }        
+    }
+    // .toggle-md .toggle-icon {
+    //     background-color: red !important;
+    // }
+    // .toggle-md .toggle-inner{
+    //     background-color: red !important;
+    // }
+    // .toggle-md.toggle-checked .toggle-icon {
+    //     background-color: #000 !important;
+    // }
+    // .toggle-md.toggle-checked .toggle-inner{
+    //     background-color: #000 !important;
+    // }
     
 }

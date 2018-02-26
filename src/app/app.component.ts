@@ -4,6 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { FCM } from '@ionic-native/fcm';
 import { AppVersion } from '@ionic-native/app-version';
+import { Market } from '@ionic-native/market';
 
 import { HttpServiceProvider } from '../providers/http-service/http-service';
 import { CommonProvider } from '../providers/common/common';
@@ -24,6 +25,10 @@ import { GenelistPage } from '../pages/genelist/genelist';
 import { GenedetailPage } from '../pages/genedetail/genedetail';
 import { CompanionDetailPage } from '../pages/companion-detail/companion-detail';
 import { WelcomePage } from '../pages/welcome/welcome';
+import { PodcastDetailPage } from '../pages/podcast-detail/podcast-detail'
+import { BriefSurveyPage } from '../pages/brief-survey/brief-survey';
+import { PodcastTopicPage } from '../pages/podcast-topic/podcast-topic';
+import { ComprehensivePage } from '../pages/comprehensive/comprehensive';
 //import { from } from 'rxjs/observable/from';
 
 declare var cordova: any;
@@ -39,6 +44,7 @@ export class MyApp {
   userId = localStorage.getItem('UserId');
   selectedTheme: String;
   pages: Array<{ title: string, component: any, icon: any }>;
+  sideMenu: any;
 
   constructor(
     public platform: Platform,
@@ -53,21 +59,20 @@ export class MyApp {
     public menu: MenuController,
     public sqlite: SqliteStorageProvider,
     public networkPro: NetworkProvider,
-    private appVersion: AppVersion
+    private appVersion: AppVersion,
+    private market: Market
   ) {
+    this.sideMenu = "report";
     /*used for an example of ngFor and navigation*/
     this.pages = [
       { title: 'Home', component: WelcomePage, icon: "home.png" },
-      { title: 'OmniSeq / LabCorp', component: HomePage, icon: "menu-icon.png" },
-      { title: 'Gene LookUp', component: GenelistPage, icon: "GeneLookup_sidemenu.png" },
-      { title: 'Companion / Complementary Dx', component: CompanionPage, icon: "CancerImmuneCycle_sidemenu.png" },
-      { title: 'Cancer Immune Cycle', component: CancerPage, icon: "Companion_ComplementaryDx_sidemenu.png" },
-      { title: 'FAQ', component: FaqPage, icon: "FAQs_sidemenu.png" },
-      { title: 'Ask a Question', component: AskQuestionPage, icon: "AskaQuestion_sidemenu.png" },
-      { title: 'Quiz', component: QuizPage, icon: "QuizMe_sidemenu.png" },
+      { title: 'OmniSeq Report Card', component: HomePage, icon: "reportcard.png" },
+      { title: 'Comprehensive', component: ComprehensivePage, icon: "comprehnsv.png" },
+      { title: 'Call-de Brief Survey', component: BriefSurveyPage, icon: "survey.png" },
+      { title: 'Podcast', component: PodcastTopicPage, icon: "podcast.png" },
       { title: 'Settings', component: SettingPage, icon: "Settings.png" },
     ];
-    
+
     this.events.subscribe("userProfile", () => {
       this.profileInfo();
     });
@@ -80,6 +85,41 @@ export class MyApp {
     this.events.subscribe("sqliteStorage", () => {
       this.storeData();
     });
+    this.events.subscribe("sideMenuBlog", (data) => {
+      if (data == 'welcome') {
+        this.pages = [
+          { title: 'Home', component: WelcomePage, icon: "home.png" },
+          { title: 'OmniSeq Report Card', component: HomePage, icon: "reportcard.png" },
+          { title: 'Comprehensive', component: ComprehensivePage, icon: "comprehnsv.png" },
+          { title: 'Call-de Brief Survey', component: BriefSurveyPage, icon: "survey.png" },
+          { title: 'Podcast', component: PodcastTopicPage, icon: "podcast.png" },
+          { title: 'Settings', component: SettingPage, icon: "Settings.png" }
+        ];
+      } else if (data == 'report') {
+        this.pages = [
+          { title: 'Home', component: WelcomePage, icon: "home.png" },
+          { title: 'OmniSeq / LabCorp', component: HomePage, icon: "menu-icon.png" },
+          { title: 'Gene LookUp', component: GenelistPage, icon: "GeneLookup_sidemenu.png" },
+          { title: 'Companion / Complementary Dx', component: CompanionPage, icon: "CancerImmuneCycle_sidemenu.png" },
+          { title: 'Cancer Immune Cycle', component: CancerPage, icon: "Companion_ComplementaryDx_sidemenu.png" },
+          { title: 'FAQ', component: FaqPage, icon: "FAQs_sidemenu.png" },
+          { title: 'Ask a Question', component: AskQuestionPage, icon: "AskaQuestion_sidemenu.png" },
+          { title: 'Quiz', component: QuizPage, icon: "QuizMe_sidemenu.png" },
+          { title: 'Settings', component: SettingPage, icon: "Settings.png" },
+        ];
+      } else if (data == 'comprehnsive') {
+        this.pages = [
+          { title: 'Home', component: WelcomePage, icon: "home.png" },
+          { title: 'Comprehensive', component: ComprehensivePage, icon: "comprehnsv.png" },
+          { title: 'Comprehensive Gene LookUp', component: GenelistPage, icon: "GeneLookup_sidemenu.png" },
+          { title: 'Companion / Complementary Dx', component: CompanionPage, icon: "CancerImmuneCycle_sidemenu.png" },
+          { title: 'FAQ', component: FaqPage, icon: "FAQs_sidemenu.png" },
+          { title: 'Ask a Question', component: AskQuestionPage, icon: "AskaQuestion_sidemenu.png" },
+          { title: 'Quiz', component: QuizPage, icon: "QuizMe_sidemenu.png" },
+          { title: 'Settings', component: SettingPage, icon: "Settings.png" },
+        ];
+      }
+    });
 
     if (this.userId) {
       if (this.networkPro.checkOnline() == true) {
@@ -90,7 +130,7 @@ export class MyApp {
             this.storeData();
             this.profileInfo();
             this.rootPage = WelcomePage;
-          } else if(data.status == 203) {
+          } else if (data.status == 203) {
             this.clearSession();
           } else {
             this.storeData();
@@ -108,18 +148,20 @@ export class MyApp {
     } else {
       this.rootPage = LoginPage;
     }
-    this.settings.getActiveTheme().subscribe(val => this.selectedTheme = val);
-    this.statusBar.backgroundColorByHexString('#1a5293');
-    this.initializeApp();
+
+    this.settings.getActiveTheme().subscribe(val => this.selectedTheme = val);    
+    this.initializeApp();    
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
+      // this.checkFileWritePermission();
       this.push();
       this.checkVersion();
       this.statusBar.styleDefault();
+      this.statusBar.backgroundColorByHexString('#1a5293');
       if (window.cordova && window.cordova.plugins.Keyboard) {
-        cordova.plugins.Keyboard.disableScroll(true);
+        // cordova.plugins.Keyboard.disableScroll(true);
       }
       this.splashScreen.hide();
 
@@ -130,7 +172,7 @@ export class MyApp {
           this.menu.close()
         } else if (view.component.name == 'QuizCongratulationPage') {
           this.nav.setRoot(HomePage);
-        } else if(view.component.name == 'HomePage'){
+        } else if (view.component.name == 'HomePage') {
           this.nav.setRoot(WelcomePage);
         } else if (this.nav.canGoBack()) {
           this.nav.pop();
@@ -173,8 +215,14 @@ export class MyApp {
             case "new_companion":
               this.nav.push(CompanionDetailPage, { id: data.id })
               break;
+            case "new_genecomprehensive":
+              this.nav.push(GenedetailPage, { data:{ '_id': data.id }, type:'comprehnsiveList' })
+              break;
+            case "new_episode":
+              this.nav.push(PodcastDetailPage, { id: data.id })
+              break;
           }
-        } else {}
+        } else { }
       })
     } else {
       localStorage.setItem("device_token", "fTXe0lTVUSU:APA91bGGrbHYkcGTZrSM9mwUSa7XO6Yshm9NXpFPU70nnJ0QuPIfvVS-WjtvhEwsy5_bF6Fv15yu79t6tf-R6z_MVEpBQphU52jOuEvmho6FGCZiqKGUugbBkv6VkcChS3jF0oru36E6");
@@ -182,7 +230,7 @@ export class MyApp {
   }
 
   checkVersion() {
-    if (this.platform.is('cordova')) {      
+    if (this.platform.is('cordova')) {
       this.httpService.getData("user/getappversion").subscribe(data => {
         if (data.status == 200) {
           this.appVersion.getVersionNumber().then((val) => {
@@ -194,27 +242,29 @@ export class MyApp {
                   text: 'Ok',
                   handler: () => {
                     if (this.platform.is('ios')) {
-                      window.open('itms-apps://itunes.apple.com/us/app/domainsicle-domain-name-search/id511364723?ls=1&mt=8'); // or itms://
+                      this.market.open('com.healthcare.omniseq');
+                      // window.open('itms-apps://itunes.apple.com/us/app/domainsicle-domain-name-search/id511364723?ls=1&mt=8'); // or itms://
                     } else if (this.platform.is('android')) {
+                      // this.market.open('com.medikabazaar.app');
                       window.open('market://details?id=com.healtcare.omniseq');
                     }
                   }
                 }
               ]
             });
-              if(this.platform.is('android')){
-                if(val !== data.data.android_play_store_version){
-                  alert.present();
-                }
-              } else if(this.platform.is('ios')) {
-                if(val !== data.data.apple_itune_version){
-                  alert.present();
-                }
-              } else {
+            if (this.platform.is('android')) {
+              if (val !== data.data.android_play_store_version) {
                 alert.present();
               }
+            } else if (this.platform.is('ios')) {
+              if (val !== data.data.apple_itune_version) {
+                alert.present();
+              }
+            } else {
+              alert.present();
+            }
           });
-        } else if(data.status == 203) {
+        } else if (data.status == 203) {
           this.clearSession();
         } else {
           this.common.showToast(data.message);
@@ -232,8 +282,18 @@ export class MyApp {
       } else {
         this.common.showToast(CONFIG.MESSAGES.NetworkMsg);
       }
-    } else if(page.Component == WelcomePage) {
+    } else if (page.title === "Home") {
       this.nav.setRoot(page.component);
+    } else if (page.title === "OmniSeq / LabCorp") {
+      this.nav.setRoot(page.component);
+    } else if (page.title === "OmniSeq Report Card") {
+      this.nav.setRoot(page.component);
+    } else if (page.title === "Gene LookUp") {
+      this.nav.push(page.component, { type: 'geneList' });
+    } else if (page.title === "Comprehensive") {
+      this.nav.setRoot(page.component);
+    } else if (page.title === "Comprehensive Gene LookUp") {
+      this.nav.push(page.component, { type: 'comprehnsiveList' });
     } else {
       this.nav.push(page.component);
     }
@@ -310,5 +370,36 @@ export class MyApp {
    */
   storeData() {
     this.sqlite.storeOfflineData();
+  }
+
+  /**Function created for file write permission
+   * Created : 16 Feb 2018
+   * Creator : Jagdish Thakre
+   */
+  checkFileWritePermission() {
+    if (this.platform.is('cordova') && this.platform.is("android")) {
+      let permissions = cordova.plugins.permissions;
+      permissions.hasPermission(permissions.READ_EXTERNAL_STORAGE, function (status) {
+        if (!status.hasPermission) {
+          var errorCallback = function () {
+            console.warn('Storage permission is not turned on');
+            return false;
+          }
+          permissions.requestPermission(
+            permissions.READ_EXTERNAL_STORAGE,
+            function (status) {
+              if (!status.hasPermission) {
+                errorCallback();
+              } else {
+                console.log("you have permission");
+                return true;
+                // continue with downloading/ Accessing operation 
+                // this.downloadfile();
+              }
+            },
+            errorCallback);
+        }
+      }, null);
+    } else { }
   }
 }

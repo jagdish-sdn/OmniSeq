@@ -12,6 +12,7 @@ import { CancerPage } from '../cancer/cancer';
 import { QuizPage } from '../quiz/quiz';
 import { NotificationsPage } from '../notifications/notifications';
 import { CONFIG } from '../../config/config';
+import { StatusBar } from '@ionic-native/status-bar';
 
 @Component({
   selector: 'page-home',
@@ -24,12 +25,14 @@ export class HomePage {
   searchText;
   counter: any = 0;
   constructor(
+    public statusBar: StatusBar,
     public navCtrl: NavController,
     public networkPro: NetworkProvider,
     public httpService: HttpServiceProvider,
     public common: CommonProvider,
     public events: Events
   ) {
+    this.statusBar.backgroundColorByHexString('#133D6C');
     this.autoCompleteArr = [];
     this.searchedItems = [];
     this.searchText = {};
@@ -38,8 +41,9 @@ export class HomePage {
   public returnBlank() {
       this.searchedItems = Object.assign([], this.selectedItme);
   }
-
+  
   public ionViewDidEnter(){
+    this.events.publish("sideMenuBlog",'report');
     this.getNotifications();
   }
 
@@ -98,7 +102,7 @@ export class HomePage {
   
   public goToNoti(){
     if (this.networkPro.checkOnline() == true) {
-      this.navCtrl.push(NotificationsPage);
+      this.navCtrl.push(NotificationsPage, {type:1});
     }else {
       this.common.showToast(CONFIG.MESSAGES.NetworkMsg);
     }
@@ -107,7 +111,7 @@ export class HomePage {
   public getNotifications() {
     if (this.networkPro.checkOnline() == true) {
       // this.common.presentLoading();
-      this.httpService.getData("appuser/getmynotifications").subscribe(data => {
+      this.httpService.getData("appuser/getmynotifications?type=1").subscribe(data => {
         // this.common.dismissLoading();
         if (data.status == 200) {
           this.counter = data.data.length;                    

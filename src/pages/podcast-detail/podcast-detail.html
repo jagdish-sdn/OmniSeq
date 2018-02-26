@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{podDetail.title}}</ion-title>
+    <ion-buttons end>
+      <!-- <button ion-button icon-only type="button" (click)="goToNoti()">
+        <ion-icon ios="ios-star-outline" md="md-star-outline"></ion-icon>
+      </button> -->
+      <button ion-button icon-only type="button" *ngIf="podDetail.isDownloaded == false" (click)="downloadfile(podDetail.src)">
+        <ion-icon class="down-icon" name="md-download"></ion-icon>
+      </button>
+      <button ion-button icon-only type="button" *ngIf="podDetail.isDownloaded == true" (click)="deletefile(podDetail.src, podDetail.contentUrl)">
+        <ion-icon class="down-icon" name="md-trash"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content class="body-content">
+  <div *ngIf="showMe">
+  <div class="profileBlock" text-center>
+    <ion-avatar>
+      <img text-center class="userImage" src="{{podDetail.art}}" />
+    </ion-avatar>
+    <!-- <div class="episod-title"><ion-icon ios="ios-star-outline" md="md-star-outline"></ion-icon>        
+      <p>{{podDetail.title}}</p>
+    </div> -->
+    <!-- <div class="subscribe-btn">
+      <button ion-button padding text-center class="save-button" (click)="subscribe()">Subscribe</button>
+    </div> -->
+  </div>
+  <ion-item class="settingBtn episode-detail">
+    <div class="episode-bottom">
+      <span class="episode-date">
+        <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon> {{podDetail.date || ' 01/01/18'}}
+      </span>
+      <span class="episode-duration">
+        <ion-icon ios="ios-stopwatch" md="md-stopwatch"></ion-icon> {{millisToMinutesAndSeconds(podDetail.totalDuration)}} 
+        <!-- </span> -->
+        <!-- <span class="episode-size"> -->
+        <ion-icon ios="ios-square" md="md-square"></ion-icon> {{podDetail.size}}
+      </span>
+    </div>
+  </ion-item>
+  <ion-item class="settingBtn">
+    <p class="topictitle" text-wrap>{{podDetail.title}}</p>
+    <p class="topic-desc" text-wrap>{{podDetail.desc}}</p>
+  </ion-item>
+</div>
+</ion-content>
+<ion-footer *ngIf="showMe">
+  <ion-toolbar>
+    <ion-item class="footer-item">
+      <ion-avatar class="footer-avt" item-left>
+        <img src="{{podDetail.art}}">
+      </ion-avatar>
+      <p class="topic-title-play">{{podDetail.title}}</p>
+      <!-- <p class="play-desc">{{podDetail.desc}}</p> -->
+      <audio-track #audioTrack [track]="currentTrack" [autoplay]="true" (onFinish)="onTrackFinished($event)">
+        <div style="display: flex">
+          <audio-track-progress-bar *ngIf="audioTrack && !audioTrack.isLoading" duration progress [audioTrack]="audioTrack" style="width: 85%;margin-right: 10%"></audio-track-progress-bar>
+        </div>
+        <div style="display: flex;">
+          <ion-spinner *ngIf="audioTrack && audioTrack.isLoading"></ion-spinner>
+        </div>
+        <div class="play-icon">
+          <ion-icon ios="ios-play" md="md-play" *ngIf="!trackPlay && !inItTrack" (click)="playMe();playPauseSong();inItTrack = true;"></ion-icon>
+          <ion-icon ios="ios-play" md="md-play" *ngIf="!trackPlay && inItTrack" (click)="playPauseSong();audioTrack.play()"></ion-icon>
+          <ion-icon ios="ios-pause" md="md-pause" id='trackDId' *ngIf="trackPlay" (click)="playPauseSong();audioTrack.pause()"></ion-icon>
+        </div>
+      </audio-track>
+    </ion-item>
+  </ion-toolbar>
+</ion-footer>

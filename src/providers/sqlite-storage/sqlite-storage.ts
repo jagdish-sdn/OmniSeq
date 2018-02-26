@@ -6,6 +6,7 @@ import { HttpServiceProvider } from '../../providers/http-service/http-service';
 import { CommonProvider } from '../../providers/common/common';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
+import { Platform } from 'ionic-angular/platform/platform';
 
 @Injectable()
 export class SqliteStorageProvider {
@@ -17,9 +18,9 @@ export class SqliteStorageProvider {
     public common: CommonProvider,
     public events: Events,
     private transfer: FileTransfer, 
-    private file: File
-  ) {
-    
+    private file: File,
+    private platform: Platform
+  ) {    
   }
 
   /**
@@ -88,7 +89,14 @@ export class SqliteStorageProvider {
             let url = tempArr[i].logo;
             let filename = imgSplit[imgSplit.length - 1 ];
             tempArr[i].basename = filename;
-            fileTransfer.download(url, this.file.dataDirectory + filename).then((entry) => {
+            let target = '';
+            if (this.platform.is("android")) {
+              target = this.file.externalRootDirectory + 'OmniSeq/';
+            } else {
+              target = this.file.documentsDirectory;
+            }
+            fileTransfer.download(url, target + filename).then((entry) => {
+              // console.log("file download", entry);
             }, (error) => {
               console.log("image download error ", error);
             });

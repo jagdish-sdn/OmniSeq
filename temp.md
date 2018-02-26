@@ -6,3 +6,5 @@
 "CITY": /^[a-zA-Z . \-\']*$/,        
 "EMAIL": /^[a-zA-Z0-9]+[a-zA-Z0-9]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/,        "POSTAL_CODE": /(^\d{5}$)^\d{5}-\d{4}$)/,        
 "PASSWORD": /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{5,15}$/,+
+
+https://docs.google.com/spreadsheets/d/1iVPpzN52KCcEQG-DFQe3JWfzm2IWBbGKzBawZw3JoBg/edit#gid=0

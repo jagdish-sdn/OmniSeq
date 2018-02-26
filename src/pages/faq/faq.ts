@@ -18,6 +18,7 @@ export class FaqPage {
   searchText = {};
   arr: any = [];
   shownGroup = null;
+  contentType: any = 'report';
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -28,9 +29,13 @@ export class FaqPage {
     private storage: Storage
   ) {
     this.faqArr = [];
+    
+    if (this.navParams.data.type) {
+      this.contentType = this.navParams.data.type;
+    } else {}
     this.faqList('');
   }
-  
+
   /**Function for get faq list from server 
    * Created : 17-Nov-2017
    * Creator : Jagdish Thakre
@@ -39,10 +44,15 @@ export class FaqPage {
     if (this.networkPro.checkOnline() == true) {
       if (this.page == 1) {
         this.common.presentLoading();
-      }
+      } else { }
       let queryString = "?limit=" + this.limit + "&page=" + this.page;
       if (q != '') {
         queryString += "&question=" + q;
+      } else { }
+      if(this.contentType == 'report') {
+        queryString += "&type="+1;
+      } else {
+        queryString += "&type="+2;
       }
       this.httpService.getData("faq/getall" + queryString).subscribe(data => {
         if (data.status == 200) {
@@ -57,7 +67,7 @@ export class FaqPage {
           if (data.data.data.length > 0) {
             this.page += 1;
           }
-        } else if(data.status == 203) {
+        } else if (data.status == 203) {
           this.events.publish("clearSession");
         } else {
           this.common.showToast(data.message);
@@ -70,9 +80,7 @@ export class FaqPage {
       }, error => {
         console.log("Error=> ", error);
         this.showMe = "show";
-        if (this.page == 1) {
-          this.common.dismissLoading();
-        }
+        this.common.dismissLoading();
       });
     } else {
       if (q == '') {

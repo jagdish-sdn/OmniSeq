@@ -4,6 +4,9 @@ page-home {
         text-align: center;
         height: 100%;
     }
+    ion-card.card.card-ios{
+        height: 22vh !important;
+    }
     ion-card img {
         width: 50%;
         padding-top: 16px;
@@ -18,30 +21,24 @@ page-home {
     }
 
     .autocomplete {
-        width: 100%;
-    
+        width: 100%;    
         ion-searchbar {
             padding: 1px !important;
-        }
-    
+        }    
         ion-list {
             position: absolute;
             width: inherit;
-            overflow-y: scroll;
-            
-        padding: 0px;max-height: 150%;
-            z-index: 999;
-    
-            ion-item {
-    
+            overflow-y: scroll;            
+            padding: 0px;max-height: 150%;
+            z-index: 999;    
+            ion-item {    
                 img {
                     max-height: 2.5rem;
                     width: auto;
                     margin: auto;
                     display: block;
                 }
-            }
-    
+            }    
             ion-item:hover {
                 cursor: pointer;
                 background: #f1f1f1
@@ -73,5 +70,12 @@ page-home {
     .counter span {
         position: relative;
         top: 1px;
+    }
+    .header-img{
+        width: 182px;
+        height: 35px;
+        margin-top: 6px;
+        margin-left: 30px;
+        // margin-bottom: 5px;
     }
 }

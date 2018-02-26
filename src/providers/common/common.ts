@@ -73,4 +73,17 @@ export class CommonProvider {
     this.loading.present();
   }
 
+  presentDownloading() {
+    this.loading = this.loadingCtrl.create({
+      content: 'Please wait, Downloading is in progress...'
+    });
+  
+    this.loading.present();
+  }
+
+  millisToMinutesAndSeconds(millis) {
+    let minutes = Math.floor(millis / 60);
+    let seconds = parseInt((millis % 60).toFixed(0));
+    return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+  }
 }

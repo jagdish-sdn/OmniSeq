@@ -1,0 +1,30 @@
+Hello All,
+
+Today's MOM of scrum meeting.
+
+Jagdish Thakre:
+==========
+1) Remove podcast topic page.
+2) Change side-menu icons accordingly.
+3) Add Yes/No on toggle change in call-de brief survey page.
+4) Implement podcast audio download functionality in iOS.
+
+
+Swapnali J:
+===============
+1) Remove Podcast topic from API and admin.
+2) Update episodes to Podcast and remove topic option while adding episode.
+3) Update DB accordingly.
+
+1. Sort episodes by topic.
+2. Pagination issue fixing.
+3. Send size of episode content with proper parameter in API.
+4. Delete episodes by topic.
+
+
+
+1) Subscribe functionality in podcast.
+2) Get audio duration from URL.
+3) Podcast audio player issues.
+4) Download functionality.
+5) Notification functionality.

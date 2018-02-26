@@ -12,8 +12,8 @@ page-welcome {
     }
     .call-brief{
         font-weight: bold;
-        font-size: x-large;
-    }
+        font-size: 2.5rem;;
+    }    
     .toolbar-background {
         background-color: #fff !important;
     }
@@ -22,5 +22,42 @@ page-welcome {
     }
     .coming-soon{
         font-weight: 500;
+    }
+    .bar-button{
+        color: #1a5293 !important;
+    }
+    .label{
+        margin: 0 !important;
+    }
+    .item{
+        padding-left: 0 !important;
+    }
+    .call-brief-item{
+        border: 1px solid #cccccc;
+        margin-bottom: 6px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+    @media only screen and (min-width: 600px)  {        
+        ion-content.body-content.content.content-md{
+            float: left;
+            width: 100%;
+            margin-top: 130px;
+        }
+        .image-logo{
+            width: 50%;
+        }
+        .scroll-content{
+            margin-top: 0 !important;
+        }
+        .toolbar.toolbar-ios{
+            height: 7vh;
+        }
+        .header-img{
+            width: 300px;
+        }
+        .logo1{
+            margin-top: 45px;
+        }
     }
 }

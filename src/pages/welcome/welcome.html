@@ -1,27 +1,36 @@
 <ion-header>
   <ion-navbar>
-    <div text-center>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
       <img src="assets/images/2.png" class="header-img" />
-    </div>
+    </ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding class="body-content">
   <ion-item (click)="goToHome()" text-center>
-    <img src="assets/images/1.png" />
+    <img class="image-logo logo1" src="assets/images/1.png" />
   </ion-item>
-  <ion-item text-center (click)="goToCallBrief()">
+  <ion-item text-center>
+    <img class="image-logo" (click)="goToComprensive()" src="assets/images/3.png" />
+    <!-- <div class="coming-soon">Coming Soon</div> -->
+  </ion-item>
+  <ion-item class="call-brief-item" text-center (click)="goToCallBrief()">
     <h3 class="call-brief">Call De-Brief Survey</h3>
   </ion-item>
-  <ion-item text-center>
-    <img src="assets/images/3.png" />
-    <div class="coming-soon">Coming Soon</div>
+  <ion-item class="call-brief-item" text-center (click)="goToPodcast()">
+    <h3 class="call-brief">Podcasts</h3>
   </ion-item>
-  <ion-item text-center>
+  <ion-item class="call-brief-item" text-center>
+    <h3 class="call-brief" (click)="busDev()">Business Dev. Survey</h3>
+  </ion-item>
+  <!-- <ion-item text-center>
     <img style="width:100%;" src="assets/images/4.png" />
-  </ion-item>
+  </ion-item> -->
 </ion-content>
 <ion-footer>
   <ion-item text-center>
-    <h4 text-center class="version">Version: {{version}} Lasted Update: 17-Jan-2018</h4>
+    <h4 text-center class="version">Version: {{version}} Lasted Update: {{updateDate}}</h4>
   </ion-item>
 </ion-footer>

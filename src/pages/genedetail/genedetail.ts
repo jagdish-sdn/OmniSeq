@@ -14,6 +14,8 @@ export class GenedetailPage {
   geneDetail: any;
   geneList: any = [];
   showMe: boolean = false;
+  type: any ='geneList';
+  listUrl: any = 'gene/search';
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -21,14 +23,23 @@ export class GenedetailPage {
     public networkPro: NetworkProvider,
     public common: CommonProvider,
     public events: Events,
-    private storage: Storage
-    
+    private storage: Storage,
+    public navparam: NavParams    
   ) {
-    this.geneDetail = {};
-    this.storage.get('geneList').then((val) => {
+    this.geneDetail = {};    
+    if(this.navparam.data.type){
+      this.type = this.navparam.data.type;
+      console.log("this.type ", this.type);
+      if(this.type == 'geneList') {
+        this.listUrl = 'gene/search';
+      } else {
+        this.listUrl = 'genecomprehensive/search';
+      }      
+    } else {}
+    this.storage.get(this.type).then((val) => {
       this.geneList = val;
       this.getGeneDetail();
-    });    
+    });
   }
 
   /**Function for get gene details
@@ -38,9 +49,9 @@ export class GenedetailPage {
   getGeneDetail() {    
     if (this.networkPro.checkOnline() == true) {
       this.common.presentLoading();
-      this.httpService.getData("gene/search").subscribe(data => {        
+      this.httpService.getData(this.listUrl).subscribe(data => {        
         if (data.status == 200) {
-          this.storage.set('geneList', data.data);
+          this.storage.set(this.type, data.data);
           this.geneDetail = this.geneList.find((item:any) => { return item._id == this.navParams.data.data._id });
           console.log("this.geneDetail ", this.geneDetail);
           this.showMe = true;

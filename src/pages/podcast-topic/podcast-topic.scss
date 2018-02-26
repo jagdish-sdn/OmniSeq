@@ -1,0 +1,16 @@
+page-podcast-topic {
+    .item {
+        border-bottom: 1px solid #dedede !important;
+    }
+    .topic-title{
+        color: #1a5293;
+        font-size: 2rem;
+        font-weight: 500;
+    }
+    .item-md ion-avatar img {
+        border-radius: 0px !important;
+    }
+    .item-ios ion-avatar img {
+        border-radius: 0px !important;
+    }
+}

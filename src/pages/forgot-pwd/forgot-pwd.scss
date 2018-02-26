@@ -77,6 +77,12 @@
         .form-padding.row{
             padding-top: 4% !important;
         }
+        .item-ios{
+            border-bottom: 1px solid #727272 !important;
+        }
+        .ios ion-nav > .ion-page > ion-content.statusbar-padding:first-child .scroll-content{
+            padding-top: 0 !important;
+        }
      }
     
    }

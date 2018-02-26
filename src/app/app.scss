@@ -119,3 +119,33 @@ ion-icon {
     padding-left: 11% !important;
     font-size: 14px !important;
 }
+.topic-title{
+    color: #1a5293;
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+/*Ipad Media query*/
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    #cloud-layer{
+        height: 420px;
+    }
+    .sub-title, .md page-login .sub-title{
+        top: 82% !important;
+    }
+    page-home ion-card{
+        height: 25vh !important;
+    }
+    page-cancer .background_section{
+        width: 80% !important;
+        height: 43vh !important;
+    }
+    page-cancer .stage6{
+        top: 47% !important;
+    left: 35% !important;
+    }
+    page-cancer .stage7{
+        top: 81% !important;
+        left: 36% !important;
+    }
+}

@@ -47,25 +47,35 @@
         <ion-icon *ngIf="(briffSurveyForm.controls.city.valid && briffSurveyForm.controls.city.touched) || (briffSurveyForm.controls.city.valid && submitAttempt)"
           ios="ios-checkmark" md="md-checkmark" item-right text-end padding-top color="primary"></ion-icon>
       </ion-item>
-      <ion-item class="profile-setting">
-        <ion-label text-wrap>Did the customer understand the difference between Comprehensive (Targeted Therapy) and Immune Report Card (Immunotherapy)?</ion-label>
-        <ion-toggle formControlName="diff_btw_therapy_nd_immuno"></ion-toggle>
+      <ion-item class="togglech profile-setting">
+        <ion-label text-wrap>Did the customer understand the difference between Comprehensive (Targeted Therapy) and Immune Report Card (Immunotherapy)? Simple Example: 
+          <div class="toggle-status s1">{{ (briffSurveyForm.value.diff_btw_therapy_nd_immuno == true) ? 'Yes' : 'No' }}</div>
+        </ion-label>
+        <ion-toggle ion-toggle-text formControlName="diff_btw_therapy_nd_immuno"></ion-toggle>
       </ion-item>
-      <ion-item class="profile-setting">
-        <ion-label text-wrap>The customer asked if it was possible to perform both Comprehensive and Immune Report Card for an individual patient?</ion-label>
+      <ion-item class="togglech profile-setting">
+        <ion-label text-wrap>The customer asked if it was possible to perform both Comprehensive and Immune Report Card for an individual patient?
+            <div class="toggle-status s2">{{ (briffSurveyForm.value.perform == true) ? 'Yes' : 'No' }}</div>
+        </ion-label>        
         <ion-toggle formControlName="perform"></ion-toggle>
       </ion-item>
-      <ion-item class="profile-setting">
-        <ion-label text-wrap>Did the customer ask the price for the tests individually?</ion-label>
+      <ion-item class="togglech profile-setting">
+        <ion-label text-wrap>Did the customer ask the price for the tests individually?
+            <div class="toggle-status s3">{{ (briffSurveyForm.value.asked_price_individually == true) ? 'Yes' : 'No' }}</div>
+        </ion-label>
         <ion-toggle formControlName="asked_price_individually"></ion-toggle>
       </ion-item>
-      <ion-item class="profile-setting">
-        <ion-label text-wrap>Did the customer ask for the price for both tests combined?</ion-label>
+      <ion-item class="togglech profile-setting">
+        <ion-label text-wrap>Did the customer ask for the price for both tests combined?
+            <div class="toggle-status s4">{{ (briffSurveyForm.value.asked_price_combine == true) ? 'Yes' : 'No' }}</div>
+        </ion-label>
         <ion-toggle formControlName="asked_price_combine"></ion-toggle>
       </ion-item>
-      <div class="profile-setting square-box">
+      <div class="togglech profile-setting square-box">
         <ion-item class="profile-setting">
-          <ion-label text-wrap>The customer asked about insurance coverage for the tests?</ion-label>
+          <ion-label text-wrap>The customer asked about insurance coverage for the tests?
+              <div class="toggle-status s5">{{ (briffSurveyForm.value.insurance_coverage == true) ? 'Yes' : 'No' }}</div>
+          </ion-label>
           <ion-toggle formControlName="insurance_coverage"></ion-toggle>
         </ion-item>
         <ion-item class="profile-setting">
@@ -77,9 +87,11 @@
             ios="ios-checkmark" md="md-checkmark" item-right text-end padding-top color="primary"></ion-icon>
         </ion-item>
       </div>
-      <div class="profile-setting square-box">
+      <div class="togglech profile-setting square-box">
         <ion-item class="profile-setting">
-          <ion-label text-wrap>The customer provided feedback on the report format(s).</ion-label>
+          <ion-label text-wrap>The customer provided feedback on the report format(s).
+              <div class="toggle-status s6">{{ (briffSurveyForm.value.provided_feedback == true) ? 'Yes' : 'No' }}</div>
+          </ion-label>
           <ion-toggle formControlName="provided_feedback"></ion-toggle>
         </ion-item>
         <ion-item class="profile-setting">
@@ -91,9 +103,11 @@
             ios="ios-checkmark" md="md-checkmark" item-right text-end padding-top color="primary"></ion-icon>
         </ion-item>
       </div>
-      <div class="profile-setting square-box">
+      <div class="togglech profile-setting square-box">
         <ion-item class="profile-setting">
-          <ion-label text-wrap>The customer expressed interested in clinical trial opportunities.</ion-label>
+          <ion-label text-wrap>The customer expressed interested in clinical trial opportunities.
+              <div class="toggle-status s7">{{ (briffSurveyForm.value.clinic_trial_interess == true) ? 'Yes' : 'No' }}</div>
+          </ion-label>
           <ion-toggle formControlName="clinic_trial_interess"></ion-toggle>
         </ion-item>
         <ion-item class="profile-setting">
@@ -105,9 +119,11 @@
             ios="ios-checkmark" md="md-checkmark" item-right text-end padding-top color="primary"></ion-icon>
         </ion-item>
       </div>
-      <div class="profile-setting square-box">
+      <div class="togglech profile-setting square-box">
         <ion-item class="profile-setting">
-          <ion-label text-wrap>The customer expressed interest in using the report as a rule out to consider patients for chemotherapy.</ion-label>
+          <ion-label text-wrap>The customer expressed interest in using the report as a rule out to consider patients for chemotherapy.
+              <div class="toggle-status s8">{{ (briffSurveyForm.value.ruleout_report_chemotherapy == true) ? 'Yes' : 'No' }}</div>
+          </ion-label>
           <ion-toggle formControlName="ruleout_report_chemotherapy"></ion-toggle>
         </ion-item>
         <ion-item class="profile-setting">
@@ -119,9 +135,11 @@
             ios="ios-checkmark" md="md-checkmark" item-right text-end padding-top color="primary"></ion-icon>
         </ion-item>
       </div>
-      <div class="profile-setting square-box">
+      <div class="togglech profile-setting square-box">
         <ion-item class="profile-setting">
-          <ion-label text-wrap>The customer expressed interest in using the report as a rule out to consider patients for radiation.</ion-label>
+          <ion-label text-wrap>The customer expressed interest in using the report as a rule out to consider patients for radiation.
+              <div class="toggle-status s9">{{ (briffSurveyForm.value.ruleout_report_radiation == true) ? 'Yes' : 'No' }}</div>
+          </ion-label>
           <ion-toggle formControlName="ruleout_report_radiation"></ion-toggle>
         </ion-item>
         <ion-item class="profile-setting">
@@ -133,9 +151,11 @@
             ios="ios-checkmark" md="md-checkmark" item-right text-end padding-top color="primary"></ion-icon>
         </ion-item>
       </div>
-      <div class="profile-setting square-box">
+      <div class="togglech profile-setting square-box">
         <ion-item class="profile-setting">
-          <ion-label text-wrap>The customer compared the tests to competitors.</ion-label>
+          <ion-label text-wrap>The customer compared the tests to competitors.
+              <div class="toggle-status s10">{{ (briffSurveyForm.value.compared_test_to_competitors == true) ? 'Yes' : 'No' }}</div>
+          </ion-label>
           <ion-toggle formControlName="compared_test_to_competitors"></ion-toggle>
         </ion-item>
         <ion-item class="profile-setting">

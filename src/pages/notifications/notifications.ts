@@ -5,6 +5,7 @@ import { HttpServiceProvider } from '../../providers/http-service/http-service';
 import { CommonProvider } from '../../providers/common/common';
 import { GenedetailPage } from '../genedetail/genedetail';
 import { CompanionDetailPage } from '../companion-detail/companion-detail';
+import { PodcastDetailPage } from '../podcast-detail/podcast-detail';
 
 @Component({
   selector: 'page-notifications',
@@ -35,7 +36,7 @@ export class NotificationsPage {
   getNotifications() {
     if (this.networkPro.checkOnline() == true) {
       this.common.presentLoading();
-      this.httpService.getData("appuser/getmynotifications").subscribe(data => {
+      this.httpService.getData("appuser/getmynotifications?type="+this.navParams.data.type).subscribe(data => {
         this.common.dismissLoading();
         if (data.status == 200) {
           this.notiList = data.data;
@@ -72,6 +73,12 @@ export class NotificationsPage {
               break;
             case "new_companion":
               this.navCtrl.push(CompanionDetailPage, { id: notificationData.data.id })
+              break;
+              case "new_genecomprehensive":
+              this.navCtrl.push(PodcastDetailPage, { id: data.id, type:'comprehnsiveList' })
+              break;
+            case "new_episode":
+              this.navCtrl.push(PodcastDetailPage, { id: data.id })
               break;
           }
         }

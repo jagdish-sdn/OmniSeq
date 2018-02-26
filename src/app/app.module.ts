@@ -11,6 +11,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { FileTransfer } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
 import { AppVersion } from '@ionic-native/app-version';
+import { Market } from '@ionic-native/market';
 
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
@@ -34,6 +35,10 @@ import { NotificationsPage } from '../pages/notifications/notifications';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { ComprehensivePage } from '../pages/comprehensive/comprehensive';
 import { BriefSurveyPage } from '../pages/brief-survey/brief-survey';
+import { PodcastPage } from '../pages/podcast/podcast';
+import { PodcastTopicPage } from '../pages/podcast-topic/podcast-topic';
+import { PodcastDetailPage } from '../pages/podcast-detail/podcast-detail';
+import { BusinessSurveyPage } from '../pages/business-survey/business-survey';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -42,9 +47,17 @@ import { HttpServiceProvider } from '../providers/http-service/http-service';
 import { CommonProvider } from '../providers/common/common';
 import { SettingsProvider } from './../providers/settings/settings';
 import { SqliteStorageProvider } from '../providers/sqlite-storage/sqlite-storage';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ZoomAreaModule } from 'ionic2-zoom-area';
 
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { ZoomAreaModule } from 'ionic2-zoom-area';
+
+import { IonicAudioModule, WebAudioProvider, CordovaMediaProvider, defaultAudioProviderFactory } from 'ionic-audio';
+/**
+ * Sample custom factory function to use with ionic-audio
+ */
+export function myCustomAudioProviderFactory() {
+  return (window.hasOwnProperty('cordova')) ? new CordovaMediaProvider() : new WebAudioProvider();
+}
 @NgModule({
   declarations: [
     MyApp,
@@ -68,14 +81,19 @@ import { ZoomAreaModule } from 'ionic2-zoom-area';
     NotificationsPage,
     WelcomePage,
     ComprehensivePage,
-    BriefSurveyPage
+    BriefSurveyPage,
+    PodcastPage,
+    PodcastTopicPage,
+    PodcastDetailPage,
+    BusinessSurveyPage
   ],
   imports: [
     BrowserModule,
     HttpModule,
-    BrowserAnimationsModule,
-    ZoomAreaModule,
+    // BrowserAnimationsModule,
+    // ZoomAreaModule,
     IonicModule.forRoot(MyApp),
+    IonicAudioModule.forRoot(defaultAudioProviderFactory), 
     IonicStorageModule.forRoot({
       name: '__omnidb',
       driverOrder: ['indexeddb', 'sqlite', 'websql'],
@@ -104,7 +122,11 @@ import { ZoomAreaModule } from 'ionic2-zoom-area';
     NotificationsPage,
     WelcomePage,
     ComprehensivePage,
-    BriefSurveyPage
+    BriefSurveyPage,
+    PodcastPage,
+    PodcastTopicPage,
+    PodcastDetailPage,
+    BusinessSurveyPage
   ],
   providers: [
     StatusBar,
@@ -123,7 +145,11 @@ import { ZoomAreaModule } from 'ionic2-zoom-area';
     FileTransfer,
     File,
     AppVersion,
-    ZoomAreaModule
+    Market,
+    // ZoomAreaModule,
+    IonicAudioModule,
+    // StreamingMedia
   ]
 })
 export class AppModule {}
+
