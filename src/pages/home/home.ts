@@ -10,7 +10,9 @@ import { CompanionPage } from '../companion/companion';
 import { AskQuestionPage } from '../ask-question/ask-question';
 import { CancerPage } from '../cancer/cancer';
 import { QuizPage } from '../quiz/quiz';
+import { CompTypePage } from '../comp-type/comp-type';
 import { NotificationsPage } from '../notifications/notifications';
+import { VideosPage } from '../videos/videos';
 import { CONFIG } from '../../config/config';
 import { StatusBar } from '@ionic-native/status-bar';
 
@@ -45,6 +47,7 @@ export class HomePage {
   public ionViewDidEnter(){
     this.events.publish("sideMenuBlog",'report');
     this.getNotifications();
+    this.common.trackPage(CONFIG.GAnalyticsPageName.reportCard);
   }
 
   /**Autocomplete filter function
@@ -85,7 +88,7 @@ export class HomePage {
   }
 
   public goToCompanion(){
-    this.navCtrl.push(CompanionPage);
+    this.navCtrl.push(CompTypePage);
   }
 
   public goToCancer(){
@@ -121,9 +124,13 @@ export class HomePage {
           this.common.showToast(data.message);
         }
       }, error => {
-        console.log("Error=> ", error);
         // this.common.dismissLoading();
+        this.common.showToast(CONFIG.MESSAGES.ServerMsg);
       });
     }
+  }
+
+  public goToVideosList(){
+    this.navCtrl.push(VideosPage);
   }
 }

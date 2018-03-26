@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{pageTitle}}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content class="body-content">
+  <ion-grid *ngIf="cancerDetail.data">
+    <ion-row *ngFor="let history of cancerDetail.data">
+        <ion-col class="his-col" width-50 text-wrap>
+          {{history.name}}
+        </ion-col>
+        <ion-col class="his-col" width-50 text-wrap>
+          <span [innerHTML]="history.cancerDetail[0].value ? sanitized.bypassSecurityTrustHtml(history.cancerDetail[0].value) : 'NA'"></span>
+        </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="his-col"><span [innerHTML]="cancerDetail.footer ? sanitized.bypassSecurityTrustHtml(cancerDetail.footer) : 'NA'"></span></ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

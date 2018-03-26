@@ -6,11 +6,11 @@ import { CommonProvider } from '../../providers/common/common';
 import { GenedetailPage } from '../genedetail/genedetail';
 import { GenelistPage } from '../genelist/genelist';
 import { FaqPage } from '../faq/faq';
-import { CompanionPage } from '../companion/companion';
 import { AskQuestionPage } from '../ask-question/ask-question';
 import { CancerPage } from '../cancer/cancer';
 import { QuizPage } from '../quiz/quiz';
 import { NotificationsPage } from '../notifications/notifications';
+import { CompTypePage } from '../comp-type/comp-type';
 import { CONFIG } from '../../config/config';
 import { StatusBar } from '@ionic-native/status-bar';
 
@@ -45,6 +45,7 @@ export class ComprehensivePage {
   public ionViewDidEnter(){
     this.events.publish("sideMenuBlog",'comprehnsive');
     this.getNotifications();
+    this.common.trackPage(CONFIG.GAnalyticsPageName.comprehensive);
   }
 
   /**Autocomplete filter function
@@ -85,7 +86,8 @@ export class ComprehensivePage {
   }
 
   public goToCompanion(){
-    this.navCtrl.push(CompanionPage);
+    this.common.showToast("Coming Soon!");
+    // this.navCtrl.push(CompTypePage);
   }
 
   public goToCancer(){
@@ -121,8 +123,8 @@ export class ComprehensivePage {
           this.common.showToast(data.message);
         }
       }, error => {
-        console.log("Error=> ", error);
         // this.common.dismissLoading();
+        this.common.showToast(CONFIG.MESSAGES.ServerMsg);
       });
     }
   }

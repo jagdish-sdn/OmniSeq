@@ -5,7 +5,7 @@ page-home {
         height: 100%;
     }
     ion-card.card.card-ios{
-        height: 22vh !important;
+        height: 24vh !important;
     }
     ion-card img {
         width: 50%;
@@ -16,10 +16,12 @@ page-home {
         padding: 0px;
         padding-bottom: 16px;
     }
+    .content-ios ion-col.col {
+        padding-bottom: 0;
+    }
     .searchbar-input {
         color: white !important;
     }
-
     .autocomplete {
         width: 100%;    
         ion-searchbar {
@@ -75,7 +77,29 @@ page-home {
         width: 182px;
         height: 35px;
         margin-top: 6px;
-        margin-left: 30px;
+        // margin-left: 30px;
         // margin-bottom: 5px;
+    }
+    .card-ios{
+        margin-top: 6px !important;
+    }
+    .toolbar-title {
+        text-align: center;
+    }
+
+    @media only screen and (min-width: 350px) {
+        ion-card.card.card-ios{
+            height: 23vh !important;
+        }       
+    }
+    @media only screen and (min-width: 600px) {
+        ion-card.card.card-ios{
+            height: 24vh !important;
+        }       
+    }
+    @media only screen and (orientation: landscape) {
+        ion-card.card.card-ios{
+            height: 61vh !important;
+        }
     }
 }

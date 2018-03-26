@@ -8,6 +8,7 @@ import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
 import { Storage } from '@ionic/storage';
 import { WelcomePage } from '../welcome/welcome';
+import { CONFIG } from '../../config/config';
 
 declare var cordova: any;
 @Component({
@@ -45,7 +46,7 @@ export class PodcastDetailPage {
       permissions.hasPermission(permissions.READ_EXTERNAL_STORAGE, function(status){
         if (!status.hasPermission) {
           var errorCallback = function () {
-            console.warn('Storage permission is not turned on');
+            // console.warn('Storage permission is not turned on');
             return false;
           }
           permissions.requestPermission(
@@ -54,7 +55,7 @@ export class PodcastDetailPage {
               if (!status.hasPermission) {
                 errorCallback();
               } else {
-                console.log("you have permission");
+                // console.log("you have permission");
                 return true;
                 // continue with downloading/ Accessing operation 
                 // this.downloadfile();
@@ -63,32 +64,11 @@ export class PodcastDetailPage {
             errorCallback);
         }
       }, null);
-      // function checkPermissionCallback(status) {
-      //   if (!status.hasPermission) {
-      //     var errorCallback = function () {
-      //       console.warn('Storage permission is not turned on');
-      //       return false;
-      //     }
-      //     permissions.requestPermission(
-      //       permissions.READ_EXTERNAL_STORAGE,
-      //       function (status) {
-      //         if (!status.hasPermission) {
-      //           errorCallback();
-      //         } else {
-      //           console.log("you have permission");
-      //           return true;
-      //           // continue with downloading/ Accessing operation 
-      //           // this.downloadfile();
-      //         }
-      //       },
-      //       errorCallback);
-      //   }
-      // }
     } else {}
 
     
     this.getEpisodeDetail();
-    console.log("this.navParams.data.id ", this.navParams.data.id);
+    this.common.trackPage(CONFIG.GAnalyticsPageName.podcastDetail);
   }
 
   /**Function for get episode details
@@ -107,7 +87,7 @@ export class PodcastDetailPage {
           let filename = imgSplit[imgSplit.length - 1];
           let target = '';
           if (this.platform.is("android")) {
-            target = this.file.externalRootDirectory + 'OmniSeq/';
+            target = this.file.externalRootDirectory + CONFIG.LocalDir;
           } else if (this.platform.is("ios")) {
             target = this.file.documentsDirectory;
           } else {
@@ -132,13 +112,13 @@ export class PodcastDetailPage {
       }, error => {
         this.showMe = true;
         this.common.dismissLoading();
+        this.common.showToast(CONFIG.MESSAGES.ServerMsg);
       });
     } else {
       this.storage.get("podcasts").then((val) => {
         this.showMe = true;
         this.podDetail = val.find((item:any) => { return item.id == this.navParams.data.id });
         this.myTracks = [this.podDetail];
-        console.log("mytracks files", this.myTracks);
       }, (error) => {
         // this.storage.set("podcasts", this.podcasts[i]);
       });
@@ -185,7 +165,6 @@ export class PodcastDetailPage {
 
   onTrackFinished(track: any) {
     // this.next();
-    console.log(" Finished track", track);
   }
 
   clear() {
@@ -220,8 +199,8 @@ export class PodcastDetailPage {
           this.common.showToast(data.message);
         }
       }, error => {
-        console.log("Error=> ", error);
         this.common.dismissLoading();
+        this.common.showToast(CONFIG.MESSAGES.ServerMsg);
       })
     }
   }
@@ -238,7 +217,7 @@ export class PodcastDetailPage {
       let audImgfilename = audImgSplit[audImgSplit.length - 1];
       let target = '';
       if (this.platform.is("android")) {
-        target = this.file.externalRootDirectory + 'OmniSeq/';
+        target = this.file.externalRootDirectory + CONFIG.LocalDir;
       } else if (this.platform.is("ios")) {
         target = this.file.documentsDirectory;
       } else {
@@ -267,13 +246,32 @@ export class PodcastDetailPage {
         }, (error) => {
           // this.storage.set("podcasts", this.podDetail);
         });
-        this.common.showToast("Download successfully!")
+        this.common.showToast(CONFIG.MESSAGES.DownloadSuccess)
       }, (error) => {
         this.podDetail.isDownloaded = false;
         this.common.dismissLoading();
-        this.common.showToast("Download Failed!");
+        this.common.showToast(CONFIG.MESSAGES.DownloadFailed);
       });
+
+      /**Track Podcast Download*/
+      this.trackDownloads();
     }
+  }
+
+
+  trackDownloads(){
+    this.httpService.getData("video/downloadEpisode?id=" + this.navParams.data.id).subscribe(data => {
+      if (data.status == 200) {
+        
+      } else if (data.status == 203) {
+        this.events.publish("clearSession");
+      } else {
+        this.common.showToast(data.message);
+        this.showMe = true;
+      }
+    }, error => {
+      this.common.showToast(CONFIG.MESSAGES.ServerMsg);
+    });
   }
 
   millisToMinutesAndSeconds(msec){
@@ -285,17 +283,15 @@ export class PodcastDetailPage {
    * Creator : Jagdish Thakre
    */
   checkFiledDownloaded(fileurl){
-    console.log("file url ", fileurl)
     let imgSplit = fileurl.split('/');
     let filename = imgSplit[imgSplit.length - 1];
     let target = '';
     if (this.platform.is("android")) {
-      target = this.file.externalRootDirectory + 'OmniSeq/';
+      target = this.file.externalRootDirectory + CONFIG.LocalDir;
     } else {
       target = this.file.documentsDirectory;
     }
     this.file.checkFile(target,filename).then((response) => {
-      console.log("status check", response);
       return true;
     }, (error) => {
       return false;
@@ -315,7 +311,7 @@ export class PodcastDetailPage {
             let filename = imgSplit[imgSplit.length - 1];
             let target = '';
             if (this.platform.is("android")) {
-              target = this.file.externalRootDirectory + 'OmniSeq/';
+              target = this.file.externalRootDirectory + CONFIG.LocalDir;
             } else if (this.platform.is("ios")) {
               target = this.file.documentsDirectory;
             } else {
@@ -335,6 +331,8 @@ export class PodcastDetailPage {
                 }
               }, (error) => {
                 console.log("error in remove")
+                this.common.showToast("error in remove");
+                
               });
               this.podDetail.isDownloaded = false;
               this.podDetail.src = contentUrl;

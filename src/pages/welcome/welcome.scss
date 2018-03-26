@@ -38,6 +38,9 @@ page-welcome {
         padding-top: 12px;
         padding-bottom: 12px;
     }
+    .toolbar-title {
+        text-align: center;
+    }
     @media only screen and (min-width: 600px)  {        
         ion-content.body-content.content.content-md{
             float: left;
@@ -58,6 +61,14 @@ page-welcome {
         }
         .logo1{
             margin-top: 45px;
+        }
+    }
+    @media only screen and (orientation: landscape) {
+        ion-content.body-content.content {
+            margin-top: 50px !important;
+        }
+        .scroll-content{
+            margin-bottom: 0 !important;
         }
     }
 }

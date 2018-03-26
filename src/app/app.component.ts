@@ -25,10 +25,11 @@ import { GenelistPage } from '../pages/genelist/genelist';
 import { GenedetailPage } from '../pages/genedetail/genedetail';
 import { CompanionDetailPage } from '../pages/companion-detail/companion-detail';
 import { WelcomePage } from '../pages/welcome/welcome';
-import { PodcastDetailPage } from '../pages/podcast-detail/podcast-detail'
+import { PodcastDetailPage } from '../pages/podcast-detail/podcast-detail';
 import { BriefSurveyPage } from '../pages/brief-survey/brief-survey';
-import { PodcastTopicPage } from '../pages/podcast-topic/podcast-topic';
+import { PodcastPage } from '../pages/podcast/podcast';
 import { ComprehensivePage } from '../pages/comprehensive/comprehensive';
+import { VideoDetailPage } from '../pages/video-detail/video-detail';
 //import { from } from 'rxjs/observable/from';
 
 declare var cordova: any;
@@ -40,7 +41,7 @@ declare var window: any;
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage: any;
-  profile = {};
+  profile : any = {};
   userId = localStorage.getItem('UserId');
   selectedTheme: String;
   pages: Array<{ title: string, component: any, icon: any }>;
@@ -69,7 +70,7 @@ export class MyApp {
       { title: 'OmniSeq Report Card', component: HomePage, icon: "reportcard.png" },
       { title: 'Comprehensive', component: ComprehensivePage, icon: "comprehnsv.png" },
       { title: 'Call-de Brief Survey', component: BriefSurveyPage, icon: "survey.png" },
-      { title: 'Podcast', component: PodcastTopicPage, icon: "podcast.png" },
+      { title: 'Podcast', component: PodcastPage, icon: "podcast.png" },
       { title: 'Settings', component: SettingPage, icon: "Settings.png" },
     ];
 
@@ -92,7 +93,7 @@ export class MyApp {
           { title: 'OmniSeq Report Card', component: HomePage, icon: "reportcard.png" },
           { title: 'Comprehensive', component: ComprehensivePage, icon: "comprehnsv.png" },
           { title: 'Call-de Brief Survey', component: BriefSurveyPage, icon: "survey.png" },
-          { title: 'Podcast', component: PodcastTopicPage, icon: "podcast.png" },
+          { title: 'Podcast', component: PodcastPage, icon: "podcast.png" },
           { title: 'Settings', component: SettingPage, icon: "Settings.png" }
         ];
       } else if (data == 'report') {
@@ -120,7 +121,7 @@ export class MyApp {
         ];
       }
     });
-
+    this.profile.email = '';
     if (this.userId) {
       if (this.networkPro.checkOnline() == true) {
         this.httpService.getData("user/checklogin").subscribe(data => {
@@ -149,8 +150,8 @@ export class MyApp {
       this.rootPage = LoginPage;
     }
 
-    this.settings.getActiveTheme().subscribe(val => this.selectedTheme = val);    
-    this.initializeApp();    
+    this.settings.getActiveTheme().subscribe(val => this.selectedTheme = val);
+    this.initializeApp();
   }
 
   initializeApp() {
@@ -158,8 +159,10 @@ export class MyApp {
       // this.checkFileWritePermission();
       this.push();
       this.checkVersion();
+      this.trackGoogleAnalytics();
       this.statusBar.styleDefault();
       this.statusBar.backgroundColorByHexString('#1a5293');
+      this.statusBar.overlaysWebView(false);
       if (window.cordova && window.cordova.plugins.Keyboard) {
         // cordova.plugins.Keyboard.disableScroll(true);
       }
@@ -167,12 +170,13 @@ export class MyApp {
 
       this.platform.registerBackButtonAction(() => {
         let view = this.nav.getActive();
-        console.log("view.component.name ", view.component.name);
         if (this.menu.isOpen()) {
           this.menu.close()
         } else if (view.component.name == 'QuizCongratulationPage') {
           this.nav.setRoot(HomePage);
         } else if (view.component.name == 'HomePage') {
+          this.nav.setRoot(WelcomePage);
+        } else if (view.component.name == 'ComprehensivePage') {
           this.nav.setRoot(WelcomePage);
         } else if (this.nav.canGoBack()) {
           this.nav.pop();
@@ -207,6 +211,7 @@ export class MyApp {
       })
 
       this.fcm.onNotification().subscribe(data => {
+        console.log("notification data", data)
         if (data.wasTapped) {
           switch (data.type) {
             case "new_gene":
@@ -216,10 +221,13 @@ export class MyApp {
               this.nav.push(CompanionDetailPage, { id: data.id })
               break;
             case "new_genecomprehensive":
-              this.nav.push(GenedetailPage, { data:{ '_id': data.id }, type:'comprehnsiveList' })
+              this.nav.push(GenedetailPage, { data: { '_id': data.id }, type: 'comprehnsiveList' })
               break;
             case "new_episode":
               this.nav.push(PodcastDetailPage, { id: data.id })
+              break;
+            case "new_video":
+              this.nav.push(VideoDetailPage, { id: data.id })
               break;
           }
         } else { }
@@ -230,48 +238,50 @@ export class MyApp {
   }
 
   checkVersion() {
-    if (this.platform.is('cordova')) {
-      this.httpService.getData("user/getappversion").subscribe(data => {
-        if (data.status == 200) {
-          this.appVersion.getVersionNumber().then((val) => {
-            const alert = this.alertCtrl.create({
-              title: 'OmniSeq',
-              message: "update available",
-              buttons: [
-                {
-                  text: 'Ok',
-                  handler: () => {
-                    if (this.platform.is('ios')) {
-                      this.market.open('com.healthcare.omniseq');
-                      // window.open('itms-apps://itunes.apple.com/us/app/domainsicle-domain-name-search/id511364723?ls=1&mt=8'); // or itms://
-                    } else if (this.platform.is('android')) {
-                      // this.market.open('com.medikabazaar.app');
-                      window.open('market://details?id=com.healtcare.omniseq');
+    if (this.networkPro.checkOnline() == true) {
+      if (this.platform.is('cordova')) {
+        this.httpService.getData("user/getappversion").subscribe(data => {
+          if (data.status == 200) {
+            this.appVersion.getVersionNumber().then((val) => {
+              const alert = this.alertCtrl.create({
+                title: 'OmniSeq',
+                message: "update available",
+                buttons: [
+                  {
+                    text: 'Ok',
+                    handler: () => {
+                      if (this.platform.is('ios')) {
+                        this.market.open('com.healthcare.omniseq');
+                        // window.open('itms-apps://itunes.apple.com/us/app/domainsicle-domain-name-search/id511364723?ls=1&mt=8'); // or itms://
+                      } else if (this.platform.is('android')) {
+                        // this.market.open('com.medikabazaar.app');
+                        window.open('market://details?id=com.healtcare.omniseq');
+                      }
                     }
                   }
+                ]
+              });
+              if (this.platform.is('android')) {
+                if (val !== data.data.android_play_store_version) {
+                  alert.present();
                 }
-              ]
+              } else if (this.platform.is('ios')) {
+                if (val !== data.data.apple_itune_version) {
+                  alert.present();
+                }
+              } else {
+                alert.present();
+              }
             });
-            if (this.platform.is('android')) {
-              if (val !== data.data.android_play_store_version) {
-                alert.present();
-              }
-            } else if (this.platform.is('ios')) {
-              if (val !== data.data.apple_itune_version) {
-                alert.present();
-              }
-            } else {
-              alert.present();
-            }
-          });
-        } else if (data.status == 203) {
-          this.clearSession();
-        } else {
-          this.common.showToast(data.message);
-        }
-      }, error => {
-        console.log("Error=> ", error);
-      });
+          } else if (data.status == 203) {
+            this.clearSession();
+          } else {
+            this.common.showToast(data.message);
+          }
+        }, error => {
+          console.log("Error=> ", error);
+        });
+      }
     }
   }
 
@@ -320,6 +330,7 @@ export class MyApp {
                   let device_token = localStorage.getItem("device_token");
                   localStorage.clear();
                   localStorage.setItem("device_token", device_token);
+                  this.menu.enable(false, 'myMenu');
                   this.nav.setRoot(LoginPage);
                 } else {
                   this.common.showToast(data.message);
@@ -402,4 +413,12 @@ export class MyApp {
       }, null);
     } else { }
   }
+
+  /**Function created for google analysis*/
+  trackGoogleAnalytics(){
+    if(this.userId){
+      this.common.setUserId(this.profile.email);
+    }
+  }
 }
+

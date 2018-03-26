@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Video Detail</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only type="button" *ngIf="videoDetail.isDownloaded == false" (click)="downloadfile(videoDetail.src)">
+        <ion-icon class="down-icon" name="md-download"></ion-icon>
+      </button>
+      <button ion-button icon-only type="button" *ngIf="videoDetail.isDownloaded == true" (click)="deletefile(videoDetail.src, videoDetail.contentUrl)">
+        <ion-icon class="down-icon" name="md-trash"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content class="body-content">
+  <div *ngIf="showMe">
+    <div class="profileBlock" text-center (click)="startVideo()">
+      <ion-avatar>
+        <div class="thumbnail">
+            <ion-icon ios="ios-play" md="md-play"></ion-icon>
+        </div>
+        <img text-center class="userImage" src="{{videoDetail.art}}" />
+      </ion-avatar>
+    </div>
+    <ion-item class="settingBtn episode-detail">
+      <div class="episode-bottom">
+        <span class="episode-date">
+          <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon> {{videoDetail.date || ' 01/01/18'}}
+        </span>
+        <span class="episode-duration">
+          <!-- <ion-icon ios="ios-stopwatch" md="md-stopwatch"></ion-icon> {{millisToMinutesAndSeconds(videoDetail.totalDuration)}}  -->
+          <ion-icon ios="ios-square" md="md-square"></ion-icon> {{videoDetail.size}}
+        </span>
+      </div>
+    </ion-item>
+    <ion-item class="settingBtn">
+      <p class="topictitle" text-wrap>{{videoDetail.title}}</p>
+      <p class="topic-desc" text-wrap>{{videoDetail.desc}}</p>
+    </ion-item>
+  </div>
+</ion-content>

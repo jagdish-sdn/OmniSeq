@@ -1,0 +1,10 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Cancers</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding class="body-content">
+  <ion-item text-wrap class="profile-setting call-brief-item" *ngFor="let cancer of cancers" text-center (click)="goToHistology(cancer)">
+    <h3 class="call-brief timer">{{cancer.name}}</h3>
+  </ion-item>
+</ion-content>

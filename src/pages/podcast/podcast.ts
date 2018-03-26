@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { NavController, NavParams, Events, Platform, AlertController } from 'ionic-angular';
 import { NetworkProvider } from '../../providers/network/network';
 import { CommonProvider } from '../../providers/common/common';
@@ -6,6 +6,7 @@ import { HttpServiceProvider } from '../../providers/http-service/http-service';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
 import { Storage } from '@ionic/storage';
+import { CONFIG } from '../../config/config';
 
 import { AudioProvider, ITrackConstraint } from 'ionic-audio';
 import { PodcastDetailPage } from '../podcast-detail/podcast-detail';
@@ -16,7 +17,9 @@ declare var cordova: any;
   selector: 'page-podcast',
   templateUrl: 'podcast.html',
 })
+
 export class PodcastPage {
+  @ViewChild('search') search : any;  
   topicDetail: any = {};
   searchText: any = {};
   podcasts: any = [];
@@ -57,7 +60,6 @@ export class PodcastPage {
       permissions.hasPermission(permissions.READ_EXTERNAL_STORAGE, function (status) {
         if (!status.hasPermission) {
           var errorCallback = function () {
-            console.warn('Storage permission is not turned on');
             return false;
           }
           permissions.requestPermission(
@@ -66,20 +68,20 @@ export class PodcastPage {
               if (!status.hasPermission) {
                 errorCallback();
               } else {
-                console.log("you have permission");
                 return true;
-                // continue with downloading/ Accessing operation 
-                // this.downloadfile();
               }
             },
             errorCallback);
         }
       }, null);
     } else { }
-
-    // this.podcastList('');
   }
 
+  focusButton(): void {
+    setTimeout(() => {
+      this.search.setFocus();
+    }, 500);
+  }
   ionViewWillEnter() {
     this.showMe = "";
     this.page = 1;
@@ -92,10 +94,13 @@ export class PodcastPage {
       this.currentPlay = JSON.parse(localStorage.getItem("currentaudio"));
       this.trackPlay = JSON.parse(localStorage.getItem("trackplay"));
     }
+    this.common.trackPage(CONFIG.GAnalyticsPageName.podcastList);
   }
 
   ionViewCanLeave() {
+    console.log("living track", this.trackPlay)
     if (this.trackPlay == true) {
+      console.log("click on pause");
       document.getElementById('yourId').click();
     }
     if (localStorage.getItem("currentaudio") && localStorage.getItem("trackplay")) {
@@ -109,7 +114,7 @@ export class PodcastPage {
    * */
   public podcastList(q) {
     if (this.networkPro.checkOnline() == true) {
-      if (this.page == 1) {
+      if (this.showMe == '') {
         this.common.presentLoading();
       }
       let queryString = "?limit=" + this.limit + "&page=" + this.page;
@@ -121,34 +126,37 @@ export class PodcastPage {
           this.totalRecords = parseInt(data.data.total_count);
           this.podcasts = [];
           this.myTracks = [];
-          for (let i = 0; i < data.data.data.length; i++) {
-            data.data.data[i].isPlaying = false;
-            let fileurl = data.data.data[i].src;
-            let imgSplit = fileurl.split('/');
-            let filename = imgSplit[imgSplit.length - 1];
-            let target = '';
-            if (this.platform.is("android")) {
-              target = this.file.externalRootDirectory + 'OmniSeq/';
-            } else if (this.platform.is("ios")) {
-              target = this.file.documentsDirectory;
-            } else {
-              target = this.file.dataDirectory;
+          if (data.data.data) {
+            for (let i = 0; i < data.data.data.length; i++) {
+              data.data.data[i].isPlaying = false;
+              let fileurl = data.data.data[i].src;
+              let imgSplit = fileurl.split('/');
+              let filename = '';
+              if (imgSplit.length > 0) {
+                filename = imgSplit[imgSplit.length - 1];
+              }
+              let target = '';
+              if (this.platform.is("android")) {
+                target = this.file.externalRootDirectory + CONFIG.LocalDir;
+              } else if (this.platform.is("ios")) {
+                target = this.file.documentsDirectory;
+              } else {
+                target = this.file.dataDirectory;
+              }
+              this.file.checkFile(target, filename).then((response) => {
+                data.data.data[i].isDownloaded = true;
+                data.data.data[i].src = target + filename;
+              }, (error) => {
+                data.data.data[i].src = fileurl;
+                data.data.data[i].isDownloaded = false;
+              })
+              this.myTracks.push(data.data.data[i]);
+              this.podcasts.push(data.data.data[i]);
             }
-            this.file.checkFile(target, filename).then((response) => {
-              data.data.data[i].isDownloaded = true;
-              data.data.data[i].src = target + filename;
-            }, (error) => {
-              data.data.data[i].src = fileurl;
-              data.data.data[i].isDownloaded = false;
-            })
-            this.myTracks.push(data.data.data[i]);
-            this.podcasts.push(data.data.data[i]);
           }
           if (data.data.data.length > 0) {
             this.currentPlay = this.myTracks[0];
           }
-          // this.common.dismissLoading();
-          console.log("mytracks files", this.myTracks);
           if (data.data.data.length > 0) {
             this.page += 1;
           }
@@ -156,18 +164,16 @@ export class PodcastPage {
           this.events.publish("clearSession");
         } else {
           this.common.showToast(data.message);
-          if (this.page == 1) {
-            // this.common.dismissLoading();
-          }
         }
-        this.common.dismissLoading();
+        if(this.showMe == ''){
+          this.common.dismissLoading();
+        }        
         this.showMe = "show";
-      }, error => {
-        console.log("Error=> ", error);
-        this.showMe = "show";
-        if (this.page == 1) {
+      }, error => {        
+        if(this.showMe == ''){
           this.common.dismissLoading();
         }
+        this.showMe = "show";
       });
     } else {
       this.storage.get("podcasts").then((val) => {
@@ -176,7 +182,7 @@ export class PodcastPage {
         if (q == '') {
           this.podcasts = val;
           this.myTracks = val;
-          if(this.trackPlay == true){
+          if (this.trackPlay == true) {
             document.getElementById('yourId').click();
           }
           this.currentPlay = this.myTracks[0];
@@ -197,12 +203,10 @@ export class PodcastPage {
                 if (item.title.toLowerCase().indexOf(q.toLowerCase()) > -1) {
                   return true;
                 }
-            })
+              })
           }
         }
-        console.log("mytracks files", this.myTracks);
       }, (error) => {
-        // this.storage.set("podcasts", this.podcasts[i]);
       });
     }
   }
@@ -210,26 +214,22 @@ export class PodcastPage {
   checkPlay(currentTrack, index) {
     if (this.podcasts[index].isDownloaded == true) {
       this.play(currentTrack, index);
-      // this.podcasts[index].isPlaying = true;
       this.checkPlayPause(index, true);
       this.playAudio(index);
       this.inItTrack = true;
     } else {
       if (this.networkPro.checkOnline() == true) {
         this.play(currentTrack, index);
-        // this.podcasts[index].isPlaying = true;
         this.checkPlayPause(index, true);
         this.playAudio(index);
         this.inItTrack = true;
       } else {
-        this.common.showToast("You can't play!");
+        this.common.showToast(CONFIG.MESSAGES.CantPlayMsg);
       }
     }
-    console.log("pod ", this.podcasts);
   }
 
   pauseaudio(podcast, index) {
-    // this.podcasts[index].isPlaying = false;
     this.checkPlayPause(index, false);
     this.playPauseSong();
     document.getElementById('yourId').click();
@@ -246,7 +246,7 @@ export class PodcastPage {
   }
 
   playPauseSong() {
-    console.log("play status");
+    console.log("playpause");
     this.trackPlay = !this.trackPlay;
   }
 
@@ -269,15 +269,10 @@ export class PodcastPage {
 
   /**Funcion for redirect on podcast detail page */
   goToPodcastDetail(item) {
-    // if (this.networkPro.checkOnline() == true) {
     if (this.trackPlay == true) {
       document.getElementById('yourId').click();
     }
-    // this.pauseSelectedTrack();
     this.navCtrl.push(PodcastDetailPage, { id: item.id });
-    // } else {
-    //   this.common.showToast(CONFIG.MESSAGES.NetworkMsg);
-    // }
   }
 
   /**Audio Player functionality start*/
@@ -304,16 +299,12 @@ export class PodcastPage {
       this.play(track, i);
       this._cdRef.detectChanges();  // needed to ensure UI update
     } else if (this.currentIndex == -1 && this.playlist.length > 0) {
-      // if no track is playing then start with the first track on the list
-      // this.play(this.playlist[0], 0);
     }
   }
 
   onTrackFinished(track: any) {
     this.trackPlay = !this.trackPlay;
     this.inItTrack = true;
-    console.log("this.trackPlay ", this.trackPlay);
-    // this.next();
   }
 
   playMe() {
@@ -360,8 +351,8 @@ export class PodcastPage {
           this.common.showToast(data.message);
         }
       }, error => {
-        console.log("Error=> ", error);
         this.common.dismissLoading();
+        this.common.showToast(CONFIG.MESSAGES.ServerMsg);
       })
     }
   }
@@ -387,7 +378,7 @@ export class PodcastPage {
       let audImgfilename = audImgSplit[audImgSplit.length - 1];
       let target = '';
       if (this.platform.is("android")) {
-        target = this.file.externalRootDirectory + 'OmniSeq/';
+        target = this.file.externalRootDirectory + CONFIG.LocalDir;
       } else if (this.platform.is("ios")) {
         target = this.file.documentsDirectory;
       } else {
@@ -406,7 +397,10 @@ export class PodcastPage {
       });
       /**Image download end */
       let imgSplit = fileurl.split('/');
-      let filename = imgSplit[imgSplit.length - 1];
+      let filename = '';
+      if(imgSplit.length > 0){
+        filename = imgSplit[imgSplit.length - 1];
+      }     
 
       fileTransfer.download(fileurl, target + filename).then((entry) => {
         this.common.dismissLoading();
@@ -417,7 +411,7 @@ export class PodcastPage {
         } else {
           this.podcasts[i].src = target + filename;
         }
-        this.common.showToast("Download successfully!");
+        this.common.showToast(CONFIG.MESSAGES.DownloadSuccess);
 
         this.storage.get("podcasts").then((val) => {
           if (val == null) {
@@ -428,14 +422,30 @@ export class PodcastPage {
           this.storage.set("podcasts", val);
 
         }, (error) => {
-          // this.storage.set("podcasts", this.podcasts[i]);
         });
       }, (error) => {
         this.podcasts[i].src = fileurl;
         this.common.dismissLoading();
-        this.common.showToast("Download Failed!");
+        this.common.showToast(CONFIG.MESSAGES.DownloadFailed);
       });
+
+      this.trackDownloads(this.podcasts[i].id);
     }
+  }
+
+  trackDownloads(id){
+    this.httpService.getData("video/downloadEpisode?id=" + id).subscribe(data => {
+      if (data.status == 200) {
+        
+      } else if (data.status == 203) {
+        this.events.publish("clearSession");
+      } else {
+        this.common.showToast(data.message);
+        this.showMe = true;
+      }
+    }, error => {
+      this.common.showToast(CONFIG.MESSAGES.ServerMsg);
+    });
   }
 
   /**Function created for file downloaded or not
@@ -444,17 +454,19 @@ export class PodcastPage {
    */
   checkFiledDownloaded(fileurl) {
     let imgSplit = fileurl.split('/');
-    let filename = imgSplit[imgSplit.length - 1];
+    let filename = '';
+    if(imgSplit.length > 0){
+      filename = imgSplit[imgSplit.length - 1];
+    }    
     let target = '';
     if (this.platform.is("android")) {
-      target = this.file.externalRootDirectory + 'OmniSeq/';
+      target = this.file.externalRootDirectory + CONFIG.LocalDir;
     } else if (this.platform.is("ios")) {
       target = this.file.documentsDirectory;
     } else {
       target = this.file.dataDirectory;
     }
     this.file.checkFile(target, filename).then((response) => {
-      console.log("status check", response);
       return "green";
     }, (error) => {
       return "blue";
@@ -471,10 +483,13 @@ export class PodcastPage {
           handler: () => {
             this.common.presentDownloading()
             let imgSplit = fileurl.split('/');
-            let filename = imgSplit[imgSplit.length - 1];
+            let filename = '';
+            if(imgSplit.length > 0){
+              filename = imgSplit[imgSplit.length - 1];
+            }            
             let target = '';
             if (this.platform.is("android")) {
-              target = this.file.externalRootDirectory + 'OmniSeq/';
+              target = this.file.externalRootDirectory + CONFIG.LocalDir;
             } else if (this.platform.is("ios")) {
               target = this.file.documentsDirectory;
             } else {
@@ -496,10 +511,7 @@ export class PodcastPage {
                     if (this.podcasts[l].id == this.podcasts[i].id) {
                       this.podcasts.splice(l, 1);
                       this.storage.get("podcasts").then((curval) => {
-                        console.log("currentplay ", curval)
-                        // if(curval != null){
                         this.currentPlay = curval[0];
-                        // }
                       });
                     }
                     if (this.currentPlay.id == this.podcasts[l].id) {
@@ -510,7 +522,7 @@ export class PodcastPage {
                   }
                 }
               }, (error) => {
-                console.log("error in remove")
+                this.common.showToast("error in remove");
               });
             }, (error) => {
               this.common.dismissLoading();

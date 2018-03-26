@@ -47,3 +47,11 @@ cordova plugin add cordova-plugin-android-permissions@0.10.0
 /*Market Plugin*/
 ionic cordova plugin add cordova-plugin-market
 npm install --save @ionic-native/market
+
+/*Video Streaming*/
+ionic cordova plugin add cordova-plugin-streaming-media
+npm install --save @ionic-native/streaming-media
+
+/*Google Analytics*/
+ionic cordova plugin add cordova-plugin-google-analytics
+npm install --save @ionic-native/google-analytics

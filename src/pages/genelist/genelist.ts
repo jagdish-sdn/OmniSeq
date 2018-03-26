@@ -5,6 +5,7 @@ import { HttpServiceProvider } from '../../providers/http-service/http-service';
 import { CommonProvider } from '../../providers/common/common';
 import { GenedetailPage } from '../genedetail/genedetail';
 import { Storage } from '@ionic/storage';
+import { CONFIG } from '../../config/config';
 
 @Component({
   selector: 'page-genelist',
@@ -35,7 +36,9 @@ export class GenelistPage {
       this.type = this.navparam.data.type;
       if (this.type == 'geneList') {
         this.listUrl = 'gene/search';
+        this.common.trackPage(CONFIG.GAnalyticsPageName.rcGeneList);
       } else {
+        this.common.trackPage(CONFIG.GAnalyticsPageName.ComprehensiveGeneList);
         this.listUrl = 'genecomprehensive/search';
       }
     }
@@ -67,6 +70,7 @@ export class GenelistPage {
       }, error => {
         this.showMe = "show";
         this.common.dismissLoading();
+        this.common.showToast(CONFIG.MESSAGES.ServerMsg);
       });
     } else {
       this.common.presentLoading();
@@ -90,18 +94,33 @@ export class GenelistPage {
     if (!value) {
       this.returnBlank();
     } else {
-      this.geneList = Object.assign([], this.arr).filter(
-        item => {
-          if (item.name.toLowerCase().indexOf(value.toLowerCase()) > -1) {
-            return true;
-          }
-          else if (item.marker.toLowerCase().indexOf(value.toLowerCase()) > -1) {
-            return true;
-          }
-          else if (item.irc_function.toLowerCase().indexOf(value.toLowerCase()) > -1) {
-            return true;
-          }
-        })
+      if (this.type == 'geneList') {
+        this.geneList = Object.assign([], this.arr).filter(
+          item => {
+            if (item.name.toLowerCase().indexOf(value.toLowerCase()) > -1) {
+              return true;
+            }
+            else if (item.marker.toLowerCase().indexOf(value.toLowerCase()) > -1) {
+              return true;
+            }
+            else if (item.irc_function.toLowerCase().indexOf(value.toLowerCase()) > -1) {
+              return true;
+            }
+        });
+      } else {
+        this.geneList = Object.assign([], this.arr).filter(
+          item => {
+            if (item.gene_symbol.toLowerCase().indexOf(value.toLowerCase()) > -1) {
+              return true;
+            }
+            else if (item.gene_name.toLowerCase().indexOf(value.toLowerCase()) > -1) {
+              return true;
+            }
+            else if (item.gene_type.toLowerCase().indexOf(value.toLowerCase()) > -1) {
+              return true;
+            }
+        });
+      }
     }
   }
 
