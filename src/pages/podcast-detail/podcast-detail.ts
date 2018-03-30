@@ -1,5 +1,5 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
-import { NavController, NavParams, Events, Platform, AlertController } from 'ionic-angular';
+import { NavController, NavParams, Events, Platform, AlertController, MenuController } from 'ionic-angular';
 import { ITrackConstraint } from 'ionic-audio';
 import { NetworkProvider } from '../../providers/network/network';
 import { CommonProvider } from '../../providers/common/common';
@@ -39,7 +39,9 @@ export class PodcastDetailPage {
     public alertCtrl: AlertController,
     public platform: Platform,
     private storage: Storage,
+    public menuCtrl: MenuController
   ) {
+    this.menuCtrl.enable(false, 'myMenu');
     
     if (this.platform.is('cordova') && this.platform.is("android")) {
       let permissions = cordova.plugins.permissions;
@@ -65,7 +67,6 @@ export class PodcastDetailPage {
         }
       }, null);
     } else {}
-
     
     this.getEpisodeDetail();
     this.common.trackPage(CONFIG.GAnalyticsPageName.podcastDetail);
@@ -203,7 +204,7 @@ export class PodcastDetailPage {
         this.common.showToast(CONFIG.MESSAGES.ServerMsg);
       })
     }
-  }
+  } 
 
   /**Function created for download audio file
    * Created : 16-Feb-2018
@@ -258,9 +259,8 @@ export class PodcastDetailPage {
     }
   }
 
-
   trackDownloads(){
-    this.httpService.getData("video/downloadEpisode?id=" + this.navParams.data.id).subscribe(data => {
+    this.httpService.getData("podcast/downloadEpisode?id=" + this.navParams.data.id).subscribe(data => {
       if (data.status == 200) {
         
       } else if (data.status == 203) {

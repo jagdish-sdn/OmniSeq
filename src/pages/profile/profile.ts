@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Events, Platform, ActionSheetController } from 'ionic-angular';
+import { NavController, NavParams, Events, Platform, ActionSheetController, MenuController } from 'ionic-angular';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NetworkProvider } from '../../providers/network/network';
 import { HttpServiceProvider } from '../../providers/http-service/http-service';
@@ -39,8 +39,10 @@ export class ProfilePage {
     public events: Events,
     public platform: Platform,
     public actionSheetCtrl: ActionSheetController,
-    private camera: Camera
+    private camera: Camera,
+    public menuCtrl: MenuController
   ) {
+    this.menuCtrl.enable(false, 'myMenu');
     this.positions = [
       { name: 'Oncologist' },
       { name: 'Pathologist' },

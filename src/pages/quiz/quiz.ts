@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Events, Platform } from 'ionic-angular';
+import { NavController, NavParams, Events, Platform, MenuController } from 'ionic-angular';
 import { FormBuilder } from '@angular/forms';
 import { NetworkProvider } from '../../providers/network/network';
 import { HttpServiceProvider } from '../../providers/http-service/http-service';
@@ -36,9 +36,10 @@ export class QuizPage {
     public httpService: HttpServiceProvider,
     public common: CommonProvider,
     public events: Events,
-    public platform: Platform
+    public platform: Platform,
+    public menuCtrl: MenuController
   ) {
-
+    this.menuCtrl.enable(false, 'myMenu');
     if (this.navParams.data.type) {
       this.contentType = this.navParams.data.type;      
     } else {}

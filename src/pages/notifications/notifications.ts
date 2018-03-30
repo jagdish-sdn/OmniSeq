@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, Events, NavParams } from 'ionic-angular';
+import { NavController, Events, NavParams, MenuController } from 'ionic-angular';
 import { NetworkProvider } from '../../providers/network/network';
 import { HttpServiceProvider } from '../../providers/http-service/http-service';
 import { CommonProvider } from '../../providers/common/common';
@@ -22,8 +22,10 @@ export class NotificationsPage {
     public networkPro: NetworkProvider,
     public httpService: HttpServiceProvider,
     public common: CommonProvider,
-    public events: Events
+    public events: Events,
+    public menuCtrl: MenuController
   ) {
+    this.menuCtrl.enable(false, 'myMenu');
     // this.getNotifications();
   }
 

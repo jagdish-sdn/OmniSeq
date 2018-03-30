@@ -43,6 +43,7 @@ import { VideoDetailPage } from '../pages/video-detail/video-detail';
 import { CompTypePage } from '../pages/comp-type/comp-type';
 import { CancertypePage } from '../pages/cancertype/cancertype';
 import { HistologyPage } from '../pages/histology/histology';
+import { IrcTechAssPage } from '../pages/irc-tech-ass/irc-tech-ass';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -96,7 +97,8 @@ export function myCustomAudioProviderFactory() {
     VideoDetailPage,
     CompTypePage,
     CancertypePage,
-    HistologyPage
+    HistologyPage,
+    IrcTechAssPage
   ],
   imports: [
     BrowserModule,
@@ -142,7 +144,8 @@ export function myCustomAudioProviderFactory() {
     VideoDetailPage,
     CompTypePage,
     CancertypePage,
-    HistologyPage
+    HistologyPage,
+    IrcTechAssPage
   ],
   providers: [
     StatusBar,

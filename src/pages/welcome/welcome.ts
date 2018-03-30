@@ -1,4 +1,3 @@
-
 import { Component } from '@angular/core';
 import { NavController, NavParams, Platform, Events, MenuController } from 'ionic-angular';
 import { HomePage } from '../home/home'
@@ -31,7 +30,6 @@ export class WelcomePage {
     public httpService: HttpServiceProvider,
     public menuCtrl: MenuController
   ) {
-    this.menuCtrl.enable(true, 'myMenu');
     this.events.publish("sideMenuBlog",'welcome');
     /**Get Current version*/
     if (this.platform.is('cordova')) {
@@ -43,6 +41,10 @@ export class WelcomePage {
       this.getUpdateDate();
       this.common.trackPage(CONFIG.GAnalyticsPageName.homePage);
     })
+  }
+
+  ionViewWillEnter(){
+    this.menuCtrl.enable(true, 'myMenu');
   }
 
   /**Function created for get last updated date
@@ -116,6 +118,5 @@ export class WelcomePage {
     // this.common.showToast("Coming Soon!");
     this.navCtrl.push(BusinessSurveyPage)
   }
-
 
 }

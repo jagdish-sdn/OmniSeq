@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Events } from 'ionic-angular';
+import { NavController, NavParams, Events, MenuController } from 'ionic-angular';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NetworkProvider } from '../../providers/network/network';
 import { HttpServiceProvider } from '../../providers/http-service/http-service';
@@ -22,8 +22,10 @@ export class ChangePasswordPage {
     public networkPro: NetworkProvider,
     public httpService: HttpServiceProvider,
     public common: CommonProvider,
-    public events: Events
+    public events: Events,
+    public menuCtrl: MenuController
   ) {
+    this.menuCtrl.enable(false, 'myMenu');
     this.submitAttempt = false;
     
     this.changePwdForm = formBuilder.group({      

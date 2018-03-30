@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, Events } from 'ionic-angular';
+import { NavController, Events, MenuController } from 'ionic-angular';
 import { NetworkProvider } from '../../providers/network/network';
 import { HttpServiceProvider } from '../../providers/http-service/http-service';
 import { CommonProvider } from '../../providers/common/common';
@@ -30,12 +30,17 @@ export class ComprehensivePage {
     public networkPro: NetworkProvider,
     public httpService: HttpServiceProvider,
     public common: CommonProvider,
-    public events: Events
+    public events: Events,
+    public menuCtrl: MenuController
   ) {
     this.statusBar.backgroundColorByHexString('#133D6C');
     this.autoCompleteArr = [];
     this.searchedItems = [];
     this.searchText = {};
+  }
+
+  ionViewWillEnter(){
+    this.menuCtrl.enable(true, 'myMenu');
   }
 
   public returnBlank() {

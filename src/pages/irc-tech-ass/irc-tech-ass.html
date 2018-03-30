@@ -1,0 +1,1508 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>TRC Tech Assessment</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content (ionScroll)="scrollHandler($event)" class="body-content">
+  <!-- <ion-row>
+    <ion-searchbar [(ngModel)]="searchText" (ionInput)="search(searchText)" debounce=500 placeholder="Search TRC Tech Assessment"></ion-searchbar>
+  </ion-row> -->
+  <!-- <button id="next">Next</button>
+  <button id="prev">Prev</button> -->
+  <div id="Test">
+    <!--Page 1 Text-->
+    <ion-item class="settingBtn item-back">
+      <ion-list-header class="settingBtn" text-wrap>
+        {{headerTxt}}
+      </ion-list-header>
+      <h4 class="pageheading">Comprehensive Immune Profiling</h4>
+      <h4 class="pageheading" padding-top>Using OmniSeq Immune Report Card</h4>
+      <div class="page-footer footer-txt" text-wrap>{{footerTxt}}</div>
+      <div class="footer-txt" text-right>Page No. 1</div>
+    </ion-item>
+    <!--Page 2 Text-->
+    <ion-item id="page2" class="settingBtn item-back">
+      <ion-list-header class="settingBtn" text-wrap>
+        {{headerTxt}}
+      </ion-list-header>
+      <ion-row class="table-heading">
+        <ion-col col-10>TABLE OF CONTENTS</ion-col>
+        <ion-col col-2>Page</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-10>
+          <a href="#page3">EXECUTIVE SUMMARY</a>
+        </ion-col>
+        <ion-col col-2 text-center>3</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-10>
+          <a href="#page4">BACKGROUND</a>
+        </ion-col>
+        <ion-col col-2 text-center>4</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-10>
+          <a href="#page5">UNMET NEED</a>
+        </ion-col>
+        <ion-col col-2 text-center>5</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-10 text-wrap>
+          <a href="#page8">DEVELOPMENT OF IMMUNE REPORT CARD</a>
+        </ion-col>
+        <ion-col col-2 text-center>8</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-10>
+          <a href="#page9">CLINICAL UTILITY</a>
+        </ion-col>
+        <ion-col col-2 text-center>9</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-10>
+          <a href="#page12">ECONOMIC UTILITY</a>
+        </ion-col>
+        <ion-col col-2 text-center>12</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-10 text-wrap>
+          <a href="#page14">TECHNICAL SPECIFICATIONS AND PERFORMANCE CHARACTERISTICS</a>
+        </ion-col>
+        <ion-col col-2 text-center>14</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-10>
+          <a href="#page15">ANALYTICAL VALIDITY</a>
+        </ion-col>
+        <ion-col col-2 text-center>15</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-10>
+          <a href="#page17">CLINICAL VALIDITY</a>
+        </ion-col>
+        <ion-col col-2 text-center>17</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-10>
+          <a href="#page19">REFERENCES</a>
+        </ion-col>
+        <ion-col col-2 text-center>19</ion-col>
+      </ion-row>
+      <div class="page-footer footer-txt" text-wrap>{{footerTxt}}</div>
+      <div class="footer-txt" text-right>Page No. 2</div>
+    </ion-item>
+    <!--Page 3 Text-->
+    <ion-item id="page3" class="settingBtn item-back">
+      <ion-list-header class="settingBtn" text-wrap>
+        {{headerTxt}}
+      </ion-list-header>
+      <ion-row class="table-heading">
+        <ion-col>EXECUTIVE SUMMARY</ion-col>
+      </ion-row>
+      <ion-row>
+        <div padding-top text-wrap>
+          <span class="darktext">Comprehensive immune profiling (CIP)</span> the simultaneous measurement of known, clinically relevant immune markers
+          to identify tumors with and without pre-existing anti-cancer immunity. CIP markers in the tumor microenvironment
+          act together to orchestrate the host-immune response, and determine likelihood of response to immunotherapy, including
+          checkpoint inhibitors.
+        </div>
+      </ion-row>
+      <ion-row>
+        <div padding-top text-wrap>
+          <span class="darktext">Testing patients for only PD-L1 by immunohistochemistry (IHC), microsatellite instability (MSI) or tumor mutational
+            burden (TMB), is insufficient for immunotherapy selection.</span> One-by-one individual immune marker tests have
+          reduced utility because they only measure a single aspect of the complex anti-cancer immune response, and therefore
+          inadequately depict likelihood of drug response. This problem is compounded by the limited predictive value of
+          some measurement technologies, like PD-L1 IHC, as well as the low prevalence of other immune markers, as in the
+          case of MSI and TMB in many tumor types.
+        </div>
+      </ion-row>
+      <ion-row>
+        <div padding-top text-wrap>
+          <span class="darktext">Most patients with solid tumor types that meet at least one FDA-approved checkpoint inhibitor indication, on-label
+            immune marker testing is not required.</span>The impact of this all-comers approach is seen in response rates
+          for these drugs, ranging from 20-30%. Compounding the low response rate problem, checkpoint inhibitors also come
+          with increased risk of severe adverse events, delayed response and associated response monitoring challenges, and
+          increased overall management costs compared to other standard therapies. Physicians have been left without a fundamental
+          tool to make informed treatment recommendations for these groundbreaking cancer drugs, which have been shown to
+          have the greatest promise for curative-like responses in the history of medicine.
+        </div>
+      </ion-row>
+      <ion-row>
+        <div padding-top text-wrap>
+          The
+          <span class="darktext">Immune Report Card</span>CIP assay addresses these unmet needs by
+          <span class="darktext">evaluating critical markers of tumor antigenicity and immune response across the complete cycle of anti-cancer
+            immunity to fully characterize a patient’s likelihood of response to immunotherapy.</span>
+        </div>
+      </ion-row>
+      <ion-row>
+        <div padding-top text-wrap>
+          <span class="darktext underline">Antigenicity:</span> Measures of genomic instability which drive the formation of abnormal proteins and neoantigens
+          by tumors that the immune system can potentially recognize and attack, including:
+          <ul class="my-nav">
+            <li>
+              <span class="darktext underline">Microsatellite instability (MSI) </span> –caused by a defect in DNA mismatch repair, MSI is associated with
+              increased neoantigen burden and more favorable response to immunotherapy.</li>
+            <li>
+              <span class="darktext underline">Tumor mutational burden (TMB) </span>– tumors with high mutational burden likely harbor neoantigens and respond
+              more favorably to immunotherapy.</li>
+          </ul>
+        </div>
+      </ion-row>
+      <ion-row>
+        <div padding-top text-wrap>
+          <span class="darktext underline">Immune Response: </span> Measures anti-cancer response to neoantigens created by the tumor, including:
+          <ul class="my-nav">
+            <li>
+              <span class="darktext underline">Tumor inflammation: </span> Priming, activation and trafficking of T-cells,
+              <span class="darktext underline">including tumor infiltrating lymphocytes (TILs)</span> that determine whether activated cytotoxic T-cells make
+              it into the tumor (infiltrate) and bind to cancer cells.
+              <span class="darktext underline">Measuring the presence of CD8 TILs in the tumor microenvironment stratifies patients with inflamed “hot” tumors,
+                that actively mounting an anti-tumor immune response, from patients with “cold” tumors that aren’t.</span>
+            </li>
+            <li>
+              <span class="darktext underline">Immune suppression: </span> Oncogene-induced
+              <span class="darktext underline">immunosuppressive mechanisms </span> cancer cells to evade a patient’s immune-defense system. The overproduction
+              of
+              <span class="darktext underline">PD-L1 immune-checkpoint molecules
+              </span>, regulatory immune cells, and suppressive T-cell signaling proteins trigger changes in the tumor microenvironment
+              preventing elimination of cancer cells.
+              <span class="darktext underline">Measuring the levels of immunosuppressive markers determines appropriate immunotherapeutic options.</span>
+            </li>
+          </ul>
+        </div>
+      </ion-row>
+      <ion-row>
+        <div padding-top text-wrap>
+          <span class="darktext">Comprehensive immune profiling indicates likelihood of drug benefit or lack of benefit, beyond one-at-a-time testing
+            with limited individual markers.</span>Each report provides a complete pathologist interpretation summary and
+          evidence-based statement of the likelihood of favorable response to immunotherapy, including monotherapy and combination
+          therapy. CIP helps oncologists make decisions about the best first- and second-line immunotherapy treatment options
+          based on a full survey of the patient’s cancer immune response status.
+        </div>
+      </ion-row>
+      <div class="footer-txt" padding-top text-wrap>{{footerTxt}}</div>
+      <div class="footer-txt" text-right>Page No. 3</div>
+    </ion-item>
+    <!--Page 4 Text-->
+    <ion-item id="page4" class="settingBtn item-back">
+      <ion-list-header class="settingBtn" text-wrap>
+        {{headerTxt}}
+      </ion-list-header>
+      <ion-row class="table-heading">
+        <ion-col>BACKGROUND</ion-col>
+      </ion-row>
+      <ion-row>
+        <div padding-top text-wrap>
+          <span class="darktext" padding-bottom>Addressable Patient Population</span>
+          <br /> Half of US cancer deaths occur in patients with cancers that have on-label immunotherapy indications. These immunotherapy-eligible
+          cancers are 37.6% of new cancers (635,340 of 1,688,780) and about half of all cancer deaths (297,819 of 600,000).
+          1–3 Data obtained prior to the introduction of immunotherapies showed five-year survival when these cancers become
+          advanced was very low (e.g. 4% in lung cancer, 5% in bladder cancer and gastric cancer, 14% in colorectal cancer).
+          In comparison, the remarkable survival benefits seen in selected responsive patients following the advent of immunotherapy
+          represents an enormous clinical advance. However, identifying which patients will likely benefit from these costly
+          and potentially toxic immunotherapies remains a major problem which IRC/CIP aims to address in an efficient and
+          cost-effective way.
+        </div>
+      </ion-row>
+      <ion-row>
+        <div padding-top text-wrap>
+          <span class="darktext" padding-bottom>Standard of Care Immunotherapy: Checkpoint Inhibitors</span>
+          <br /> While there are now multiple classes of
+          <span class="darktext">immunotherapy</span>, by far the largest share is
+          <span class="darktext">“checkpoint inhibitors”</span>. Human cancers express variable numbers of antigens which can potentially represent
+          recognition sites for the patient’s immune system. In many cases however, a tumor can control its microenvironment
+          and create longstanding
+          <span class="darktext">suppression</span>
+          of the patient’s immune system at
+          <span class="darktext">“checkpoints.”</span> The new type of immunotherapy drug
+          <span class="darktext">“inhibits the checkpoints”</span>, allowing an immune attack on the tumor to progress.
+        </div>
+      </ion-row>
+      <ion-row>
+        <div padding-top text-wrap>
+          This is unlike targeted therapies which work against specific genomic mutations, such as EGFR exon 19 deletions or ALK rearrangements
+          in non-small cell lung cancer (NSCLC). Targeted therapies have higher response rates (sometimes over 60%) than
+          immunotherapies (often less than 20-30%). While targeted therapies may shrink tumors for a time, cells in the tumors
+          that are resistant ultimately take over, resulting in tumor growth and progression. Compared to targeted therapies,
+          checkpoint inhibitors give responders an opportunity to experience durable, curative-like results in a subset of
+          patient (8- 10%). 4
+        </div>
+      </ion-row>
+      <ion-row>
+        <div padding-top text-wrap>
+          Without better use of immune system biomarkers, the problem of low response rates for patients treated will continue, with
+          70% or more patients subjected to the adverse effects of these drugs without achieving clinical benefit. The number
+          of these drugs is also rapidly increasing, with over 1000 agents or combinations in preclinical development and
+          some 3000 different clinical trials underway. 5 The coming wave of combination therapies and additional indications
+          from these trials underscores an urgent need for biomarker testing to discern patients who are likely to benefit
+          from treatment as well as those who are very unlikely to respond.
+        </div>
+      </ion-row>
+      <ion-row>
+        <div padding-top text-wrap>
+          <span class="darktext" padding-bottom>Intended Patient Population:</span>
+          <br />
+          <span class="darktext">Immune Report Card </span>, testing is intended for patients with unresectable, metastatic, or advanced tumors
+          that meet at least one FDA-approved checkpoint inhibition therapy indication.
+        </div>
+      </ion-row>
+      <div class="footer-txt" padding-top text-wrap>{{footerTxt}}</div>
+      <div class="footer-txt" text-right>Page No. 4</div>
+    </ion-item>
+    <!--Page 5 Text-->
+    <ion-item id="page5" class="settingBtn item-back">
+      <ion-list-header class="settingBtn" text-wrap>
+        {{headerTxt}}
+      </ion-list-header>
+      <ion-row class="table-heading">
+        <ion-col>UNMET NEED</ion-col>
+      </ion-row>
+      <ion-row>
+        <div padding-top text-wrap>
+          <span class="darktext">Most patients are not required to have biomarker testing to receive immunotherapy.</span>
+          <br />
+          <br /> As shown in
+          <span class="darktext">Table 2</span>, there are five FDA-approved checkpoint inhibitors, all of which are monoclonal antibodies, falling
+          in two classes. Pembrolizumab and nivolumab are PD-1 targeted, while atezolizumab, avelumab, and durvalumab are
+          PD-L1 targeted. All five drugs are approved for use in urothelial cell carcinoma (UCC), while pembrolizumab or
+          nivolumab are each approved in 7 or more different indications, with approvals varying for first line (1L), second
+          line (2L), or third line (3L) use.
+        </div>
+      </ion-row>
+      <ion-row>
+        <div padding-top text-wrap>
+          Only two drugs in four indications require a diagnostic per the terms of their FDA labeling:
+        </div>
+      </ion-row>
+      <ion-row>
+        <div padding-top text-wrap>
+          <ul class="my-nav">
+            <li>
+              <span class="darktext underline">Lung cancer: PD-L1 immunohistochemistry (IHC)</span>companion diagnostic in 1L (pembrolizumab)</li>
+            <li>
+              <span class="darktext underline">Gastric/gastroesophageal cancer: PD-L1 IHC </span>in 3L (pembrolizumab).
+            </li>
+            <li>
+              <span class="darktext underline">Colorectal: Microsatellite Instability (MSI) </span>in 2L (pembrolizumab and nivolumab).
+            </li>
+            <li>
+              <span class="darktext underline">Advanced cancers lacking an indicated therapy: MSI </span>in 2L pembrolizumab and nivolumab.
+            </li>
+          </ul>
+        </div>
+      </ion-row>
+      <ion-row>
+        <div padding-top text-wrap>
+          In addition, PD-L1 IHC is also a “complementary diagnostic” or “advisory-only” biomarker for nivolumab use in several other
+          tumor types (UCC 2L, Head and Neck 2L, NSCLC 2L). Similarly, atezolizumab has a complementary biomarker labeling
+          for NSCLC.
+          <span class="darktext">This means that biomarker-positive patients have higher response rates, but biomarker-negative patients still have
+            a meaningful response rate.</span>
+        </div>
+      </ion-row>
+      <ion-row>
+        <div padding-top text-wrap>
+          <span class="darktext">Table 2: FDA-approved indications, companion and complementary diagnostics for checkpoint blockade.</span>
+          <img src="assets/images/table.png" />
+          <span class="img-txt">1L: First Line; 2L: Second Line; 3L Third Line (a) PD-L1 IHC companion diagnostic; (b) PD-L1 IHC complementary
+            diagnostic indicated; (c) MSI/dMMr companion diagnostic indicated MEL: melanoma; NSCLC: non-small cell lung cancer;
+            UCC: urothelial cell carcinoma; HN: head and neck squamous cell carcinoma; RCC: renal cell carcinoma; CRC: colorectal
+            cancer; GC/GEJ: gastric/gastroesophageal cancers; HCC: hepatocellular carcinoma; MSI/dMMR: microsatellite instable
+            or DNA mismatch repair deficient solid tumor.</span>
+        </div>
+      </ion-row>
+      <ion-row>
+        <div padding-top text-wrap>
+          Accumulating evidence in and beyond FDA labeling shows that
+          <span class="darktext"> PD-L1 immunohistochemistry (IHC)</span> demonstrates wide variation in prevalence and predictive value for objective
+          response rates across tumor types.
+          <span class="darktext"> Many now feel the usefulness of PD-L1 IHC is more for “response stratification” (higher and lower levels of clinical
+            response) rather than clear cut therapy selection (negative patients should not receive the drug). 6</span>
+        </div>
+      </ion-row>
+      <ion-row>
+        <div padding-top text-wrap>
+          <span class="darktext"> Microsatellite instability (MSI)</span>, can also be tested to select patients for nivolumab or pembrolizumab in
+          advanced solid tumors. Tumors that are microsatellite instable (MSI-high) are likely to have more mutations in
+          the tumor and therefore, more abnormal proteins and a more-likely anti-cancer immune response. Unlike PD-L1 IHC,
+          MSI testing is technically accurate and has moderate predictive value for checkpoint inhibition response in advanced
+          solid tumors. However, the overall prevalence of patients with MSI-high tumors is relatively low (often below 5%).
+        </div>
+      </ion-row>
+      <div class="footer-txt" padding-top text-wrap>{{footerTxt}}</div>
+      <div class="footer-txt" text-right>Page No. 5</div>
+    </ion-item>
+    <!--Page 6 Text-->
+    <ion-item id="page6" class="settingBtn item-back">
+      <ion-list-header class="settingBtn" text-wrap>
+        {{headerTxt}}
+      </ion-list-header>
+      <ion-row>
+        <div text-wrap>
+          <span class="darktext">Standalone diagnostics are insufficient for predicting response to checkpoint blockade.</span>
+          <br />
+          <br /> The primary clinical management problem faced by oncologists in treating patients with metastatic cancer is that
+          they have a single opportunity to select the best initial therapy and want to avoid serious adverse events caused
+          by a therapy to which the patient may not respond. The fluctuating predictive value of PD-L1 IHC and the low prevalence
+          of positive MSI on-label testing across tumor types makes the decision difficult, and is compounded by the current
+          “one-at-a time” approach to immunotherapy biomarker testing.
+        </div>
+      </ion-row>
+      <ion-row>
+        <div padding-top text-wrap>
+          <span class="darktext">PD-L1 Immunohistochemistry (IHC)</span>
+          <br />
+          <br /> Checkpoint inhibitors block the PD-L1 pathway, which allows the immune system to attack the tumor. PD-L1 pathway
+          can be activated when the PD-1 receptor is expressed on activated T-cells. Its ligands, PD-L1 and PD-L2, are expressed
+          on the surface of cancer cells, dendritic cells or macrophages. When bound together, these molecules inhibit the
+          T-cell anti-cancer response. While this is healthy to avoid immune attack on the host, the same mechanism is used
+          by tumors to avoid immune attack on themselves.
+        </div>
+      </ion-row>
+      <ion-row>
+        <div padding-top text-wrap>
+          To date, the FDA has approved three different PD-L1 IHC antibody tests used for different drugs in different tumor types.
+          These include companion diagnostics for pembrolizumab in lung 7 , 8 and gastric/ gastroesophageal cancers 9 , 10
+          and as complementary diagnostics in melanoma 5,11 lung 7 , 13 head and neck 14 and urothelial tumors 15,16 as markers
+          of response to, or clinical benefit from, checkpoint blockade including pembrolizumab, nivolumab, or atezolizumab.
+        </div>
+      </ion-row>
+      <ion-row>
+        <div padding-top text-wrap>
+          One of the key problems for oncologists is that it is now known that PD-L1 IHC stratifies, but does not predict response
+          to checkpoint inhibitor drugs, as many biomarker negative patients will still respond, sometimes with cure-like
+          responses. Thus, PD-L1 IHC results alone cannot determine therapy choices 17 . Another problem is the lower reliability
+          of PD-L1 IHC. PD-L1 IHC assays approximate the percentage of immune or tumor cells with qualitative, pathologist-dependent
+          scoring systems. Given these challenges, PD-L1 IHC single analyte testing has mostly been employed in non- small
+          cell lung cancer (NSCLC), where it is “required” as companion diagnostic for pembrolizumab.
+        </div>
+      </ion-row>
+      <ion-row>
+        <div padding-top text-wrap>
+          <span class="darktext">The KEYNOTE-001 trial illustrates how PD-L1 IHC-negative patients may still respond. </span>23% of patients in
+          the study met the 50% PD-L1 staining threshold for first line treatment, and 42% of these patients were drug responders.
+          10%-16% of patients with PD-L1 results
+          <50% also responded favorably to pembrolizumab, so in practice, both biomarker-positive and -negative patients may be treated
+            by oncologists 18 . Additionally, while the National Comprehensive Cancer Network (NCCN) usually rates companion
+            diagnostics as high level “Category I” evidence, for PD-L1 IHC testing in NSCLC and gastric/gastroesophageal cancers,
+            the rating is only “Category 2A” evidence 19,20 . </div>
+      </ion-row>
+      <ion-row>
+        <div padding-top text-wrap>
+          <span class="darktext">Tumor Antigenicity: </span>Two different markers, microsatellite instability (MSI) and tumor mutational burden
+          (TMB), drive tumors to have increased neoantigen release and presentation.
+          <span class="darktext">These two measures of tumor antigenicity have rapidly emerged as indicators of the likelihood that a tumor will
+            be vulnerable to immune system attack.</span>
+        </div>
+      </ion-row>
+      <ion-row>
+        <div padding-top text-wrap>
+          <span class="darktext">MSI </span>testing is on-label for colorectal cancer for nivolumab, and for pembrolizumab across all solid tumors.
+          It has demonstrated clinical utility for predicting response to anti-PD1 therapy for MSI-high/ dMMR patients, with
+          a 32% objective response rate for nivolumab in colorectal cancer, 36% for pembrolizumab in colorectal cancer, and
+          46% in non-colorectal solid tumors 21–23 . Problematically
+        </div>
+      </ion-row>
+      <div class="footer-txt" padding-top text-wrap>{{footerTxt}}</div>
+      <div class="footer-txt" text-right>Page No. 6</div>
+    </ion-item>
+    <!--Page 7 Text-->
+    <ion-item id="page7" class="settingBtn item-back">
+      <ion-list-header class="settingBtn" text-wrap>
+        {{headerTxt}}
+      </ion-list-header>
+      <ion-row>
+        <div text-wrap>
+          however,
+          <span class="darktext">the prevalence of MSI-high in most tumor types is quite low</span>. While MSI-high status is somewhat common in
+          colorectal (16.5%), stomach (21.9%) and uterine (28.3%) cancers, prevalence is 5-10% in a very small number of
+          tumor types, and only 2% (but typically less) in at least 15 other tumor types 24 .
+        </div>
+      </ion-row>
+      <ion-row padding-top>
+        <div text-wrap>
+          To illustrate, the pembrolizumab approval for MSI positive advanced cancers required the aggregation of results across 5
+          trials where thousands of patients were screened for MSI to find a suitable number (n=179) of MSI-high patients
+          to evaluate results, exemplifying the low prevalence problem. Since the label analysis only included only MSI-high
+          patients, there are also no data regarding positive and negative predictive value for response to checkpoint inhibitors
+          in the label analysis 9 .
+        </div>
+      </ion-row>
+      <ion-row padding-top>
+        <div text-wrap>
+          <span class="darktext">High tumor mutational burden (TMB) is more common than MSI-high status in multiple tumor types with clinical benefit
+            and outcomes, but has limited predictive value on its own.</span>
+        </div>
+      </ion-row>
+      <ion-row padding-top>
+        <div text-wrap>
+          Le and colleagues showed that
+          <span class="darktext">higher rates of nonsynonymous mutations are associated with better disease control and progression free survival</span>
+          in 12 tumor types treated with checkpoint inhibitors. In this study, objective responses were observed in 53% of mismatch
+          repair deficient patients with high mutational burden, with complete responses achieved in 21% of patients 22 .
+        </div>
+      </ion-row>
+      <ion-row padding-top>
+        <div text-wrap>
+          Snyder and colleagues 25
+          <span class="darktext">showed significant correlation between high TMB and clinical outcomes among melanoma patients treated with combination
+            ipilimumab+tremalimumab
+          </span>. High mutational load was significantly associated with increased long-term clinical benefit (p = 0.01
+          and p = 0.009, Mann-Whitney test) and improved overall survival (p = 0.04, log-rank test) in patients who responded
+          to treatment with an anti-CTLA-4 therapeutic. However, the authors concluded TMB alone was not sufficient to predict
+          clinical response.
+        </div>
+      </ion-row>
+      <ion-row padding-top>
+        <div text-wrap>
+          Van Allen 26 also showed a correlation between
+          <span class="darktext">high TMB and clinical benefit</span> for ipilimumab in melanoma with high mutational load and neoantigen load significantly
+          associated with clinical benefit (p = 0.0076; p = 0.027, respectively, Mann-Whitney test). Similarly, Rosenberg
+          16 showed an association with high TMB and response to atezolizumab in metastatic urothelial carcinoma.
+        </div>
+      </ion-row>
+      <ion-row padding-top>
+        <div text-wrap>
+          Lastly, Goodman and colleagues 27 showed
+          <span class="darktext">better survival and response rates for patients with high TMB across a diverse set of solid tumor types.</span>
+          The ORR for patients with high (≥ 20 mutations/mb) vs. low to intermediate TMB was 22/38 (58%) vs. 23/113 (20%) (P = 0.0001);
+          median PFS, 12.8 vs. 3.3 months (P =
+          <0.0001); median OS, not reached vs. 16.3 months (P=0 .0036). </div>
+      </ion-row>
+      <ion-row padding-top>
+        <div text-wrap>
+          While
+          <span class="darktext">TMB </span>has been correlated with increased response to checkpoint inhibition therapy in multiple investigations,
+          a standard cutoff for clinical application has yet to be determined 28 .
+          <span class="darktext">These studies demonstrated significant overlap between TMB “low”, “medium” and “high” groups, indicating that like
+            PD-L1 IHC, TMB provides evidence for response stratification, but falls short in terms of predictive value as
+            a standalone single biomarker of checkpoint blockade.</span> TMB has shown correlation with response and clinical
+          benefit for checkpoint blockade in several tumor types, although this observation is published and widely discussed,
+          this finding has not yet been incorporated into FDA labeling.
+        </div>
+      </ion-row>
+      <div class="footer-txt" padding-top text-wrap>{{footerTxt}}</div>
+      <div class="footer-txt" text-right>Page No. 7</div>
+    </ion-item>
+    <!--Page 8 Text-->
+    <ion-item id="page8" class="settingBtn item-back">
+      <ion-list-header class="settingBtn" text-wrap>
+        {{headerTxt}}
+      </ion-list-header>
+      <ion-row class="table-heading">
+        <ion-col>DEVELOPMENT OF IMMUNE REPORT CARD</ion-col>
+      </ion-row>
+      <ion-row>
+        <div padding-top text-wrap>
+          <span class="darktext">Immune Report Card was designed to address the biological complexity of the anti-tumor immune response.</span>
+          <br />
+          <br /> Completing a full cycle of biological steps is required to initiate and sustain an anti-cancer immune response
+          against a patient’s tumor 29 . (See Figure 1).
+        </div>
+      </ion-row>
+      <ion-row>
+        <div padding-top text-wrap>
+          <span class="darktext">Figure 1: Comprehensive immune profiling fully measures markers across the cycle of immunity*</span>
+          <img src="assets/images/tableimg2.png" />
+          <span class="darktext">*Bolded genes are also immunotherapeutic targets in clinical development</span>
+        </div>
+      </ion-row>
+      <ion-row>
+        <div padding-top text-wrap>
+          <span class="darktext">When an anti-cancer response is in effect,</span>a tumor releases antigens that are presented to and captured by
+          dendritic cells. Increased genomic instability results in higher mutational load and increases the number of neoantigens
+          that might be later recognized by T-cells. Dendritic cells then “prime” T-cells with tumor antigen to stimulate
+          the activation of cytotoxic “killer” T-cells. The activated T- cells then travel to the tumor to “infiltrate” its
+          environment. Once inside the tumor, the activated tumor infiltrating lymphocytes (TILS) recognize the cancer cells
+          and bind to them. These bound “effector” TILS induce cancer cell death and kill the tumor. However, because tumor
+          cells start from “self,” they can also use all the body’s built-in mechanisms that are usually reserved to protect
+          against self-destruction of healthy tissues (auto-immune responses), to stop an anti-cancer response at any point
+          in the cycle of immunity.
+        </div>
+      </ion-row>
+      <ion-row>
+        <div padding-top text-wrap>
+          <span class="darktext">A lack of anti-cancer response due to a defect in one or more steps in the anti-cancer immune cycle results in
+            tumor growth and progression, and poorer patient response to immunotherapy and outcomes.</span>When tumor cells
+          evade the immune system, the cancer maintains an immunosuppressive environment through multiple mechanisms, including
+          unnecessary recruitment of regulatory T-cells such as myeloid-derived suppressor cells (MDSCs) which secrete anti-inflammatory
+          cytokines such as IL-10 and TGFB1 that suppress antitumor T-cell responses.
+        </div>
+      </ion-row>
+      <ion-row>
+        <div padding-top text-wrap>
+          <span class="darktext">Immune Report Card identifies patients with and without pre-existing anti-cancer immunity </span>and allows a much
+          more complete characterization of patients’ predisposition to checkpoint blockade response for immunotherapeutic
+          decision making. The simultaneous measurement of multiple markers across the cycle of immunity allows for a comprehensive
+          survey of interplay of the host immune system within the tumor.
+        </div>
+      </ion-row>
+      <div class="footer-txt" padding-top text-wrap>{{footerTxt}}</div>
+      <div class="footer-txt" text-right>Page No. 8</div>
+    </ion-item>
+    <!--Page 9 Text-->
+    <ion-item id="page9" class="settingBtn item-back">
+      <ion-list-header class="settingBtn" text-wrap>
+        {{headerTxt}}
+      </ion-list-header>
+      <ion-row class="table-heading">
+        <ion-col>CLINICAL UTILITY</ion-col>
+      </ion-row>
+      <ion-row>
+        <div padding-top text-wrap>
+          <span class="darktext">Concurrent testing of PD-L1, TMB and MSI by multiple measures and different technologies improves the clinical
+            utility of these markers for immunotherapy selection.</span>
+          <br />
+          <br />
+          <span class="darktext">PD-L1 positivity and measures of genomic instability (high TMB and MSI) are predominantly mutually exclusive.</span>In
+          a large study of over 11,000 patients with more than 30 cancer types, 36% of patients were positive (>=1%) for
+          PD-L1 by IHC, high TMB or MSI-high, but not all three. For example, 54% of NSCLC cases had PD-L1 >=1%, however,
+          only 7% of PD-L1 positive NSCLC cases also had high TMB. The distribution of these markers differs by tumor type.
+          In melanoma for example, 19% of patients were both PD-L1 IHC and high TMB positive, whereas endometrial carcinomas
+          and esophageal/GEJ cancers were both MSI and TMB positive (10% and 8% respectively). Less than 1% of the study
+          population was positive for all three markers, highlighting the need for simultaneous testing 30 .
+        </div>
+      </ion-row>
+      <ion-row>
+        <div padding-top text-wrap>
+          <span class="darktext">Simultaneous marker testing improves upon predictive value for immunotherapeutic selection.</span>
+          <br />
+          <br />
+          <span class="darktext">PD-L1 positivity and measures of genomic instability (high TMB and MSI) are predominantly mutually exclusive.</span>Patients
+          that exhibit more than one positive marker are more likely to respond to immunotherapy. For example, in the pivotal
+          nivolumab versus chemotherapy
+          <span class="darktext">Checkmate-026 clinical trial, first line NSCLC patients who were PD-L1 ≥50% and were also TMB high, demonstrated
+            an ORR of 75% for nivolumab.</span> This is over twice the response rate in patients with high TMB and positive
+          but low PD- L1 IHC expression ≥1-49% (32%), as well as patients with high PD-L1 IHC expression ≥50% and low TMB
+          (34%). In stark contrast, patients with lower PD-L1 expression (≥1-49%) and low TMB had the worst response rate,
+          only 16% 31 . The 75% response rate for combined PD-L1 IHC and TMB testing in nivolumab is also much higher than
+          42% response rate to pembrolizumab for NSCLC patients with ≥50% PD-L1 positivity in the KEYNOTE-001 trial. This
+          has significant implications given that pembrolizumab requires PD-L1 IHC testing for first line single agent therapy
+          and has a similar response rate to single agent nivolumab in NSCLC. Three additional trials for atezolizumab in
+          second line NSCLC (POPLAR, BIRCH and FIR) also found OS, PFS, and ORR were improved in patients with high TMB treated
+          with atezolizumab in both unselected (POPLAR) and PD-L1 selected (BIRCH, FIR) patients.
+          <span class="darktext">While ORR increased with increasing PD-L1 or TMB across all studies, highest response was achieved in PD-L1 selected
+            patients with high TMB (26% vs. 15 % respectively) 32 .</span>
+        </div>
+      </ion-row>
+      <ion-row>
+        <div padding-top text-wrap>
+          <span class="darktext">Concordance of multiple PD-L1 measures by different technologies improves accuracy of marker detection and identification
+            of immunotherapy responders. </span>
+          Activation of the PD-L1 pathway can also occur by overexpression of PD-L1 and/or PD-L2 through copy number/amplification
+          which can be detected by using fluorescent in situ hybridization (FISH). In the largest study to date, the clinical
+          significance of PD-L1 IHC and PD-L2 gene copy number gains was evaluated in 654 NSCLC patients. PD-L1 gene amplification
+          was found to be independently associated with PD-L1 expression, and PD-L1 gene copy number alterations were highly
+          consistent and reproducible compared with the PD-L1 IHC expression. Both PD-L1 amplification and expression were
+          predictors of worse survival 33 . Different cancers may have different characteristics. In a study of squamous
+          cell carcinoma of the oral cavity for example, PD-L1 amplification was found to have 73% concordance with PD-L1
+          expression, with investigators emphasizing the need to perform both measurements to identify potential responders
+          to checkpoint blockade across tumor types 34 . Similarly, measurement of PD-L1 by RNA-Seq, was found to improve
+          upon the predictive value of testing PD-L1 by IHC alone. In a recent study of more than 400 malignant melanomas,
+          mean expression values for PD-L1 testing by IHC and RNA-Seq were highly correlated. Among patients treated with
+          checkpoint inhibitors, ORR increased from 56% to 71% for patients expressing PD-L1 by both IHC and RNA-Seq 35 .
+        </div>
+      </ion-row>
+      <ion-row>
+        <div padding-top text-wrap>
+          <span class="darktext">Capturing PD-L1 on both tumor and immune cells identifies patients who are more likely to achieve clinical benefit.
+          </span>Individual PD-L1 IHC assays and their scoring systems vary in whether they assess expression of PD-L1 on
+          tumor cells and/or immune cells. For example, the POPLAR clinical trial
+        </div>
+      </ion-row>
+      <div class="footer-txt" padding-top text-wrap>{{footerTxt}}</div>
+      <div class="footer-txt" text-right>Page No. 9</div>
+    </ion-item>
+    <!--Page 10 Text-->
+    <ion-item id="page10" class="settingBtn item-back">
+      <ion-list-header class="settingBtn" text-wrap>
+        {{headerTxt}}
+      </ion-list-header>
+      <ion-row>
+        <div text-wrap>
+          (NCT01903993) evaluated PD-L1 by IHC on both tumor cells and tumor infiltrating immune cells in non- small cell lung cancer.
+          In the trial, patients with PD-L1 expression ≥1% in either tumor cells or in tumor infiltrating immune cells had
+          significantly better overall survival when treated with atezolizumab versus docetaxel (median 15.5 months versus
+          9.2 months, p = 0.005). 36
+        </div>
+      </ion-row>
+      <ion-row>
+        <div padding-top text-wrap>
+          <span class="darktext">Evaluation of immune markers in the tumor microenvironment beyond PD-L1, MSI, and TMB, identifies patients who
+            are more likely to have a favorable response to immunotherapy, and clarifies specific immunotherapeutic options.</span>
+        </div>
+      </ion-row>
+      <ion-row>
+        <div padding-top text-wrap>
+          <span class="darktext">CD8 expression testing confirms both the presence and pattern of tumor infiltrating lymphocytes (TILs) in the tumor,
+            and is associated with prognosis, regardless of treatment strategy. In colorectal cancer, a higher density of
+            CD8 positive TILs was found to be associated with increased
+          </span> In colorectal cancer, a higher density of CD8 positive TILs was found to be associated with increased survival
+          surgery (p=0.009) 37 . In melanoma, the density of CD8 TILs was found to be significantly correlated with 5-year
+          survival (p=0.0144, Low: 25%, Moderate: 44.4%, High: 78.8%) 38 . Increased intratumoral density of CD8 TILs is
+          also associated with improved survival in patients with extrahepatic bile duct carcinoma 39 . In lung cancer, a
+          meta-analysis of 8,600 patients showed higher CD8 positive TILs in the tumor nest and tumor stroma were significantly
+          associated with better overall survival (p
+          <0.001), as well as disease free survival (p<0.001) 40 . </div>
+      </ion-row>
+      <ion-row>
+        <div padding-top text-wrap>
+          <span class="darktext">The presence of TILs in the tumor microenvironment is also associated with PD-L1 expression.
+          </span>In melanoma, high CD8+ and CD3+ counts are associated with high PD-L1 expression (p=0.0016 and p
+          <0.0001, respectively), as well as being independently associated with improved overall survival (p=0.001 and p=0.03, respectively)
+            48 . The presence of PD-L1 expressing tumor cells is significantly correlated with increased infiltration of immune
+            cells in many tumor types (p=0.003) 49 .<span class="darktext">However, high tumor PD-L1 expression can be present in the absence of tumor infiltrating lymphocyte (TILs), and
+            tumors with high TILs density might not express PD-L1.</span> In both scenarios, the likelihood of clinical activity
+            of anti-PD-1 or anti-PD-L1 monotherapy could be inaccurately indicated as high if either PD-L1 status or TILs
+            density alone are used as biomarkers. For example, in a clinical trial of melanoma patients treated with pembrolizumab
+            (NCT01295827), responders showed increased
+            <span class="darktext">expression of CD8, PD-1, and PD-L1 (p
+              < 0.0001, p=0 .0002, and p=0 .0006, respectively). CD8 expression co- varied with PD-L1 expression, which was associated
+                with treatment outcome (p < 0.001). Additionally, pre-treatment expression of CD8, PD-1, and PD-L1 together
+                in the tumor and invasive margins was predictive of response by principal component analysis (p=0 .001, p <
+                0.0001, respectively) 43 . </span>
+        </div>
+      </ion-row>
+      <ion-row>
+        <div padding-top text-wrap>
+          <span class="darktext">CD8 TILs differentiate tumors with very different mechanisms of immune escape that need to be targeted by different
+            therapeutic options 44–47</span>
+          Tumors are considered “inflamed” (or “hot”), based on presence of infiltrating CD8-positive TILs, but “non-inflamed” or “cold”
+          if they are absent. When a tumor is “inflamed”, the dominant immune escape mechanisms are PD-L1 up-regulation and
+          subsequent inhibition of T cells through PD-L1 engagement with PD-1, recruitment of regulatory T-cells, and selection
+          of tumor cells with reduced antigenic immunogenicity. When a tumor is “non-inflamed”, the dominant mechanisms of
+          immune escape are a lack of innate immune cell recruitment to the tumor resulting in diminished T-cell activation,
+          oncogenic pathways that alter the tumor microenvironment to exclude T cells, or loss of effector chemokine production
+          resulting in loss of effector T-cell recruitment. Hot tumors are more responsive to checkpoint blockade, while
+          cold or non-inflamed tumors require an immune activation “jump start”, predominantly through combination immunotherapies
+          48–51 . It is necessary to evaluate multiple markers across the cycle of immunity in the context of a “hot” or
+          “cold” tumor, to determine the specific mechanisms of immune activation or suppression at play in the tumor microenvironment
+          and determine the best drug approach.
+        </div>
+      </ion-row>
+      <div class="footer-txt" padding-top text-wrap>{{footerTxt}}</div>
+      <div class="footer-txt" text-right>Page No. 10</div>
+    </ion-item>
+    <!--Page 11 Text-->
+    <ion-item id="page11" class="settingBtn item-back">
+      <ion-list-header class="settingBtn" text-wrap>
+        {{headerTxt}}
+      </ion-list-header>
+      <ion-row>
+        <div text-wrap>
+          As seen in
+          <span class="darktext">Figure 2, Immune Report Card testing </span>in tumor types with FDA approved checkpoint inhibitors shows
+          <span class="darktext">38% (115/304) of patients are positive for at least one checkpoint blockade response marker</span>, including three
+          separate measures of PD-L1, TMB and MSI. However, only 20% of these patients (n=63) harbor two or more checkpoint
+          blockade markers.
+          <span class="darktext">Patients with more than one positive marker are more than twice as likely to have “hot” tumors (24/63; 38%) compared
+            to their single checkpoint blockade counterparts (10/56; 18%), indicating increased likelihood of a favorable
+            response to checkpoint inhibition therapy.</span>
+        </div>
+      </ion-row>
+      <ion-row padding-top>
+        <div text-wrap>
+          <img src="assets/images/graph.png" />
+        </div>
+      </ion-row>
+      <ion-row padding-top>
+        <div padding-top text-wrap>
+          <span class="darktext">Immune Report Card tested patients whose most actionable result was an overexpressed immunotherapeutic target in
+            clinical development </span>comprise nearly half of tested cases (146/304; 48%). Importantly, the majority (93/146;
+          64%) have relatively few (
+          <5) targets that can be leveraged, indicating very specific treatment opportunities for most patients. <span class="darktext">For these patients, the greatest opportunity to benefit from immunotherapy is in combination treatment strategies.
+            </span>For example, among melanoma patients in a combination trial of an anti-LAG-3 (relatlimab) with and without
+            anti-PD- 1 (NCT01968109), the
+            <span class="darktext">ORR was 3.5 fold higher in patients with overexpression of LAG3 (>1% immune cell staining by IHC) compared to
+              patients who were LAG3 expression negative 52 . </span>
+            Importantly, LAG3 expression was not correlated with PD-L1, thus creating an opportunity for orthogonal sub-populations to
+            benefit from immune therapies, including patients who have progressed on single agent anti-PD-1/PD-L1 checkpoint
+            inhibitors.
+        </div>
+      </ion-row>
+      <ion-row padding-top>
+        <div text-wrap>
+          <span class="darktext">Additional protein and gene expression markers of checkpoint blockade and T-cell co- stimulation in the tumor microenvironment
+            have improved outcomes for patients in combination immunotherapy trials. </span>In another example, the ICONIC
+          trial of an ICOS agonist
+        </div>
+      </ion-row>
+      <div class="footer-txt" padding-top text-wrap>{{footerTxt}}</div>
+      <div class="footer-txt" text-right>Page No. 11</div>
+    </ion-item>
+    <!--Page 12 Text-->
+    <ion-item id="page12" class="settingBtn item-back">
+      <ion-list-header class="settingBtn" text-wrap>
+        {{headerTxt}}
+      </ion-list-header>
+      <ion-row>
+        <div text-wrap>
+          antibody in combination with nivolumab for patients who have exhausted all other treatment options,
+          <span class="darktext">response to the single agent ICOS agonist was found to be correlated with % intratumoral ICOS expression at baseline
+            53 .</span>. In the second phase of the trial underway of the ICOS agonist combined with nivolumab ( NCT02904226)
+          , investigators are stratifying patients based on ICOS expression to ensure that sufficient numbers of patients
+          who are more likely to respond are enriched into each cohort 54 .
+        </div>
+      </ion-row>
+      <ion-row padding-top>
+        <div text-wrap>
+          <span class="darktext">Approximately 14% of patients (42/304) tested by Immune Report Card that have tumor types with approved FDA checkpoint
+            inhibitors have been found to have no actionable immune marker (Figure 2). </span>Without comprehensive immune
+          profiling, depending on the tumor type, these “immune desert” patients can indiscriminately be given these immunotherapies
+          on-label, for either first or second line treatment, with limited chance of responding. These patients are better
+          helped by combination immunotherapy strategies that incorporate chemotherapy and other agents to help “kickstart”
+          an immune response.
+        </div>
+      </ion-row>
+      <ion-row padding-top>
+        <div text-wrap>
+          The challenge for physicians who are seeking post-immune therapy progression options for patients is that there are hundreds
+          of clinical trials for secondary targets that antagonize alternative checkpoint blockade mechanisms or co-stimulate
+          immune activity. Patients have very limited tissue available, and doctors have limited time to determine which
+          of the many post-progression treatment options are most likely to benefit the patient. Given that well over half
+          of all tested patients by IRC have reported high levels of gene expression for only a few of the more than 20 compounds
+          in human clinical trials, serial testing by IHC across all permutations to enrich patients onto appropriate combination
+          trials is simply not practical. Only Immune Report Card enables physicians to simultaneously screen for over- expression
+          across all known secondary targets in clinical trials to provide a rational means for post- progression treatment
+          planning.
+        </div>
+      </ion-row>
+      <ion-row padding-top padding-bottom>
+        <div text-wrap>
+          The implications of the complex interplay in the tumor microenvironment has been demonstrated where gene expression by RNA-Seq
+          of PD-1, PD-L1, PD-L2, CD8 (TILs) and tumor mutational (TMB) burden have not only been independently associated
+          with survival, but with varying levels of prognostic significance supporting the use of multiplexed biomarkers
+          assays 55 . Both DNA and RNA-level genomics have demonstrated predictive value for checkpoint blockade based therapy
+          in metastatic melanoma 26 . Multiplexed immune biomarkers have also been associated with response to pembrolizumab
+          across multiple tumor types, indicating the use of these comprehensive biomarkers for improved selection of patients
+          for immunotherapy 56 . Assays that combine results for multiple immune markers have been shown to improve effectiveness
+          of predicting response to checkpoint inhibition therapy 57 .
+        </div>
+      </ion-row>
+      <ion-row class="table-heading">
+        <ion-col>ECONOMIC UTILITY</ion-col>
+      </ion-row>
+      <ion-row padding-top>
+        <div text-wrap>
+          With approximately 15 million Americans living with a cancer history, over $80 billion is spent per year on cancer-related
+          care in the U.S. by employers, insurance companies, government programs, cancer patients, and their families. Newly
+          diagnosed patients incur their highest out-of-pocket expenses during the first six months of treatment underlining
+          oncologists’ need for up-front comprehensive molecular profiling information that optimizes treatment decision
+          making to avoid care delays and futile care 58 . At the same time, the use of checkpoint inhibitors for advanced
+          cancer patients is expected to grow exponentially with approval of additional drugs and new indications, and the
+          typical direct cost of the drugs is currently $10-15k per month checkpoint inhibitors represent an enormous growing
+          economic challenge to treating cancer 59 . Assessing the economic utility of biomarkers and genomic technologies
+          however, presents unique challenges that are not typically faced outside of healthcare, resulting in lack of methodological
+          consensus for evaluation 60 . In cancer care, unlike other types of products, where the economic utility, or “value”
+          of a good or service is realized directly by the buyer, it is oncologists who identify appropriate treatment options
+          and services that are ultimately selected and paid for by patients
+        </div>
+      </ion-row>
+      <div class="footer-txt" padding-top text-wrap>{{footerTxt}}</div>
+      <div class="footer-txt" text-right>Page No. 12</div>
+    </ion-item>
+    <!--Page 13 Text-->
+    <ion-item id="page13" class="settingBtn item-back">
+      <ion-list-header class="settingBtn" text-wrap>
+        {{headerTxt}}
+      </ion-list-header>
+      <ion-row>
+        <div text-wrap>
+          and other payers. Consequently, the economic utility of comprehensive immune profiling is also shared across physician, patient
+          and payer perspectives. For U.S. oncologists, a recent study of the value of in vitro diagnostics (IVD) testing
+          found that while IVD costs accounted for approximately 2% of healthcare expenditures, they influence nearly 70%
+          of healthcare decisions. Oncologists in the study specifically reported using molecular diagnostics 65% of the
+          time in initial patient workups, and rated the testing as having high importance for clinical practice and decision
+          making. The authors concluded that while physicians typically overestimated how much was being spent in the U.S.
+          on testing, they regarded costs as appropriate and necessary for treatment 61 .
+        </div>
+      </ion-row>
+      <ion-row padding-top>
+        <div text-wrap>
+          Recent cost-utility studies specific to immunoncology that take patient health states into account, have demonstrated that
+          the use of pembrolizumab in patients NSCLC with high PD-L1 IHC levels (≥50%) increases quality adjusted life years
+          (QALYs) and is cost effective compared to standard of care chemotherapy in both the first 62 and second line 63
+          settings. In a broader decision-analytic model study based on four phase III trials (CheckMate 017, CheckMate 057,
+          KEYNOTE 010, and OAK), data were analyzed from the U.S. Medicare system perspective. The primary study endpoint
+          was the incremental cost-effectiveness ratio (ICER) expressed as cost per quality-adjusted life year gained from
+          immunotherapy compared to docetaxel, with or without PD-L1 IHC expression determining treatment selection. In scenarios
+          where second line NSCLC patients are not selected for treatment based on PD- L1 expression, this study found that
+          checkpoint inhibition is not cost effective. The investigators in this study concluded that while atezolizumab
+          and nivolumab are currently approved for patients with NSCLC who progressed after chemotherapy, from the payers’
+          point of view, treating only patients whose tumors express PD-L1 could decrease the budget impact by up to 50%,
+          and this may improve access to checkpoint blockade to patients who benefit the most 64 . To illustrate, a meta-analysis
+          comparing the effectiveness of checkpoint inhibitors (nivolumab, pembrolizumab, and atezolizumab) by PD-L1 IHC
+          expression to standard of care docetaxel in 3,024 previously treated NSCLC patients across 5 clinical trials, a
+          positive dose-response relationship was demonstrated between PD-L1 expression levels and survival, with little
+          difference in survival by specific checkpoint inhibitor 65 .
+        </div>
+      </ion-row>
+      <ion-row padding-top>
+        <div text-wrap>
+          Despite shortcomings in predictive value due to specimen heterogeneity, variability in available antibodies, and reproducibility
+          problems PD-L1 IHC has demonstrated cost effectiveness 66 . Given that a major driving factor of diagnostic biomarker
+          cost-effectiveness is test accuracy 67 , the cost- effectiveness of PD-L1 IHC can not only be readily extrapolated
+          to, but improved upon, by comprehensive immune profiling (CIP). CIP reduces the likelihood of false negative IHC
+          testing and directly improves upon the accuracy (negative predictive value) of using PD-L1 IHC as a single biomarker,
+          by providing additional checkpoint blockade response markers, including MSI, tumor mutational burden (TMB), and
+          tumor infiltrating lymphocytes (TILs).
+        </div>
+      </ion-row>
+      <div class="footer-txt" padding-top text-wrap>{{footerTxt}}</div>
+      <div class="footer-txt" text-right>Page No. 13</div>
+    </ion-item>
+    <!--Page 14 Text-->
+    <ion-item id="page14" class="settingBtn item-back">
+      <ion-list-header class="settingBtn" text-wrap>
+        {{headerTxt}}
+      </ion-list-header>
+      <ion-row class="table-heading">
+        <ion-col text-wrap>TECHNICAL SPECIFICATIONS AND PERFORMANCE CHARACTERISTICS</ion-col>
+      </ion-row>
+      <ion-row padding-top>
+        <div text-wrap>
+          Immune Report Card is approved for clinical use by the New York State Clinical Laboratory Evaluation Program (NYS CLEP).
+          OmniSeq, Inc., is fully accredited by the College of American Pathologists (CAP). The performance characteristics
+          of Immune Report Card were analytically validated by OmniSeq Laboratories under the requirements of the Clinical
+          Laboratory Improvement Amendments (CLIA) of 1988. OmniSeq, Inc. is licensed by CLIA and the New York State Department
+          of Health to perform high-complexity molecular diagnostic testing.
+        </div>
+      </ion-row>
+      <ion-row padding-top>
+        <div text-wrap>
+          Immune Report Card employs 5 technologies for comprehensive immune profiling. As seen in Table 4, the sequencing components
+          of Immune Report Card allow for testing of all markers needed to assess immune response with minimal tissue requirements.
+          Nine (9) unstained slides plus normal tissue are is needed to perform standard FDA approved PD-L1 IHC and MSI testing,
+          and an additional 6 slides are required to provide comprehensive testing that includes tumor mutational burden
+          (TMB), T-cell receptor signaling (TCRS), tumor infiltrating lymphocytes (TILS) and PD-L1/L2 copy number/amplification.
+        </div>
+      </ion-row>
+      <ion-row padding-top>
+        <div text-wrap>
+          <span class="darktext">Table 4: Immune Report Card requirements, technical specifications and performance characteristics</span>
+          <img src="assets/images/tablereport.png" />
+        </div>
+      </ion-row>
+      <div class="footer-txt" padding-top text-wrap>{{footerTxt}}</div>
+      <div class="footer-txt" text-right>Page No. 14</div>
+    </ion-item>
+    <!--Page 15 Text-->
+    <ion-item id="page15" class="settingBtn item-back">
+      <ion-list-header class="settingBtn" text-wrap>
+        {{headerTxt}}
+      </ion-list-header>
+      <ion-row class="table-heading">
+        <ion-col text-wrap>ANALYTICAL VALIDITY</ion-col>
+      </ion-row>
+      <ion-row padding-top>
+        <div text-wrap>
+          <span class="darktext">PD-L1 Immunohistochemistry (IHC)</span>
+          <br />
+          <br /> PD-L1 IHC is a qualitative immunohistochemical assay that measures protein using FDA-approved products, guidelines
+          and protocols as a companion or complementary diagnostic for specified indications. Both the analytical and clinical
+          validity requirements of the assay were determined by the vendor. In summary, the analytical validity of PD-L1
+          IHC analysis is demonstrated by concordance testing validation for approval by NYS CLEP. Immunohistochemistry does
+          not meet the traditional criteria of “positive” or “negative” as the pathologist evaluates the pattern of staining.
+          PD-L1 IHC specifically characterizes the expression of PD-L1 by calculating the “Tumor Proportion Score”, “Combined
+          Positive Score”, or “Percent Immune Cells”. PD-LI IHC 22C3 pharmDx is a qualitative immunohistochemical assay using
+          Monoclonal Mouse Anti-PD-L1 Clone 22C3 intended for use in the detection of PD-L1 protein in formalin-fixed, paraffin-embedded
+          (FFPE) tumor tissues. Tumor Proportion Score (TPS) for 22C3 is reported for the majority of tumor types including
+          non-small cell lung carcinoma. . A Combined Positive Score (CPS) is reported for gastric and gastroesophageal carcinomas
+          using 22C3, The result is defined as positive or negative by the clinician following vendor scoring guidelines
+          based on the specific score and the treatment history of the patient. PD-LI IHC 28-8 pharmDx is a qualitative immunohistochemical
+          assay using Monoclonal Rabbit Anti-PD-L1, Clone 28-8 is intended for use in the detection of PD-L1 protein in formalin-fixed,
+          paraffin embedded (FFPE) tumor tissue using En Vision FLEX visualization system on Autostainer Link 48. Percent
+          positive tumor cells for 28-8 is reported for melanoma. VENTANA PD-L1 (SP142) Assay is a qualitative immunohistochemical
+          assay using rabbit monoclonal anti-PD-L1 clone SP142 intended for use in the assessment of the PD-L1 protein in
+          formalin-fixed, paraffin-embedded (FFPE) urothelial carcinoma tissue stained with OptiView DAB IHC Detection Kit
+          and OptiView Amplification Kit on a VENTANA BenchMark ULTRA instrument. Percent positive immune cells for SP142
+          is reported for cases of urothelial carcinoma.
+        </div>
+      </ion-row>
+      <ion-row padding-top>
+        <div text-wrap>
+          <span class="darktext">Microsatellite Instability (PCR)</span>
+          <br /> Analytical validation of Microsatellite Instability (MSI) by polymerase chain reaction (PCR) was designed to assess
+          the reproducibility of results and the sensitivity of detection. MSI analysis involves comparison of allelic profiles
+          of microsatellite markers generated by amplification of DNA from matching normal and tumor samples (either fresh
+          frozen or paraffin-embedded/formalin-fixed tissues). Alleles present in the tumor sample that are not found in
+          the corresponding normal samples indicate MSI. The MSI PCR includes fluorescently-labeled primers for the amplification
+          of a National Cancer Institute (NCI) recommended panel of five microsatellite markers, consisting of two mononucleotide
+          markers (BAT-25, BAT-26) and three dinucleotide repeats (D2S123, D5S346, D17S250). Samples with instability in
+          two or more of these markers are defined as MSI-high (MSI- H), whereas those with one unstable marker are designated
+          as MSI-low (MSI-L). Samples with no detectable alterations are MS-stable (MSS). This validation of accuracy was
+          evaluated in 10 known positive (MSI-H or MSI-L) and 10 known negative (MSS) patient/clinical samples. Several PCR
+          reactions (done on different days) demonstrated the reproducibility of the results (Assay Precision). All repeats
+          showed identical novel MSI alleles in the reanalyzed samples, representative results follow the tables. In accordance
+          with NYS DOH requirement, 3 negative and 3 positive patient samples were assayed in triplicate (intra-assay) and
+          three separate runs (inter-assay ) to establish precision/reproducibility. For sensitivity studies, an increasing
+          amount of the MSI PCR positive control DNA (HCT 116 cell line) was suspended in DNA extracted from the MSI-negative
+          K562 cell line. Several different dilutions were analyzed with 2%, 4%, 8% of the DNA in this mixture (25ng total
+          DNA per PCR reaction) coming from the HCT116 cells. The sensitivity limit of the PCR for MSI in the BAT25 and BAT
+          26 loci was determined to be 4% of MSI-positive.
+        </div>
+      </ion-row>
+      <div class="footer-txt" padding-top text-wrap>{{footerTxt}}</div>
+      <div class="footer-txt" text-right>Page No. 15</div>
+    </ion-item>
+    <!--Page 16 Text-->
+    <ion-item id="page16" class="settingBtn item-back">
+      <ion-list-header class="settingBtn" text-wrap>
+        {{headerTxt}}
+      </ion-list-header>
+      <ion-row>
+        <div text-wrap>
+          <span class="darktext">CD3/CD8 Pattern of Tumor Infiltrating Lymphocytes (TILs) by Immunohistochemistry (IHC)</span>Immunohistochemistry
+          does not meet the traditional criteria of “positive” or “negative” as the pathologist evaluates the pattern of
+          staining. CD3/CD8 IHC specifically characterizes the expression of CD3 and CD8 into two distinct patterns: Infiltrating
+          or Non-infiltrating. This assay consists of two IHC stains performed on a DAKO auotstainer, standard techniques
+          are used to obtain the staining characteristics and infiltrating patterns of the T-cells using CD3 (A0452, Dako)
+          and CD8 (M7130, Dako) antibodies. An Infiltrating pattern of staining refers to the tumor infiltrating lymphocytes
+          (TILs) among neoplastic cells in most of the tumor, while a Non-infiltrating pattern refers to present inconsistently
+          infiltrating TILs. The Non-infiltrating pattern of staining includes cases with an abundance of TILs at the advancing
+          edge of the neoplasm, but within infiltrating among neoplastic cells. Twenty cases with corresponding pathology
+          reports were chosen for this validation based on CD3 and CD8 IHC testing previously performed at Roswell Park Cancer
+          Institute (RPCI) for definitive comparison to OmniSeq, Inc. 100% concordance was noted between the original description
+          of CD3 and CD8 staining and the two OmniSeq pathologists.
+        </div>
+      </ion-row>
+      <ion-row padding-top>
+        <div text-wrap>
+          CD3/CD8 IHC accuracy results were obtained by comparison to RNA-Seq nRPM (normalized reads per million) for these genes.
+          Automated image analysis of CD3/CD8 IHC was performed using the Aperio Scanscope (Aperio Technologies, Inc.) based
+          on 20X bright-field optical microscopy. nRPM were extracted from the RNA-Seq analysis data for the same specimens.
+          The correlation of nRPM for each of the three subunit genes for CD3 to each other were consistently high ranging
+          from 0.93 for CD3D versus CD3G, 0.86 for CD3D and CD3E, and 0.84 for CD3E and CD3G. The correlation of CD3 IHC
+          to nRPM for each of the three CD3 subunit genes was slightly lower, but consistent at 0.76 for CD3G, 0.75 for CD3D,
+          and 0.71 for CD3E. The results for CD8 were similar, with the correlation of nRPM for the two CD8 subunit genes
+          CD8A and CD8B at 0.72, and the correlation of CD8 IHC to the average nRPM for CD8 at 0.80.
+        </div>
+      </ion-row>
+      <ion-row padding-top>
+        <div text-wrap>
+          <span class="darktext">PD L1/L2 Copy Number/Amplification (FISH)</span>
+          <br /> Validation of the PD-L1/L2 amplification probe was designed to assess probe sensitivity, probe specificity accuracy
+          acceptable limits, assay sensitivity, assay specificity, reference range (normal cutoff), and reproducibility (test
+          precision). These standards were evaluated on 59 solid tumors from the Roswell Park Cancer Institute surgical pathology
+          archives divided into 2 groups based upon prior genomic information of the samples and expected result for PD-L1/L2
+          amplification. One group consisted of two specimens for which prior clinical or research testing for clinical use
+          had shown high level amplification of PD-L1/L2 using next generation sequencing analysis. The other group consisted
+          of 57 specimens had prior RNA-seq with a custom immune profiling panel that included PD-L1 expression completed
+          in our laboratory as part of R&D. The same set of samples were also part of the Cancer Genome Atlas Project (TCGA)
+          whereby whole transcriptome analysis, including PD-L1 expression, was available for comparison to the in-house
+          custom immune profiling panel. Additionally, PD-L1 expression was evaluated in the validation cohort by using the
+          FDA-approved pharmDx 22C3 IHC and scored using a Tumor Proportion Score (TPS) by published guidelines (KEYTRUDA
+          PD-L1 expression testing guide) as the literature demonstrates that high-level of PD-L1/L2 copy number variation
+          by FISH is closely associated with over expression of PD-L1 protein as visualized by IHC methods, while aneuploidy
+          has a much lower association.
+        </div>
+      </ion-row>
+      <ion-row padding-top>
+        <div text-wrap>
+          <span class="darktext">RNA-Seq (TCRS Gene Expression) and DNA-Seq Analysis (Mutational Burden)</span>
+          <br /> Sequencing analytical validation studies were performed to confirm standard measurements including accuracy, precision,
+          sensitivity and specificity for both DNA-seq and RNA-seq. Additional studies addressed variability in the nucleic
+          acid input amounts, genomic DNA contamination of RNA, batch size and linearity of detection across all genes within
+          a wide distribution of signal on the overall immune
+        </div>
+      </ion-row>
+      <div class="footer-txt" padding-top text-wrap>{{footerTxt}}</div>
+      <div class="footer-txt" text-right>Page No. 16</div>
+    </ion-item>
+    <!--Page 17 Text-->
+    <ion-item id="page17" class="settingBtn item-back">
+      <ion-list-header class="settingBtn" text-wrap>
+        {{headerTxt}}
+      </ion-list-header>
+      <ion-row>
+        <div padding-bottom text-wrap>
+          response signature. Sequencing reproducibility studies evaluated intra-run, inter-run, inter-operator, inter-day and inter-barcode
+          variance for a standardized set of samples and Immune Report card next generation sequencing (NGS) run controls.
+          The measurement units used to demonstrate analytical validity included gene expression normalized reads per million
+          (nRPM) and relative rank (RNA-Seq), as well as absolute TMB counts, normalized TMB counts, and TMB clinical reporting
+          interpretation (DNA- seq). Relative rank, which is applicable to RNA-Seq relates nRPM to a reference population
+          and provides a value normalized to a score of 100 for each gene. Absolute TMB count is a simple enumeration of
+          qualified somatic mutations detected for that sample which is then normalized to 1 megabase of sequence (normalized
+          TMB count).
+          <span class="darktext">An expanded description of the validation methodology can be found in, “Analytical Validation of a Next-Generation
+            Sequencing Assay to Monitor Immune Responses in Solid Tumors” recently published in the Journal of Molecular
+            Pathology 68 and our accepted NYS CLEP submission (29061374).</span>
+        </div>
+      </ion-row>
+      <ion-row class="table-heading">
+        <ion-col>CLINICAL VALIDITY</ion-col>
+      </ion-row>
+      <ion-row padding-top>
+        <div text-wrap>
+          <span class="darktext">PD-L1 Immunohistochemistry (IHC)</span>
+          <br /> PD-L1 (Programmed death-ligand 1) is evaluated in solid tumors to support the appropriate use of checkpoint inhibitor
+          therapy. PD-L1 IHC 22C3 pharmDx is indicated as an aid in identifying NSCLC patients for treatment with pembrolizumab.
+          Identifying PD-L1 expression on tumor cells is important in identifying the signal needed to assess which patients
+          will respond better to anti-PD-1 therapy. Dako PD-L1 IHC 22C3 pharmDx has an expanded label approved by the U.S.
+          Food and Drug Administration (FDA) allowing detection of PD-L1 expression in a broader range of patients - those
+          with a PD-L1 tumor proportion score (TPS) of 1% or more. PD-L1 IHC using 28-8 pharmDx antibody defines protein
+          expression as the percentage of tumor cells exhibiting positive membrane staining at any intensity. PD- L1 expression
+          as detected by PD-L1 IHC 28-8 pharmDx in nonsquamous NSCLC may be associated with enhanced survival from OPDIVO®
+          (nivolumab). Positive PD-L1 status as determined by PD-L1 IHC 28-8 pharmDx in melanoma is correlated with the magnitude
+          of the treatment effect on progression-free survival from OPDIVO. Additionally, determination of PD-L1 status using
+          VENTANA PD-L1 (SP142) is indication-specific, and evaluation in urothelial carcinoma tissue is based on the proportion
+          of tumor area occupied by PD-L1 expressing tumor-infiltrating immune cells (% IC) of any intensity. PD-L1 expression
+          in ≥5% IC determined by VENTANA PD-L1 (SP142) Assay in urothelial carcinoma tissue is associated with increased
+          objective response rate (ORR) in a non-randomized study of Tecentriq (atezolizumab).
+        </div>
+      </ion-row>
+      <ion-row padding-top>
+        <div text-wrap>
+          <span class="darktext">Microsatellite Instability (PCR)</span>
+          <br /> Microsatellite markers can be used to detect a form of genomic instability called microsatellite instability which
+          is a change in length of a microsatellite allele due to either insertion or deletion of repeating units during
+          DNA replication and failure of the DNA mismatch repair system to correct these errors. MSI-H cancers, whether sporadic
+          or inherited, are less aggressive than either MSI-L or MSS cancers. They are less often associated with either
+          lymphatic or distant spread. Despite being less aggressive, experimental data show that MSI-H cancers are less
+          sensitive to DNA-damaging agents and more resistant to adjuvant chemotherapy. These tumors could also differ in
+          their response to radiation therapy. To summarize, the evaluation of microsatellites by PCR can be stratified into
+          three groups: MSS, MSI-L, and MSI-H based on the detection of microsatellites in a patient’s tumor specimen compared
+          to a respective normal specimen. Recently, the approval for the use of checkpoint inhibitors in all solid tumors
+          that are MSI-H emphasizes the importance of the evaluation of MSI in cancer patients.
+        </div>
+      </ion-row>
+      <ion-row padding-top>
+        <div text-wrap>
+          <span class="darktext">CD3/CD8 Pattern of Tumor Infiltrating Lymphocytes (TILs) by Immunohistochemistry (IHC)</span>
+          <br /> CD3 (cluster of differentiation 3) is a well described T-cell co-receptor that is instrumental in the activation
+          of T-lymphocytes and can identify the T-cell population associated with the neoplasm. CD8
+        </div>
+      </ion-row>
+      <div class="footer-txt" padding-top text-wrap>{{footerTxt}}</div>
+      <div class="footer-txt" text-right>Page No. 17</div>
+    </ion-item>
+    <!--Page 18 Text-->
+    <ion-item id="page18" class="settingBtn item-back">
+      <ion-list-header class="settingBtn" text-wrap>
+        {{headerTxt}}
+      </ion-list-header>
+      <ion-row>
+        <div padding-bottom text-wrap>
+          (cluster of differentiation 8) is one of the co-receptors for the T-cell, it specifically binds to MHC Class I molecules
+          and can be reflective of response to checkpoint inhibitors. Specifically, the pattern of TILs within a tumor is
+          associated with clinical outcome and response to checkpoint inhibitor therapy. The immunohistochemical stains for
+          CD3 and CD8 are used to characterize T-cells and cyotoxic T-cells in solid tumors which may be amenable to immunotherapy.
+          The information provided by the pattern of CD3 and CD8 IHC may be used to by physicians to decide if immunotherapy
+          with one or more FDA- approved checkpoint inhibitors may benefit the patient.
+        </div>
+      </ion-row>
+      <ion-row padding-top>
+        <div text-wrap>
+          <span class="darktext">PD L1/L2 Copy Number/Amplification (FISH)</span>
+        </div>
+      </ion-row>
+      <ion-row padding-top>
+        <div text-wrap>
+          We have adopted the CAP/ASCO 2013 updated guidelines for a positive result of HER-2 amplification as the cut-off values for
+          positive PD-L1/L2 amplification as well as the CAP/ASCO 2013 updated guidelines for an indeterminate result of
+          HER-2 amplification as the cut-off values for indeterminate PD- L1/L2 amplification. All results are then compared
+          to expected values, or reference intervals, which refers to range of test values expected to occur in 95% of healthy
+          individuals. For this FISH assay the upper cutoff for results was a series of normal tissues (including normal
+          lung, lymph node, kidney, or adipose tissue with validation tumor in the same slide) with a calculated 95% confidence
+          interval for probe signal patters seen in these tissues.
+        </div>
+      </ion-row>
+      <ion-row padding-top>
+        <div text-wrap>
+          To summarize, amplification involving the PD-L1/L2 genes can be expected to occur in 1 to 5% solid tumors 34,69–73 , and
+          is associated with over expression of PD-L1. A diploid copy number state for PD- L1/L2 is further evidence of a
+          lack of over expression of PD-L1 by IHC and not supportive of potential response to checkpoint inhibition therapy.
+          Aneuploidy or copy number gain of PD-L1/L2 is frequently associated with over expression of PD-L1/L2 by IHC and
+          supportive of potential response to checkpoint inhibition therapy. It should also be recognized that a subset of
+          samples that show over expression of PD-L1/L2 by IHC have a diploid status for PD-L1/L2 and a no gain result cannot
+          be used to predict potential response to checkpoint inhibition therapy.
+        </div>
+      </ion-row>
+      <ion-row padding-top>
+        <div text-wrap>
+          <span class="darktext">RNA-Seq (TCRS Gene Expression) and DNA-Seq Analysis (Mutational Burden)</span>
+          For the clinical validation of RNA-Seq and DNA-Seq, we demonstrated that: 1) measurement of immune response in the tumor
+          microenvironment for the TILs and TCRS gene expression signatures (RNA-seq) which are not confirmed to the neoplastic
+          cells results are accurate; 2) concordance with fresh frozen samples when using FFPE samples and that that different
+          sections of tissue from a given tumor do not result in different clinical interpretations; 3) tissue characteristics
+          have a broad tolerance for impacting the RNA-seq results, and; 4) the specimen choice for testing either multiple
+          foci of metastatic tumor or the primary tumor has very limited impact on the final results for most patients. For
+          the DNA-seq results the evaluation for TMB (DNA-seq) is limited to neoplastic cells, and the most important component
+          of clinical validation defined cut-off values for high versus not high TMB that is consistent with the clinical
+          literature for response to checkpoint blockade.
+        </div>
+      </ion-row>
+      <ion-row padding-top>
+        <div text-wrap>
+          Using multiple unique cohorts of patients, we have shown that the TILs, TCRS, and TMB identify the phenotypes of interest
+          reliably and accurately from DNA and RNA prepared from FFPE tumor specimens. Our in-depth analysis of the TILs
+          and TCRS signatures using the RNA-seq data showed that the results are accurate and not influenced by specimen
+          characteristics or sequencing variables outside of the standard thresholds for the latter. More importantly, we
+          showed a method using relative rank analysis that allows for the comparison of future patient results to a reference
+          population. In a similar manner, we built a class interpretation for TMB that is unique to our targeted panel and
+          bioinformatics pipeline. The resultant gene expression relative rank (1 to 100) TMB category (very low to very
+          high) for each patient provides clinicians with an interpretation of results that otherwise would not be possible
+          if all that was available was nRPM or number of mutations detected.
+        </div>
+      </ion-row>
+      <div class="footer-txt" padding-top text-wrap>{{footerTxt}}</div>
+      <div class="footer-txt" text-right>Page No. 18</div>
+    </ion-item>
+    <!--Page 19 Text-->
+    <ion-item id="page19" class="settingBtn item-back">
+      <ion-list-header class="settingBtn" text-wrap>
+        {{headerTxt}}
+      </ion-list-header>
+      <ion-row class="table-heading">
+        <ion-col>REFERENCES</ion-col>
+      </ion-row>
+      <ion-list no-lines>
+        <ion-item class="settingBtn" text-wrap>
+          1. Siegel, R. L., Miller, K. D. & Jemal, A. Cancer statistics, 2017. CA. Cancer J. Clin.
+          <span class="darktext">67</span>, 7–30 (2017).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          2. Mariotto, A. B., Yabroff, K. R., Shao, Y., Feuer, E. J. & Brown, M. L. Projections of the cost of cancer care in the United
+          States: 2010-2020. J. Natl. Cancer Inst.
+          <span class="darktext">103</span>, 117–28 (2011).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          3. American Society of Clinical Oncology. The State of Cancer Care in America, 2017: A Report by the American Society of
+          Clinical Oncology. J. Oncol. Pract.
+          <span class="darktext">13</span>, e353–e394 (2017).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          4. Topalian, S. L. et al. Safety, Activity, and Immune Correlates of Anti–PD-1 Antibody in Cancer. N. Engl. J. Med.
+          <span class="darktext">366</span>, 2443–2454 (2012).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          5. Tang, J., Shalabi, A. & Hubbard-Lucey, V. M. Comprehensive analysis of the clinical immuno- oncology landscape. Ann. Oncol.
+          1–8 (2017). doi:10.1093/annonc/mdx755
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          6. Diggs, L. P. & Hsueh, E. C. Utility of PD-L1 immunohistochemistry assays for predicting PD- 1/PD-L1 inhibitor response.
+          Biomark. Res.
+          <span class="darktext">5</span>, 12 (2017).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          7. Herbst, R. S. et al. Pembrolizumab versus docetaxel for previously treated, PD-L1-positive, advanced non-small-cell lung
+          cancer (KEYNOTE-010): a randomised controlled trial. Lancet
+          <span class="darktext">387</span>, 1540–1550 (2016).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          8. Reck, M. et al. Pembrolizumab versus Chemotherapy for PD-L1–Positive Non–Small-Cell Lung Cancer. N. Engl. J. Med.
+          <span class="darktext">375</span>, 1823–1833 (2016).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          9. Merck. Keytruda (pembrolizumab) [package insert]. (2017).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          10. Fuchs, C. S. et al. KEYNOTE-059 cohort 1: Efficacy and safety of pembrolizumab (pembro) monotherapy in patients with
+          previously treated advanced gastric cancer. J. Clin. Oncol.
+          <span class="darktext">35</span>, 4003 (2017).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          11. Larkin, J. et al. Combined Nivolumab and Ipilimumab or Monotherapy in Untreated Melanoma. N. Engl. J. Med.
+          <span class="darktext">373</span>, 23–34 (2015).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          12. Borghaei, H. et al. Nivolumab versus Docetaxel in Advanced Nonsquamous Non–Small-Cell Lung Cancer. N. Engl. J. Med.
+          <span class="darktext">373</span>, 1627–1639 (2015).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          13. Rittmeyer, A. et al. Atezolizumab versus docetaxel in patients with previously treated non-small- cell lung cancer (OAK):
+          a phase 3, open-label, multicentre randomised controlled trial. Lancet
+          <span class="darktext">389</span>, 255–265 (2017).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          14. Ferris, R. L. et al. Nivolumab for Recurrent Squamous-Cell Carcinoma of the Head and Neck. N. Engl. J. Med.
+          <span class="darktext">375</span>, 1856–1867 (2016).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          15. Sharma, P. et al. Nivolumab in metastatic urothelial carcinoma after platinum therapy (CheckMate 275): a multicentre,
+          single-arm, phase 2 trial. Lancet Oncol.
+          <span class="darktext">18</span>, 312–322 (2017).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          16. Rosenberg, J. E. et al. Atezolizumab in patients with locally advanced and metastatic urothelial carcinoma who have progressed
+          following treatment with platinum-based chemotherapy: A single-arm, multicentre, phase 2 trial. Lancet
+          <span class="darktext">387</span>, 1909–1920 (2016).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          17. Scheerens, H. et al. Current Status of Companion and Complementary Diagnostics: Strategic Considerations for Development
+          and Launch. Clin. Transl. Sci.
+          <span class="darktext">10</span>, 84–92 (2017).
+        </ion-item>
+      </ion-list>
+      <div class="footer-txt" padding-top text-wrap>{{footerTxt}}</div>
+      <div class="footer-txt" text-right>Page No. 19</div>
+    </ion-item>
+    <!--Page 20 Text-->
+    <ion-item id="page20" class="settingBtn item-back">
+      <ion-list-header class="settingBtn" text-wrap>
+        {{headerTxt}}
+      </ion-list-header>
+      <ion-list no-lines>
+        <ion-item class="settingBtn" text-wrap>
+          18. Daud, A. I. et al. Programmed Death-Ligand 1 Expression and Response to the Anti- Programmed Death 1 Antibody Pembrolizumab
+          in Melanoma. J. Clin. Oncol. 34, 4102–4109 (2016).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          19. National Comprehensive Cancer Network. NCCN Clinical Practice Guidelines in Oncology (NCCN Guidelines®) - Gastric Cancer.
+          (2017).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          20. National Comprehensive Cancer Network. NCCN Clinical Practice Guidelines in Oncology (NCCN Guidelines®) - Non-Small Cell
+          Lung Cancer. (2017).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          21. Overman, M. J. et al. Nivolumab in patients with metastatic DNA mismatch repair-deficient or microsatellite instability-high
+          colorectal cancer (CheckMate 142): an open-label, multicentre, phase 2 study. Lancet Oncol. 18, 1182–1191 (2017).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          22. Le, D. T. et al. Mismatch repair deficiency predicts response of solid tumors to PD-1 blockade. Science (80-. ). 357,
+          409–413 (2017).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          23. Diaz, L. A. Programmed death-1 blockade in mismatch repair deficient cancer independent of tumor histology. ASCO Abstract
+          no.3003 (2016). doi:10.1200/JCO.2016.34.15_suppl.3003
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          24. Cortes-Ciriano, I., Lee, S., Park, W.-Y., Kim, T.-M. & Park, P. J. A molecular portrait of microsatellite instability
+          across multiple cancers. Nat. Commun. 8, 15180 (2017).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          25. Snyder, A. et al. Genetic Basis for Clinical Response to CTLA-4 Blockade in Melanoma. N. Engl. J. Med. 371, 2189–2199
+          (2014).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          26. Van Allen, E. M. et al. Genomic correlates of response to CTLA-4 blockade in metastatic melanoma. Science (80-. ). 350,
+          207–211 (2015).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          27. Goodman, A. M. et al. Tumor Mutational Burden as an Independent Predictor of Response to Immunotherapy in Diverse Cancers.
+          Mol. Cancer Ther. 16, 2598–2608 (2017).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          28. Panda, A. et al. Identifying a Clinically Applicable Mutational Burden Threshold as a Potential Biomarker of Response
+          to Immune Checkpoint Therapy in Solid Tumors. JCO Precis. Oncol. 1– 13 (2017). doi:10.1200/PO.17.00146
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          29. Chen, D. S. & Mellman, I. Elements of cancer immunity and the cancer-immune set point. Nature 541, 321–330 (2017).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          30. Vanderwalde, A., Spetzler, D., Xiao, N., Gatalica, Z. & Marshall, J. Microsatellite instability status determined by
+          next-generation sequencing and compared with PD-L1 and tumor mutational burden in 11,348 patients. Cancer Med.
+          1–11 (2018). doi:10.1002/cam4.1372
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          31. Carbone, D. P. et al. First-Line Nivolumab in Stage IV or Recurrent Non–Small-Cell Lung Cancer. N. Engl. J. Med. 376,
+          2415–2426 (2017).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          32. Kowanetz, M. et al. Tumor mutation load assessed by FoundationOne (FM1) is associated with improved efficacy of atezolizumab
+          (atezo) in patients with advanced NSCLC. Ann. Oncol. 27, 15–42 (2016).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          33. Inoue, Y. et al. Clinical significance of PD‐L1 and PD‐L2 copy number gains in non‐small‐cell lung cancer. Oncotarget
+          7, (2016).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          34. Straub, M. et al. CD274/PD-L1 gene amplification and PD-L1 protein expression are common events in squamous cell carcinoma
+          of the oral cavity. Oncotarget 7, 12024–12034 (2016).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          35. Conroy, JM; Pabla S; Nesline, M; Glenn, ST; Burgher, B; Qin M; Andreas, J; Giamo V; Lenzo, F;Omilian A; Bshara, W; Papanicolau-Sengos,
+          A; Wang, Y; Ernstoff, M; Gardner, M. M. Predicting Response: PD-L1 Biomarker Testing by IHC. (2018).
+        </ion-item>
+      </ion-list>
+      <div class="footer-txt" padding-top text-wrap>{{footerTxt}}</div>
+      <div class="footer-txt" text-right>Page No. 20</div>
+    </ion-item>
+    <!--Page 21 Text-->
+    <ion-item id="page21" class="settingBtn item-back">
+      <ion-list-header class="settingBtn" text-wrap>
+        {{headerTxt}}
+      </ion-list-header>
+      <ion-list no-lines>
+        <ion-item class="settingBtn" text-wrap>
+          36. Fehrenbacher, L. et al. Atezolizumab versus docetaxel for patients with previously treated non- small-cell lung cancer
+          (POPLAR): a multicentre, open-label, phase 2 randomised controlled trial. Lancet 387, 1837–1846 (2016).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          37. PRALL, F. Prognostic role of CD8+ tumor-infiltrating lymphocytes in stage III colorectal cancer with and without microsatellite
+          instability. Hum. Pathol. 35, 808–816 (2004).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          38. Piras, F. et al. The predictive value of CD8, CD4, CD68, and human leukocyte antigen-D-related cells in the prognosis
+          of cutaneous malignant melanoma with vertical growth phase. Cancer 104, 1246–54 (2005).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          39. Oshikiri, T. et al. Prognostic value of intratumoral CD8+ T lymphocyte in extrahepatic bile duct carcinoma as essential
+          immune response. J. Surg. Oncol. 84, 224–228 (2003).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          40. Geng, Y. et al. Prognostic Role of Tumor-Infiltrating Lymphocytes in Lung Cancer: a Meta- Analysis. Cell. Physiol. Biochem.
+          37, 1560–1571 (2015).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          41. Kluger, H. M. et al. Characterization of PD-L1 Expression and Associated T-cell Infiltrates in Metastatic Melanoma Samples
+          from Variable Anatomic Sites. Clin. Cancer Res. 21, 3052–3060 (2015).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          42. Taube, J. M. et al. Association of PD-1, PD-1 ligands, and other features of the tumor immune microenvironment with response
+          to anti-PD-1 therapy. Clin. Cancer Res. 20, 5064–5074 (2014).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          43. Tumeh, P. C. et al. PD-1 blockade induces responses by inhibiting adaptive immune resistance. Nature 515, 568–71 (2014).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          44. Spranger, S. Mechanisms of tumor escape in the context of the T-cell-inflamed and the non-T- cell-inflamed tumor microenvironment.
+          Int. Immunol. 28, 383–391 (2016).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          45. Spranger, S. et al. Density of immunogenic antigens does not explain the presence or absence of the T-cell–inflamed tumor
+          microenvironment in melanoma. Proc. Natl. Acad. Sci. 113, E7759– E7768 (2016).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          46. Luke, J. J., Spranger, S., Bao, R., Andrade, J. & Gajewski, T. F. The genetic landscape of the T cell non-inflamed tumor
+          microenvironment in human solid tumors. J. Immunother. Cancer 3, P97 (2015).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          47. Teng, M. W. L., Ngiow, S. F., Ribas, A. & Smyth, M. J. Classifying Cancers Based on T-cell Infiltration and PD-L1. Cancer
+          Res. 75, 2139–45 (2015).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          48. Harris, S. J., Brown, J., Lopez, J. & Yap, T. A. Immuno-oncology combinations: raising the tail of the survival curve.
+          Cancer Biol. Med. 13, 171–93 (2016).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          49. Morrissey, K., Yuraszeck, T., Li, C.-C., Zhang, Y. & Kasichayanula, S. Immunotherapy and Novel Combinations in Oncology:
+          Current Landscape, Challenges, and Opportunities. Clin. Transl. Sci. 9, 89–104 (2016).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          50. Topalian, S. L., Taube, J. M., Anders, R. A. & Pardoll, D. M. Mechanism-driven biomarkers to guide immune checkpoint
+          blockade in cancer therapy. Nat. Rev. Cancer 16, 275–287 (2016).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          51. Ott, P. A., Hodi, F. S., Kaufman, H. L., Wigginton, J. M. & Wolchok, J. D. Combination immunotherapy: a road map. J.
+          Immunother. Cancer 5, 16 (2017).
+        </ion-item>
+      </ion-list>
+      <div class="footer-txt" padding-top text-wrap>{{footerTxt}}</div>
+      <div class="footer-txt" text-right>Page No. 21</div>
+    </ion-item>
+    <!--Page 22 Text-->
+    <ion-item id="page22" class="settingBtn item-back">
+      <ion-list-header class="settingBtn" text-wrap>
+        {{headerTxt}}
+      </ion-list-header>
+      <ion-list no-lines>
+        <ion-item class="settingBtn" text-wrap>
+          52. Ascierto, P. A. et al. Efficacy of BMS-986016, a monoclonal antibody that targets lymphocyte activation gene-3 (LAG-3),
+          in combination with nivolumab in pts with melanoma who progressed during prior anti–PD-1/PD-L1 therapy (mel prior
+          IO) in all-comer and biomarker-enriched. Ann. Oncol. 28, 2017–2018 (2017).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          53. Hirsch, H. A. et al. Biomarker Driven Indication Selection in JTX-2011 ICONIC Clinical Trial. J. Clin. Oncol. 35, 11602
+          (2017).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          54. Oncology Times. Early Data From ICONIC Study of JTX-2011 in Advanced Solid Tumors. Oncol. Times 39, 31 (2017).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          55. Danilova, L. et al. Association of PD-1/PD-L axis expression with cytolytic activity, mutational load, and prognosis
+          in melanoma and other solid tumors. Proc. Natl. Acad. Sci. 113, E7769– E7777 (2016).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          57. Ayers, M. et al. IFN-γ-related mRNA profile predicts clinical response to PD-1 blockade. J. Clin. Invest. 127, 2930–2940
+          (2017).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          58. Singleterry, J. The Costs of Cancer. (The American Cancer Society, 2017).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          59. Beasley, D. The cost of cancer: new drugs show success at a steep price. Reuters 1–7 (2017).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          60. Buchanan, J., Wordsworth, S. & Schuh, A. Issues surrounding the health economic evaluation of genomic technologies. Pharmacogenomics
+          14, 1833–1847 (2013).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          61. Rohr, U.-P. et al. The Value of In Vitro Diagnostic Testing in Medical Practice: A Status Report. PLoS One 11, e0149856
+          (2016).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          62. Huang, M. et al. Cost Effectiveness of Pembrolizumab vs. Standard-of-Care Chemotherapy as First-Line Treatment for Metastatic
+          NSCLC that Expresses High Levels of PD-L1 in the United States. Pharmacoeconomics 35, 831–844 (2017).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          63. Huang, M. et al. Cost-effectiveness of pembrolizumab versus docetaxel for the treatment of previously treated PD-L1 positive
+          advanced NSCLC patients in the United States. J. Med. Econ. 20, 140–150 (2017).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          64. Aguiar, P. N. et al. The effect of PD-L1 testing on the cost-effectiveness and economic impact of immune checkpoint inhibitors
+          for the second-line treatment of NSCLC. Ann. Oncol. 28, 2256– 2263 (2017).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          65. Tan, P. S., Aguiar, P., Haaland, B. & Lopes, G. Comparative effectiveness of immune-checkpoint inhibitors for previously
+          treated advanced non-small cell lung cancer – A systematic review and network meta-analysis of 3024 participants.
+          Lung Cancer 115, 84–88 (2018).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          66. Aguiar, P. N. et al. PD-L1 Expression as a Predictive Biomarker: Is Absence of Proof the Same as Proof of Absence? JAMA
+          Oncol. 2, 54 (2016).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          67. Oosterhoff, M., van der Maas, M. E. & Steuten, L. M. G. A Systematic Review of Health Economic Evaluations of Diagnostic
+          Biomarkers. Appl. Health Econ. Health Policy 14, 51–65 (2016).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          68. Conroy, J. M. et al. Analytical Validation of a Next-Generation Sequencing Assay to Monitor Immune Responses in Solid
+          Tumors. J. Mol. Diagnostics 20, 95–109 (2018).
+        </ion-item>
+      </ion-list>
+      <div class="footer-txt" padding-top text-wrap>{{footerTxt}}</div>
+      <div class="footer-txt" text-right>Page No. 22</div>
+    </ion-item>
+    <!--Page 23 Text-->
+    <ion-item id="page23" class="settingBtn item-back">
+      <ion-list-header class="settingBtn" text-wrap>
+        {{headerTxt}}
+      </ion-list-header>
+      <ion-list no-lines>
+        <ion-item class="settingBtn" text-wrap>
+          69. Guo, L. et al. PD-L1 expression and CD274 gene alteration in triple-negative breast cancer: implication for prognostic
+          biomarker. Springerplus 5, 805 (2016).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          70. Howitt, B. E. et al. Genetic Basis for PD-L1 Expression in Squamous Cell Carcinomas of the Cervix and Vulva. JAMA Oncol.
+          2, 518 (2016).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          71. Ikeda, S. et al. Metastatic basal cell carcinoma with amplification of PD-L1: exceptional response to anti-PD1 therapy.
+          npj Genomic Med. 1, 16037 (2016).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          72. Budczies, J. et al. Pan-cancer analysis of copy number changes in programmed death-ligand 1 (PD-L1, CD274) - associations
+          with gene expression, mutational load, and survival. Genes, Chromosom. Cancer 55, 626–639 (2016).
+        </ion-item>
+        <ion-item class="settingBtn" text-wrap>
+          73. Inoue, Y., Osman, M., Suda, T. & Sugimura, H. PD-L1 copy number gains: a predictive biomarker for PD-1/PD-L1 blockade
+          therapy? Transl. Cancer Res. 5, S199–S202 (2016).
+        </ion-item>
+      </ion-list>
+      <div class="page-footer footer-txt" padding-top text-wrap>{{footerTxt}}</div>
+      <div class="footer-txt" text-right>Page No. 23</div>
+    </ion-item>
+    </div>
+    <ion-fab bottom right #fab2 *ngIf="topShow == true">
+      <button type="button" (click)="scrollToTop()" ion-fab class="e2eFabBottomRight">
+        <!-- Top -->
+        <ion-icon name="ios-arrow-up"></ion-icon>
+      </button>
+    </ion-fab>
+</ion-content>

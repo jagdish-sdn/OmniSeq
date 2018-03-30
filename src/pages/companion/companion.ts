@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, Events, NavParams, Platform } from 'ionic-angular';
+import { NavController, Events, NavParams, Platform, MenuController } from 'ionic-angular';
 import { NetworkProvider } from '../../providers/network/network';
 import { HttpServiceProvider } from '../../providers/http-service/http-service';
 import { CommonProvider } from '../../providers/common/common';
@@ -27,8 +27,10 @@ export class CompanionPage {
     public events: Events,
     private storage: Storage, 
     private file: File,
-    public platform: Platform
+    public platform: Platform,
+    public menuCtrl: MenuController
   ) {
+    this.menuCtrl.enable(false, 'myMenu');
     this.getCompanyList();
     if (this.platform.is("android") && this.platform.is("cordova")) {
       this.fileDir = this.file.externalRootDirectory + 'OmniSeq/';

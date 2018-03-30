@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Events, Platform } from 'ionic-angular';
+import { NavController, NavParams, Events, Platform, MenuController } from 'ionic-angular';
 import { SettingsProvider } from './../../providers/settings/settings';
 import { FormBuilder } from '@angular/forms';
 import { NetworkProvider } from '../../providers/network/network';
@@ -41,8 +41,10 @@ export class SettingPage {
     public common: CommonProvider,
     public events: Events,
     private platform: Platform,
-    private appVersion: AppVersion
+    private appVersion: AppVersion,
+    public menuCtrl: MenuController
   ) {
+    this.menuCtrl.enable(false, 'myMenu');
     this.settings.getActiveTheme().subscribe(val => {
       this.selectedTheme = val; this.toggleChecked(this.selectedTheme);
     });

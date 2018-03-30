@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, Events } from 'ionic-angular';
+import { NavController, Events, MenuController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NetworkProvider } from '../../providers/network/network';
 import { HttpServiceProvider } from '../../providers/http-service/http-service';
@@ -26,8 +26,10 @@ export class BusinessSurveyPage {
     public httpService: HttpServiceProvider,
     public common: CommonProvider,
     public events: Events,
-    private settings: SettingsProvider
+    private settings: SettingsProvider,
+    public menuCtrl: MenuController
   ) {
+    this.menuCtrl.enable(false, 'myMenu');
     this.contactLength = CONFIG.ValidExpr.contactLength;
     this.settings.getActiveTheme().subscribe(val => {
       this.selectedTheme = val; this.toggleChecked(this.selectedTheme);

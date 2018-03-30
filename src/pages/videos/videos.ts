@@ -1,6 +1,6 @@
 
 import { Component } from '@angular/core';
-import { NavController, NavParams, Events, Platform } from 'ionic-angular';
+import { NavController, NavParams, Events, Platform, MenuController } from 'ionic-angular';
 import { NetworkProvider } from '../../providers/network/network';
 import { CommonProvider } from '../../providers/common/common';
 import { HttpServiceProvider } from '../../providers/http-service/http-service';
@@ -28,8 +28,10 @@ export class VideosPage {
     public httpService: HttpServiceProvider,
     public events: Events,
     public platform: Platform,
-    private storage: Storage
+    private storage: Storage,
+    public menuCtrl: MenuController
   ) {
+    this.menuCtrl.enable(false, 'myMenu');
     this.videosList('');
     this.common.trackPage(CONFIG.GAnalyticsPageName.videosList);
   }

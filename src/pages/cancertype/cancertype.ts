@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events, MenuController } from 'ionic-angular';
 import { NetworkProvider } from '../../providers/network/network';
 import { HttpServiceProvider } from '../../providers/http-service/http-service';
 import { CommonProvider } from '../../providers/common/common';
@@ -22,8 +22,10 @@ export class CancertypePage {
     public common: CommonProvider,
     public navParams: NavParams,
     private storage: Storage,
-    public events: Events
+    public events: Events,
+    public menuCtrl: MenuController
   ) {
+    this.menuCtrl.enable(false, 'myMenu');
     this.getcancers();
     this.common.trackPage(CONFIG.GAnalyticsPageName.cancerslist);
   }

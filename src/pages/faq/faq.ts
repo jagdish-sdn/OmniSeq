@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Events } from 'ionic-angular';
+import { NavController, NavParams, Events, MenuController } from 'ionic-angular';
 import { NetworkProvider } from '../../providers/network/network';
 import { HttpServiceProvider } from '../../providers/http-service/http-service';
 import { CommonProvider } from '../../providers/common/common';
@@ -27,8 +27,10 @@ export class FaqPage {
     public httpService: HttpServiceProvider,
     public common: CommonProvider,
     public events: Events,
-    private storage: Storage
+    private storage: Storage,
+    public menuCtrl: MenuController
   ) {
+    this.menuCtrl.enable(false, 'myMenu');
     this.faqArr = [];
     
     if (this.navParams.data.type) {

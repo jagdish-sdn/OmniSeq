@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, Events, NavParams } from 'ionic-angular';
+import { NavController, Events, NavParams, MenuController } from 'ionic-angular';
 import { NetworkProvider } from '../../providers/network/network';
 import { HttpServiceProvider } from '../../providers/http-service/http-service';
 import { CommonProvider } from '../../providers/common/common';
@@ -25,8 +25,10 @@ export class GenelistPage {
     public common: CommonProvider,
     public events: Events,
     public navparam: NavParams,
-    private storage: Storage
+    private storage: Storage,
+    public menuCtrl: MenuController
   ) {
+    this.menuCtrl.enable(false, 'myMenu');
     this.searchText = {};
     this.geneList = [];
     if (this.navparam.data.searchText) {

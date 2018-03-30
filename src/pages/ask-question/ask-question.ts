@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Events, AlertController } from 'ionic-angular';
+import { NavController, NavParams, Events, AlertController, MenuController } from 'ionic-angular';
 import { NetworkProvider } from '../../providers/network/network';
 import { HttpServiceProvider } from '../../providers/http-service/http-service';
 import { CommonProvider } from '../../providers/common/common';
@@ -27,8 +27,10 @@ export class AskQuestionPage {
     public common: CommonProvider,
     public formBuilder: FormBuilder,
     public events: Events,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    public menuCtrl: MenuController
   ) {
+    this.menuCtrl.enable(false, 'myMenu');
     this.askQueForm = formBuilder.group({
       question: ['', Validators.compose([
         Validators.required

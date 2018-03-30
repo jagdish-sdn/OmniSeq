@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events, MenuController } from 'ionic-angular';
 import { NetworkProvider } from '../../providers/network/network';
 import { HttpServiceProvider } from '../../providers/http-service/http-service';
 import { CommonProvider } from '../../providers/common/common';
@@ -28,8 +28,10 @@ export class CompanionDetailPage {
     public events: Events,
     private sanitized: DomSanitizer,
     private storage: Storage, 
-    private file: File
+    private file: File,
+    public menuCtrl: MenuController
   ) {
+    this.menuCtrl.enable(false, 'myMenu');
       this.companionId = navParams.get("id");
       this.getCompanionDetails(this.companionId);
       this.fileDir = this.file.dataDirectory;

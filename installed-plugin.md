@@ -55,3 +55,5 @@ npm install --save @ionic-native/streaming-media
 /*Google Analytics*/
 ionic cordova plugin add cordova-plugin-google-analytics
 npm install --save @ionic-native/google-analytics
+
+npm install jquery --save

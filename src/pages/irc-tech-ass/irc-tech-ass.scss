@@ -1,0 +1,86 @@
+page-irc-tech-ass {
+    .input-wrapper{
+        text-align: justify;
+    }
+    .list-header-md {
+        border-top: 0 !important;
+        padding-left: 0 !important; 
+    }
+    .list-header-ios {
+        border-top: 0 !important;
+        padding-left: 0 !important; 
+        border-bottom: 0px transparent !important;
+    }
+    .list-header-md .label{
+        font-size: 1.0rem !important
+    }
+    .list-header-ios .label{
+        font-size: 1.0rem !important
+    }
+    .item-md.item-block .item-inner{
+        border-bottom: 0px;
+    }
+    .item-ios.item-block .item-inner{
+        border-bottom: 0px;
+    }
+    .item-md{
+        background-color: transparent !important;
+    }
+    .item-ios{
+        background-color: transparent !important;
+    }
+    ion-item{
+        border: 1px solid #cccccc !important;
+    }
+    .pageheading{
+        text-align: center;
+        font-size: 1.6rem;
+        font-weight: bold;
+    }
+    ion-list-header .label{
+        color: #000;
+    }
+    .page-footer{
+        padding-top: 50%;        
+    }
+    .footer-txt{
+        font-size:1.0rem;
+    }
+    .table-heading{
+        background-color: gray;
+    }
+    .table-heading ion-col{
+        color: #fff;
+    }
+    ion-col{
+        font-weight: 500 !important;
+    }
+    .darktext{
+        font-weight: 500; 
+    }
+    .my-nav {
+        list-style-type: disc;
+    }
+    ul{
+        padding-left: 20px !important;
+    }
+    .img-txt{
+        font-size: 10px;
+    }
+    a{
+        color: #000;
+        text-decoration: none;
+    }
+    ion-fab a{
+        color: #fff;
+    }
+    .item-back {
+        margin-top: 5px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100%;
+        background-image: url(../assets/images/confidential.png);
+    }
+    .red { color: red}
+    .selected { background-color : black }
+}

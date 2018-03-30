@@ -1,9 +1,0 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>Companion / Complementary Dx</ion-title>
-  </ion-navbar>
-</ion-header>
-<ion-content class="body-content" padding>
-  <div *ngIf="companionData.logo" class="logo"><img [src]="isOnline ? companionData.logo : fileDir+imageName(companionData.logo)" [alt]="companionData.compainion_name" width="50%" /></div>
-  <div class="inner-html" text-center [innerHTML]="companionData.data"></div>
-</ion-content>

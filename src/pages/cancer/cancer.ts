@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { NavController, Events, NavParams, Content } from 'ionic-angular';
+import { NavController, Events, NavParams, Content, MenuController } from 'ionic-angular';
 import { NetworkProvider } from '../../providers/network/network';
 import { HttpServiceProvider } from '../../providers/http-service/http-service';
 import { CommonProvider } from '../../providers/common/common';
@@ -34,8 +34,10 @@ export class CancerPage {
     public httpService: HttpServiceProvider,
     public common: CommonProvider,
     public events: Events,
-    public storage: Storage
+    public storage: Storage,
+    public menuCtrl: MenuController
   ) {
+    this.menuCtrl.enable(false, 'myMenu');
     this.getGeneList();
     this.common.trackPage(CONFIG.GAnalyticsPageName.cancerImmuneCycle);
   }

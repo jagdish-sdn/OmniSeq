@@ -14,8 +14,6 @@
         <ion-avatar (click)="currentTrack = podcast;playAudio(i);inItTrack = true;" item-left>
           <img src="{{podcast.art}}">
         </ion-avatar>
-        <!-- <button type="button" ion-button padding (click)="play(podcast, i);playAudio(i);inItTrack = true;">Play</button>
-      <button type="button" ion-button padding (click)="pauseSelectedTrack()">Pause</button> -->
         <p (click)="goToPodcastDetail(podcast)" class="topic-title">{{podcast.title}}</p>
         <span class="uploaded">{{podcast.date}}</span>
         <p (click)="goToPodcastDetail(podcast)" class="topic-desc">{{podcast.desc}}</p>
@@ -25,12 +23,6 @@
         <span (click)="deletefile(podcast.contentUrl, i, podcast.contentUrl)" *ngIf="podcast.isDownloaded == true">
           <ion-icon class="down-icon" name="md-trash"></ion-icon>
         </span>&nbsp;&nbsp;
-        <!-- <span (click)="checkPlay(podcast,i)" *ngIf="podcast.isDownloaded == true && podcast.isPlaying == false">
-        <ion-icon class="down-icon" name="md-play"></ion-icon>
-      </span>
-      <span (click)="pauseaudio(podcast,i)" *ngIf="podcast.isDownloaded == true && podcast.isPlaying == true">
-        <ion-icon class="down-icon" name="md-pause"></ion-icon>
-      </span> -->
         <span class="duration">{{millisToMinutesAndSeconds(podcast.totalDuration)}}</span>
       </ion-item>
     </ion-list>

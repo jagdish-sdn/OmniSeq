@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { ComprehensivePage} from '../comprehensive/comprehensive';
 import { CommonProvider } from '../../providers/common/common';
@@ -16,8 +16,10 @@ export class QuizCongratulationPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public common: CommonProvider
+    public common: CommonProvider,
+    public menuCtrl: MenuController
   ) {
+    this.menuCtrl.enable(false, 'myMenu');
     if(this.navParams.data.type == 'report') {
       this.common.trackPage(CONFIG.GAnalyticsPageName.rcQuiz);
     } else {

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 import { CancertypePage } from '../cancertype/cancertype';
 import { CompanionPage } from '../companion/companion';
 
@@ -12,7 +12,10 @@ export class CompTypePage {
 
   constructor(
     public navCtrl: NavController, 
-    public navParams: NavParams) {
+    public navParams: NavParams,
+    public menuCtrl: MenuController
+  ) {
+    this.menuCtrl.enable(false, 'myMenu');
   }
 
   public goToCancerType(){

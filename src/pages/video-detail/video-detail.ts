@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Events, AlertController, Platform } from 'ionic-angular';
+import { NavController, NavParams, Events, AlertController, Platform, MenuController } from 'ionic-angular';
 import { StreamingMedia, StreamingVideoOptions } from '@ionic-native/streaming-media';
 import { NetworkProvider } from '../../providers/network/network';
 import { CommonProvider } from '../../providers/common/common';
@@ -31,8 +31,10 @@ export class VideoDetailPage {
     public alertCtrl: AlertController,
     public platform: Platform,
     private storage: Storage,
-    public networkPro: NetworkProvider
+    public networkPro: NetworkProvider,
+    public menuCtrl: MenuController
   ) {
+    this.menuCtrl.enable(false, 'myMenu');
     if (this.platform.is('cordova') && this.platform.is("android")) {
       let permissions = cordova.plugins.permissions;
       permissions.hasPermission(permissions.READ_EXTERNAL_STORAGE, function (status) {

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events, MenuController } from 'ionic-angular';
 import { HttpServiceProvider } from '../../providers/http-service/http-service';
 import { NetworkProvider } from '../../providers/network/network';
 import { CommonProvider } from '../../providers/common/common';
@@ -25,8 +25,10 @@ export class GenedetailPage {
     public common: CommonProvider,
     public events: Events,
     private storage: Storage,
-    public navparam: NavParams    
+    public navparam: NavParams,
+    public menuCtrl: MenuController
   ) {
+    this.menuCtrl.enable(false, 'myMenu');
     this.geneDetail = {};    
     if(this.navparam.data.type){
       this.type = this.navparam.data.type;

@@ -1,5 +1,5 @@
 import { Component, ChangeDetectorRef, ViewChild } from '@angular/core';
-import { NavController, NavParams, Events, Platform, AlertController } from 'ionic-angular';
+import { NavController, NavParams, Events, Platform, AlertController, MenuController } from 'ionic-angular';
 import { NetworkProvider } from '../../providers/network/network';
 import { CommonProvider } from '../../providers/common/common';
 import { HttpServiceProvider } from '../../providers/http-service/http-service';
@@ -53,7 +53,9 @@ export class PodcastPage {
     public platform: Platform,
     public alertCtrl: AlertController,
     private storage: Storage,
+    public menuCtrl: MenuController
   ) {
+    this.menuCtrl.enable(false, 'myMenu');
 
     if (this.platform.is('cordova') && this.platform.is("android")) {
       let permissions = cordova.plugins.permissions;
@@ -82,6 +84,7 @@ export class PodcastPage {
       this.search.setFocus();
     }, 500);
   }
+  
   ionViewWillEnter() {
     this.showMe = "";
     this.page = 1;
@@ -98,9 +101,7 @@ export class PodcastPage {
   }
 
   ionViewCanLeave() {
-    console.log("living track", this.trackPlay)
     if (this.trackPlay == true) {
-      console.log("click on pause");
       document.getElementById('yourId').click();
     }
     if (localStorage.getItem("currentaudio") && localStorage.getItem("trackplay")) {
@@ -246,7 +247,6 @@ export class PodcastPage {
   }
 
   playPauseSong() {
-    console.log("playpause");
     this.trackPlay = !this.trackPlay;
   }
 
@@ -434,7 +434,7 @@ export class PodcastPage {
   }
 
   trackDownloads(id){
-    this.httpService.getData("video/downloadEpisode?id=" + id).subscribe(data => {
+    this.httpService.getData("podcast/downloadEpisode?id=" + id).subscribe(data => {
       if (data.status == 200) {
         
       } else if (data.status == 203) {
